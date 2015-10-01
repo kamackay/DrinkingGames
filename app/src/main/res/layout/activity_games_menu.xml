@@ -1,31 +1,86 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc" tools:context=".GamesMenu">
-
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/dummy_content" />
-
+    android:layout_height="match_parent"
+    android:background="@color/darkGray"
+    tools:context=".GamesMenu">
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-            <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="@string/dummy_button" />
+            <Button
+                android:id="@+id/codButton_gamesMenuScreen"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:onClick="openCOD"
+                android:text="@string/circle_of_death"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
 
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 2"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 3"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 4"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 5"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 6"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 7"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="#3f3f3f"
+                android:text="Game 8"
+                android:textAllCaps="false"
+                android:textSize="50sp" />
         </LinearLayout>
-    </FrameLayout>
+    </ScrollView>
 
 </FrameLayout>
