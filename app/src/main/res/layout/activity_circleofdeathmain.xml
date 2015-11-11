@@ -11,9 +11,373 @@
         android:fitsSystemWindows="true">
 
         <mobile.keithapps.customlayouts.CircleLayout
+            android:id="@+id/circleofdeath_circlelayout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="@dimen/cardbutton_width"
+                android:layout_height="@dimen/cardbutton_height"
+                android:background="@drawable/cardback"
+                android:onClick="drawCard"
+                android:scaleType="fitXY" />
         </mobile.keithapps.customlayouts.CircleLayout>
     </FrameLayout>
 

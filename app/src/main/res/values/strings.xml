@@ -8,4 +8,49 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_circleofdeathmain">Circle of Death</string>
+    <string name="circlemain_resetcards_title">Reset all cards</string>
+
+    <string name="ace_directions">Waterfall</string>
+    <string name="two_directions">You</string>
+    <string name="three_directions">Me</string>
+    <string name="four_directions">Floor</string>
+    <string name="five_directions">Guys</string>
+    <string name="six_directions">Chicks</string>
+    <string name="seven_directions">Heaven</string>
+    <string name="eight_directions">Make a Date</string>
+    <string name="nine_directions">Rhyme</string>
+    <string name="ten_directions">Categories</string>
+    <string name="jack_directions">Never Have I Ever</string>
+    <string name="queen_directions">Question Master</string>
+    <string name="king_directions">Make a Rule</string>
+    <string name="ace_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="two_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="three_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="four_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="five_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="six_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="seven_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="eight_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="nine_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="ten_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="jack_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="queen_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="king_directions_description">The developer is lazy and has not done this yet.</string>
+    <string name="main_screen_action_bar"></string>
+
+    <string-array name="face_values">
+        <item>Ace</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+        <item>Nine</item>
+        <item>Ten</item>
+        <item>Jack</item>
+        <item>Queen</item>
+        <item>King</item>
+    </string-array>
 </resources>
