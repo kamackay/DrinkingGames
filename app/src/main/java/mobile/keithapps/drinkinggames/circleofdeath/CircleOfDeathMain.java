@@ -65,17 +65,16 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 counter++;
                 if (counter == 7) {
                     this.circleBroken = true;
-                    try {
                         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                         View layout = inflater.inflate(R.layout.image_and_text_popup,
                                 (ViewGroup) findViewById(R.id.layout_root));
                         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
-                        textView.setText("You broke the circle!");
+                        textView.setText(R.string.circle_broken_message);
                         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-                        imageView.setImageDrawable(getResources().getDrawable(R.drawable.brokencircle));
+                        imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.brokencircle));
                         final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-                        instructionsView.setText("Drink the beer in the middle of the table");
+                        instructionsView.setText(R.string.circle_broken_message_2);
                         imageDialog.setView(layout);
                         imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
@@ -85,9 +84,6 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         });
                         AlertDialog dialog = imageDialog.create();
                         dialog.show();
-                    } catch (Exception e) {
-                        int t = 0;
-                    }
                 }
             } else counter = 0;
         }
@@ -157,7 +153,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-        imageView.setImageDrawable(getResources().getDrawable(card.getImageId()));
+        imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), card.getImageId()));
         final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
         instructionsView.setText(getResources().getString(card.getDirections()));
         imageDialog.setView(layout);
