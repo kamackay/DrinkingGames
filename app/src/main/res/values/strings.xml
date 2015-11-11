@@ -36,7 +36,8 @@
     <string name="jack_directions_description">The developer is lazy and has not done this yet.</string>
     <string name="queen_directions_description">The developer is lazy and has not done this yet.</string>
     <string name="king_directions_description">The developer is lazy and has not done this yet.</string>
-    <string name="main_screen_action_bar"></string>
+    <string name="circle_broken_message">You broke the circle!</string>
+    <string name="circle_broken_message_2">Drink the beer in the middle of the table</string>
 
     <string-array name="face_values">
         <item>Ace</item>
