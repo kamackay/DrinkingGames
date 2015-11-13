@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="darkRed">#CC0000</color>
     <color name="black_overlay">#66000000</color>
-    <color name="foreground_material_dark">#7c7c7c</color>
+    <color name="foreground_material_dark_custom">#7c7c7c</color>
     <color name="darkGray">#191919</color>
+    <color name="menu_button_background">#3f3f3f</color>
 </resources>

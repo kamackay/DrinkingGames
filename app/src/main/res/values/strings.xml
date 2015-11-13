@@ -36,6 +36,13 @@
     <string name="king_directions_description">The developer is lazy and has not done this yet.</string>
     <string name="circle_broken_message">You broke the circle!</string>
     <string name="circle_broken_message_2">Drink the beer in the middle of the table</string>
+    <string name="gamesmenu_button2_text">Pokemon Drinking Game</string>
+    <string name="gamesmenu_button3_text">Game 3 Coming Soon!</string>
+    <string name="gamesmenu_button4_text">Game 4 Coming Soon!</string>
+    <string name="gamesmenu_button5_text">Game 5 Coming Soon!</string>
+    <string name="gamesmenu_button6_text">Game 6 Coming Soon!</string>
+    <string name="gamesmenu_button7_text">Game 7 Coming Soon!</string>
+    <string name="gamesmenu_button8_text">Game 8 Coming Soon!</string>
 
     <string-array name="face_values">
         <item>Ace</item>
