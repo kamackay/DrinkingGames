@@ -1,7 +1,9 @@
 package mobile.keithapps.drinkinggames.circleofdeath;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -45,6 +47,9 @@ public class CircleOfDeathMain extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        if (Build.VERSION.SDK_INT >= 21)
+            this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
+
         //Rotate all cards for aesthetics
         double increment = 6.92307692308;
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
@@ -82,7 +87,14 @@ public class CircleOfDeathMain extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-                    AlertDialog dialog = imageDialog.create();
+                    final AlertDialog dialog = imageDialog.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                                    .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                        }
+                    });
                     dialog.show();
                     return;
                 }
@@ -170,9 +182,16 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 showDescription(card);
             }
         });
-        AlertDialog dialog = imageDialog.create();
-        //dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.WHITE);
-        //dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+        final AlertDialog dialog = imageDialog.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+            }
+        });
         dialog.show();
     }
 
@@ -200,9 +219,16 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 //openSettings(card);
             }
         });
-        AlertDialog dialog = imageDialog.create();
-        //dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.WHITE);
-        //dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+        final AlertDialog dialog = imageDialog.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+            }
+        });
         dialog.show();
     }
 
