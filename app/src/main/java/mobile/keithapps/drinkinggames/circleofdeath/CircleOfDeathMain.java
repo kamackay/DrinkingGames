@@ -65,25 +65,26 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 counter++;
                 if (counter == 7) {
                     this.circleBroken = true;
-                        AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
-                        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                        View layout = inflater.inflate(R.layout.image_and_text_popup,
-                                (ViewGroup) findViewById(R.id.layout_root));
-                        TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
-                        textView.setText(R.string.circle_broken_message);
-                        ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-                        imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.brokencircle));
-                        final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-                        instructionsView.setText(R.string.circle_broken_message_2);
-                        imageDialog.setView(layout);
-                        imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        AlertDialog dialog = imageDialog.create();
-                        dialog.show();
+                    AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+                    final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View layout = inflater.inflate(R.layout.image_and_text_popup,
+                            (ViewGroup) findViewById(R.id.layout_root));
+                    TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
+                    textView.setText(R.string.circle_broken_message);
+                    ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
+                    imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.brokencircle));
+                    final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
+                    instructionsView.setText(R.string.circle_broken_message_2);
+                    imageDialog.setView(layout);
+                    imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = imageDialog.create();
+                    dialog.show();
+                    return;
                 }
             } else counter = 0;
         }
@@ -107,9 +108,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
      */
     private void resetCards() {
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < 52; i++)
             cl.getChildAt(i).setVisibility(View.VISIBLE);
-        }
         this.circleBroken = false; //Circle no longer broken
     }
 
