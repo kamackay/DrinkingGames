@@ -5,9 +5,9 @@
         android:angle="270"
         android:centerColor="@color/menu_button_background"
         android:endColor="@color/darkGray"
-        android:startColor="@color/darkGray" />
+        android:startColor="@color/menu_button_background" />
     <corners android:radius="5dp" />
     <stroke
-        android:width="2px"
-        android:color="@color/darkRed" />
+        android:width="1px"
+        android:color="@color/darkGray" />
 </shape>
