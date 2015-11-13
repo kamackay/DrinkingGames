@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.customlayouts.CircleLayout;
@@ -123,6 +124,21 @@ public class CircleOfDeathMain extends AppCompatActivity {
         for (int i = 0; i < 52; i++)
             cl.getChildAt(i).setVisibility(View.VISIBLE);
         this.circleBroken = false; //Circle no longer broken
+
+        //Inform the user. Toast for builds that do not support Snackbar
+        Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_SHORT).show();
+        /** For now, just use toast
+        if (Build.VERSION.SDK_INT >= 21)
+        android.support.design.widget.Snackbar.make(parentlayout, "This is main activity", Snackbar.LENGTH_LONG)
+                    .setAction("CLOSE", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    })
+                    .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+        .show();
+         */
     }
 
     @Override

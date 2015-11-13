@@ -1,11 +1,9 @@
 <resources>
-    <string name="app_name">KeithApps Drinking Games</string>
-    <string name="games_menu_title">KeithApps Drinking Games</string>
+    <string name="app_name">Drinking Games</string>
+    <string name="games_menu_title">KeithApps\' Drinking Games</string>
     <string name="circle_of_death">Circle of Death</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_circleofdeathmain">Circle of Death</string>
     <string name="circlemain_resetcards_title">Reset all cards</string>
