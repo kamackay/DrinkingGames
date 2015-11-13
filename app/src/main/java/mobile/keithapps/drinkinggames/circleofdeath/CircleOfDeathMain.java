@@ -1,6 +1,5 @@
 package mobile.keithapps.drinkinggames.circleofdeath;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -69,7 +68,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         for (int i = 0; i < 52; i++) {
             if (cl.getChildAt(i).getVisibility() == View.GONE) {
                 counter++;
-                if (counter == 7) {
+                if (counter >= 7) {
                     this.circleBroken = true;
                     AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                     final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
