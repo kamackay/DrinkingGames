@@ -30,6 +30,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/menu_button"
+                android:onClick="openPokemon"
                 android:text="@string/gamesmenu_button2_text"
                 android:textAllCaps="false"
                 android:textColor="@color/darkRed"

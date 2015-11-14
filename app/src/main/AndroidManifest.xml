@@ -29,6 +29,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mobile.keithapps.drinkinggames.GamesMenu" />
         </activity>
+        <activity
+            android:name=".pokemon_game.PokemonGameMain"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_pokemongame"
+            android:parentActivityName=".GamesMenu"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mobile.keithapps.drinkinggames.GamesMenu" />
+        </activity>
     </application>
 
 </manifest>
