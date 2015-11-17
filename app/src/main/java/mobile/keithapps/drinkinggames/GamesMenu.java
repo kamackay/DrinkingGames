@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import mobile.keithapps.drinkinggames.circleofdeath.CircleOfDeathMain;
-import mobile.keithapps.drinkinggames.pokemon_game.PokemonGameMain;
+import mobile.keithapps.drinkinggames.ridethebus.RideTheBusMain;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -24,8 +24,8 @@ public class GamesMenu extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void openPokemon(View view){
-        Intent i = new Intent(getApplicationContext(), PokemonGameMain.class);
+    public void openRTB(View view) {
+        Intent i = new Intent(this, RideTheBusMain.class);
         startActivity(i);
     }
 }

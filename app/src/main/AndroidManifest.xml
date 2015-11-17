@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mobile.keithapps.drinkinggames"
     android:versionCode="2"
-    android:versionName="@string/app_version_name"
-    package="mobile.keithapps.drinkinggames" >
+    android:versionName="@string/app_version_name">
 
     <application
         android:allowBackup="true"
@@ -32,9 +32,9 @@
                 android:value="mobile.keithapps.drinkinggames.GamesMenu" />
         </activity>
         <activity
-            android:name=".pokemon_game.PokemonGameMain"
+            android:name=".ridethebus.RideTheBusMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_pokemongame"
+            android:label="@string/title_activity_circleofdeathmain"
             android:parentActivityName=".GamesMenu"
             android:theme="@style/FullscreenTheme">
             <meta-data

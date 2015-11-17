@@ -1,17 +1,14 @@
-package mobile.keithapps.drinkinggames.circleofdeath;
+package mobile.keithapps.CardsAndDecks;
 
-
-import mobile.keithapps.CardsAndDecks.Card;
-import mobile.keithapps.CardsAndDecks.CardDeck;
 
 /**
  * Created by Keith on 2/15/2015.
  */
-public class CircleOfDeathController {
+public class DeckManager {
     private CardDeck deck;
     private CardDeck drawn;
 
-    public CircleOfDeathController() {
+    public DeckManager() {
         this.deck = new CardDeck();
         this.drawn = new CardDeck();
         this.deck.setDeck();

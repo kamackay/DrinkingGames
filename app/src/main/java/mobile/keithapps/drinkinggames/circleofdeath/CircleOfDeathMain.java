@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mobile.keithapps.CardsAndDecks.Card;
+import mobile.keithapps.CardsAndDecks.DeckManager;
 import mobile.keithapps.customlayouts.CircleLayout;
 import mobile.keithapps.drinkinggames.R;
 
@@ -29,7 +30,7 @@ import mobile.keithapps.drinkinggames.R;
 public class CircleOfDeathMain extends AppCompatActivity {
 
     private boolean circleBroken;
-    private CircleOfDeathController cod;
+    private DeckManager cod;
 
     /**
      * Initialize the screen and rotate all of the cards to make them look
@@ -58,7 +59,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
             b.setRotation((float) ((increment * i) + .5));
         }
         this.circleBroken = false;
-        this.cod = new CircleOfDeathController();
+        this.cod = new DeckManager();
     }
 
     private void checkForBreak() {
@@ -123,6 +124,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         for (int i = 0; i < 52; i++)
             cl.getChildAt(i).setVisibility(View.VISIBLE);
         this.circleBroken = false; //Circle no longer broken
+        this.cod.restoreDeck(); //Restore all cards to the deck
 
         //Inform the user. Toast for builds that do not support Snackbar
         Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_SHORT).show();

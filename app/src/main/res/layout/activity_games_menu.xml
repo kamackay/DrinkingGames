@@ -30,11 +30,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/menu_button"
-                android:onClick="openPokemon"
+                android:onClick="openRTB"
                 android:text="@string/gamesmenu_button2_text"
                 android:textAllCaps="false"
                 android:textColor="@color/darkRed"
-                android:textSize="40sp" />
+                android:textSize="50sp" />
 
             <Button
                 android:layout_width="fill_parent"
