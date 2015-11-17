@@ -113,11 +113,43 @@ public class Card {
      * @return true if the cards are equal
      */
     public boolean equals(Card card) {
-        if ((card == null && this != null) || (card != null && this == null)) return false;
-        else if (card == null && this == null) return true;
+        if ((card == null))
+            return false;
         else if (this.getSuit().equals(card.getSuit()) && this.getSuit().equals(card.getSuit()))
             return true;
         return false;
+    }
+
+    public int getNumericValue() {
+        switch (this.faceValue) {
+            case ACE:
+                return 1;
+            case TWO:
+                return 2;
+            case THREE:
+                return 3;
+            case FOUR:
+                return 4;
+            case FIVE:
+                return 5;
+            case SIX:
+                return 6;
+            case SEVEN:
+                return 7;
+            case EIGHT:
+                return 8;
+            case NINE:
+                return 9;
+            case TEN:
+                return 10;
+            case JACK:
+                return 11;
+            case QUEEN:
+                return 12;
+            case KING:
+                return 13;
+        }
+        return 0;
     }
 
     /**

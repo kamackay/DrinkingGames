@@ -11,44 +11,53 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ridethebus_uppercardsview_card1"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
             android:layout_height="150dp"
             android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
             android:scaleType="fitXY"
             android:visibility="invisible" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ridethebus_uppercardsview_card2"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
             android:layout_height="150dp"
             android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
             android:scaleType="fitXY"
             android:visibility="invisible" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ridethebus_uppercardsview_card3"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
             android:layout_height="150dp"
             android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
             android:scaleType="fitXY"
             android:visibility="invisible" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ridethebus_uppercardsview_card4"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
             android:layout_height="150dp"
             android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
             android:scaleType="fitXY"
             android:visibility="invisible" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/ridethebus_middlecardview_height">
+        android:layout_height="0sp"
+        android:layout_weight="@integer/two">
 
-        <ImageButton
+        <ImageView
             android:layout_width="@dimen/ridethebus_middlecardview_width"
             android:layout_height="@dimen/ridethebus_middlecardview_height"
             android:layout_centerInParent="true"
@@ -61,6 +70,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/ridethebus_questiontext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -74,24 +84,119 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="100sp"
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/ridethebus_redbutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@color/darkRed"
-            android:text="Red"
+            android:onClick="guessRed"
+            android:text="@string/text_red"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <Button
+            android:id="@+id/ridethebus_blackbutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@color/darkGray"
+            android:onClick="guessBlack"
             android:text="@string/text_black"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ridethebus_higherbutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttonbackground_horizontal"
+            android:onClick="guessHigher"
+            android:text="@string/text_higher"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ridethebus_lowerbutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttonbackground_horizontal"
+            android:onClick="guessLower"
+            android:text="@string/text_lower"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ridethebus_insidebutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttonbackground_horizontal"
+            android:onClick="guessOutside"
+            android:text="@string/text_outside"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ridethebus_outsidebutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttonbackground_horizontal"
+            android:onClick="guessInside"
+            android:text="@string/text_inside"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ridethebus_spadebutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/spade"
+            android:onClick="guessInside"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/ridethebus_clubbutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/heart"
+            android:onClick="guessInside"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/ridethebus_heartbutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/diamond"
+            android:onClick="guessInside"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/ridethebus_diamondbutton"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/club"
+            android:onClick="guessInside"
+            android:padding="5sp"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>

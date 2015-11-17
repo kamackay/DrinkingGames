@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Drinking Games</string>
     <string name="games_menu_title">KeithApps\' Drinking Games</string>
-    <string name="circle_of_death">Circle of Death</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
 
-    <string name="title_activity_circleofdeathmain">Circle of Death</string>
+    <string name="text_circleofdeath">Circle of Death</string>
+    <string name="text_ridethebus">Ride The Bus</string>
     <string name="circlemain_resetcards_title">Reset all cards</string>
 
     <string name="ace_directions">Waterfall</string>
@@ -36,7 +36,6 @@
     <string name="king_directions_description">Make a rule that must be obeyed until the end of the game</string>
     <string name="circle_broken_message">You broke the circle!</string>
     <string name="circle_broken_message_2">Drink the beer in the middle of the table</string>
-    <string name="gamesmenu_button2_text">Ride The Bus</string>
     <string name="gamesmenu_button3_text">Game 3 Coming Soon!</string>
     <string name="gamesmenu_button4_text">Game 4 Coming Soon!</string>
     <string name="gamesmenu_button5_text">Game 5 Coming Soon!</string>
@@ -50,6 +49,11 @@
     <string name="ridethebus_question_suit">What suit is this card?</string>
     <string name="app_version_name">2.0.1</string>
     <string name="text_black">Black</string>
+    <string name="text_red">Red</string>
+    <string name="text_higher">higher</string>
+    <string name="text_lower">lower</string>
+    <string name="text_inside">inside</string>
+    <string name="text_outside">outside</string>
 
     <string-array name="face_values">
         <item>Ace</item>
