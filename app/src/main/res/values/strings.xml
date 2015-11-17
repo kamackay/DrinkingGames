@@ -44,6 +44,7 @@
     <string name="gamesmenu_button7_text">Game 7 Coming Soon!</string>
     <string name="gamesmenu_button8_text">Game 8 Coming Soon!</string>
     <string name="title_activity_pokemongame">Pokemon Drinking Game</string>
+    <string name="app_version_name">2.0.1</string>
 
     <string-array name="face_values">
         <item>Ace</item>
