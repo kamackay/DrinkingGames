@@ -15,7 +15,8 @@ public class CardDeck extends ArrayList {
     private ArrayList<Card> deck;
 
     public CardDeck() {
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<>();
+        this.setDeck();
     }
 
     /**
@@ -213,5 +214,10 @@ public class CardDeck extends ArrayList {
         this.deck.add(new Card(FaceValue.KING, Suit.DIAMOND, "King of Diamonds", R.drawable.dk));
         this.deck.add(new Card(FaceValue.KING, Suit.HEART, "King of Hearts", R.drawable.hk));
         this.shuffle();
+    }
+
+    public void reset() {
+        this.deck = new ArrayList<>();
+        this.setDeck();
     }
 }

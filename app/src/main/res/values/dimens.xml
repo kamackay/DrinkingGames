@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ridethebus_uppercardsview_cardwidth">104dp</dimen>
+    <dimen name="ridethebus_uppercardsview_cardwidth">100dp</dimen>
     <dimen name="ridethebus_middlecardview_height">200dp</dimen>
     <dimen name="ridethebus_middlecardview_width">150dp</dimen>
     <dimen name="ten_padding">10sp</dimen>
+    <dimen name="ridethebus_bottombuttons_imagesize">75dp</dimen>
+    <dimen name="ridethebus_topcards_height">125dp</dimen>
 </resources>

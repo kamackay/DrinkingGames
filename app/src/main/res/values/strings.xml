@@ -54,6 +54,8 @@
     <string name="text_lower">lower</string>
     <string name="text_inside">inside</string>
     <string name="text_outside">outside</string>
+    <string name="text_youwon">You Won!</string>
+    <string name="text_restart">restart</string>
 
     <string-array name="face_values">
         <item>Ace</item>

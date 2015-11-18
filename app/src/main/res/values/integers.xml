@@ -4,4 +4,5 @@
     <dimen name="cardbutton_height">140dp</dimen>
     <integer name="two">2</integer>
     <integer name="three">3</integer>
+    <integer name="one">1</integer>
 </resources>

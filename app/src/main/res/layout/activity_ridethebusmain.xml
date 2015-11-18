@@ -9,47 +9,59 @@
         android:id="@+id/ridethebus_uppercardsview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="1sp">
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card1"
-            android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
-            android:layout_height="150dp"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
             android:background="@drawable/cardback"
             android:paddingLeft="1sp"
-            android:paddingRight="1sp"
-            android:scaleType="fitXY"
-            android:visibility="invisible" />
+            android:paddingRight="1dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card2"
-            android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
-            android:layout_height="150dp"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
             android:background="@drawable/cardback"
             android:paddingLeft="1sp"
             android:paddingRight="1sp"
-            android:scaleType="fitXY"
-            android:visibility="invisible" />
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2sp"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card3"
-            android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
-            android:layout_height="150dp"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
             android:background="@drawable/cardback"
             android:paddingLeft="1sp"
             android:paddingRight="1sp"
-            android:scaleType="fitXY"
-            android:visibility="invisible" />
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2sp"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card4"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
             android:background="@drawable/cardback"
             android:paddingLeft="1sp"
             android:paddingRight="1sp"
-            android:scaleType="fitXY"
-            android:visibility="invisible" />
+            android:scaleType="fitXY" />
     </LinearLayout>
 
     <RelativeLayout
@@ -141,8 +153,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@drawable/buttonbackground_horizontal"
-            android:onClick="guessOutside"
-            android:text="@string/text_outside"
+            android:onClick="guessInside"
+            android:text="@string/text_inside"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:visibility="gone" />
@@ -153,51 +165,89 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@drawable/buttonbackground_horizontal"
-            android:onClick="guessInside"
-            android:text="@string/text_inside"
+            android:onClick="guessOutside"
+            android:text="@string/text_outside"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:visibility="gone" />
 
-        <ImageButton
+        <RelativeLayout
             android:id="@+id/ridethebus_spadebutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/spade"
-            android:onClick="guessInside"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:background="@drawable/buttonbackground_justborders"
+            android:onClick="guessSpade"
+            android:orientation="vertical">
 
-        <ImageButton
+            <ImageButton
+                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_centerInParent="true"
+                android:background="@drawable/spade"
+                android:onClick="guessSpade" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/ridethebus_clubbutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/heart"
-            android:onClick="guessInside"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:background="@drawable/buttonbackground_justborders"
+            android:onClick="guessHeart"
+            android:orientation="vertical">
 
-        <ImageButton
+            <ImageButton
+                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_centerInParent="true"
+                android:background="@drawable/heart"
+                android:onClick="guessHeart" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/ridethebus_heartbutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/diamond"
-            android:onClick="guessInside"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:background="@drawable/buttonbackground_justborders"
+            android:onClick="guessDiamond"
+            android:orientation="vertical">
 
-        <ImageButton
+            <ImageButton
+                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_centerInParent="true"
+                android:background="@drawable/diamond"
+                android:onClick="guessDiamond" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/ridethebus_diamondbutton"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/club"
-            android:onClick="guessInside"
-            android:padding="5sp"
+            android:background="@drawable/buttonbackground_justborders"
+            android:onClick="guessClub"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                android:layout_centerInParent="true"
+                android:background="@drawable/club"
+                android:onClick="guessClub" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/ridethebus_restartbutton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/buttonbackground_justborders"
+            android:onClick="restart"
+            android:text="@string/text_restart"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="50sp"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
