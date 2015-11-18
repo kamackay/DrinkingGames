@@ -260,77 +260,76 @@
             android:textSize="@dimen/thirty_sp"
             android:visibility="visible" />
 
-        <RelativeLayout
-            android:id="@+id/ridethebus_spadebutton"
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
-            android:onClick="guessSpade"
-            android:orientation="vertical"
+        <LinearLayout
+            android:id="@+id/rtb_buttons_suits"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:visibility="gone">
 
-            <ImageButton
-                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_centerInParent="true"
-                android:background="@drawable/spade"
-                android:onClick="guessSpade" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/buttonbackground_justborders"
+                android:onClick="guessSpade"
+                android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/ridethebus_clubbutton"
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
-            android:onClick="guessHeart"
-            android:orientation="vertical"
-            android:visibility="gone">
+                <ImageButton
+                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/spade"
+                    android:onClick="guessSpade" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_centerInParent="true"
-                android:background="@drawable/heart"
-                android:onClick="guessHeart" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/buttonbackground_justborders"
+                android:onClick="guessHeart"
+                android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/ridethebus_heartbutton"
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
-            android:onClick="guessDiamond"
-            android:orientation="vertical"
-            android:visibility="gone">
+                <ImageButton
+                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/heart"
+                    android:onClick="guessHeart" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_centerInParent="true"
-                android:background="@drawable/diamond"
-                android:onClick="guessDiamond" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/buttonbackground_justborders"
+                android:onClick="guessDiamond"
+                android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/ridethebus_diamondbutton"
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
-            android:onClick="guessClub"
-            android:orientation="vertical"
-            android:visibility="gone">
+                <ImageButton
+                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/diamond"
+                    android:onClick="guessDiamond" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
-                android:layout_centerInParent="true"
-                android:background="@drawable/club"
-                android:onClick="guessClub" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/buttonbackground_justborders"
+                android:onClick="guessClub"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/club"
+                    android:onClick="guessClub" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/ridethebus_restartbutton"

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="@integer/nine">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonbackground_justborders"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_circleofdeath"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/thirty_sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonbackground_justborders"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_ridethebus"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/thirty_sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/twenty_sp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true"
+                        android:text="@string/text_acesalwayslow"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_sp"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/twenty_sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="@integer/one"
+        android:background="@drawable/buttonbackground_justborders"
+        android:onClick="save"
+        android:text="@string/text_save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/thirty_sp" />
+</LinearLayout>

@@ -2,6 +2,7 @@ package mobile.keithapps.drinkinggames.circleofdeath;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +23,7 @@ import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
 import mobile.keithapps.customlayouts.CircleLayout;
 import mobile.keithapps.drinkinggames.R;
+import mobile.keithapps.drinkinggames.SettingsMain;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -147,6 +149,10 @@ public class CircleOfDeathMain extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.circlemain_resetcards:
                 this.resetCards();
+                return true;
+            case R.id.circlemain_settings:
+                Intent i = new Intent(getApplicationContext(), SettingsMain.class);
+                startActivity(i);
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

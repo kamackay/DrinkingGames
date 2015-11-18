@@ -2,6 +2,7 @@ package mobile.keithapps.drinkinggames.ridethebus;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
 import mobile.keithapps.drinkinggames.R;
+import mobile.keithapps.drinkinggames.SettingsMain;
 
 /**
  * Created by Keith MacKay on 11/17/2015.
@@ -34,10 +37,7 @@ public class RideTheBusMain extends AppCompatActivity {
     private Button lowerButton;
     private Button insideButton;
     private Button outsideButton;
-    private RelativeLayout diamondButton;
-    private RelativeLayout heartButton;
-    private RelativeLayout clubButton;
-    private RelativeLayout spadeButton;
+    private LinearLayout suitsButtons;
     private TextView questionText;
     private TextView warningAceIsLow;
     private Button restartButton;
@@ -66,10 +66,6 @@ public class RideTheBusMain extends AppCompatActivity {
             this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
 
         this.deck = new CardDeck();
-        this.cardView1 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card1);
-        this.cardView2 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card2);
-        this.cardView3 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card3);
-        this.cardView4 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card4);
         this.blackButton = (RelativeLayout) findViewById(R.id.ridethebus_blackbutton);
         this.redButton = (RelativeLayout) findViewById(R.id.ridethebus_redbutton);
         this.higherButton = (Button) findViewById(R.id.ridethebus_higherbutton);
@@ -77,12 +73,13 @@ public class RideTheBusMain extends AppCompatActivity {
         this.questionText = (TextView) findViewById(R.id.ridethebus_questiontext);
         this.insideButton = (Button) findViewById(R.id.ridethebus_insidebutton);
         this.outsideButton = (Button) findViewById(R.id.ridethebus_outsidebutton);
-        this.clubButton = (RelativeLayout) findViewById(R.id.ridethebus_clubbutton);
-        this.diamondButton = (RelativeLayout) findViewById(R.id.ridethebus_diamondbutton);
-        this.spadeButton = (RelativeLayout) findViewById(R.id.ridethebus_spadebutton);
-        this.heartButton = (RelativeLayout) findViewById(R.id.ridethebus_heartbutton);
+        this.suitsButtons = (LinearLayout) findViewById(R.id.rtb_buttons_suits);
         this.restartButton = (Button) findViewById(R.id.ridethebus_restartbutton);
         this.warningAceIsLow = (TextView) findViewById(R.id.ridethebus_aceislow_warning);
+        this.cardView1 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card1);
+        this.cardView2 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card2);
+        this.cardView3 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card3);
+        this.cardView4 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card4);
         this.setState(State.Color);
     }
 
@@ -100,10 +97,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.lowerButton.setVisibility(View.GONE);
                 this.insideButton.setVisibility(View.GONE);
                 this.outsideButton.setVisibility(View.GONE);
-                this.heartButton.setVisibility(View.GONE);
-                this.clubButton.setVisibility(View.GONE);
-                this.spadeButton.setVisibility(View.GONE);
-                this.diamondButton.setVisibility(View.GONE);
+                this.suitsButtons.setVisibility(View.GONE);
                 this.questionText.setText(R.string.ridethebus_question_color);
                 this.restartButton.setVisibility(View.GONE);
                 break;
@@ -130,22 +124,17 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.cardView3.setImageResource(this.card3.getImageId());
                 this.outsideButton.setVisibility(View.GONE);
                 this.insideButton.setVisibility(View.GONE);
-                this.heartButton.setVisibility(View.VISIBLE);
-                this.clubButton.setVisibility(View.VISIBLE);
-                this.spadeButton.setVisibility(View.VISIBLE);
-                this.diamondButton.setVisibility(View.VISIBLE);
+                this.suitsButtons.setVisibility(View.VISIBLE);
                 this.questionText.setText(R.string.ridethebus_question_suit);
                 break;
             case Won:
                 this.cardView4.setVisibility(View.VISIBLE);
                 this.cardView4.setImageResource(this.card4.getImageId());
                 this.questionText.setText(R.string.text_youwon);
-                this.heartButton.setVisibility(View.GONE);
-                this.clubButton.setVisibility(View.GONE);
-                this.spadeButton.setVisibility(View.GONE);
-                this.diamondButton.setVisibility(View.GONE);
+                this.suitsButtons.setVisibility(View.GONE);
                 this.restartButton.setVisibility(View.VISIBLE);
         }
+        //getPreferences(0).getBoolean(getString(R.string.setting_acesalwayslow), true);
         if (this.card1 != null && this.card1.getNumericValue() == 1)
             this.warningAceIsLow.setVisibility(View.VISIBLE);
         else if (this.card2 != null && this.card2.getNumericValue() == 1)
@@ -370,16 +359,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            try {
-                if (this.card1 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-                if (this.card2 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-                if (this.card3 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -412,16 +394,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            try {
-                if (this.card1 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-                if (this.card2 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-                if (this.card3 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -454,16 +429,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            try {
-                if (this.card1 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-                if (this.card2 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-                if (this.card3 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -496,16 +464,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            try {
-                if (this.card1 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-                if (this.card2 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-                if (this.card3 != null)
-                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -530,19 +491,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void restart(View view) {
         this.deck.reset();
         this.setState(State.Color);
-        try {
-            View root = findViewById(R.id.rtb_root);
-/**            Snackbar.make(root, "This is main activity", Snackbar.LENGTH_LONG)
- .setAction("CLOSE", new View.OnClickListener() {
-@Override public void onClick(View view) {
-
-}
-})
- .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
- .show();*/
-        } catch (Exception e) {
-            //Do Nothing
-        }
+        Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_LONG).show();
     }
 
 
@@ -565,6 +514,9 @@ public class RideTheBusMain extends AppCompatActivity {
             case R.id.circlemain_resetcards:
                 this.restart(null);
                 return true;
+            case R.id.rtb_settings:
+                Intent i = new Intent(getApplicationContext(), SettingsMain.class);
+                startActivity(i);
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

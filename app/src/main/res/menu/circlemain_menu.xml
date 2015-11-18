@@ -5,4 +5,9 @@
         android:icon="@android:drawable/ic_popup_sync"
         android:title="@string/circlemain_resetcards_title"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/circlemain_settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/text_settings"
+        app:showAsAction="ifRoom" />
 </menu>

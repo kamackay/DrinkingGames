@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".GamesMenu"
+            android:name=".GamesMenuMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/games_menu_title"
             android:theme="@style/AppTheme">
@@ -23,21 +23,31 @@
             android:name=".circleofdeath.CircleOfDeathMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/text_circleofdeath"
-            android:parentActivityName=".GamesMenu"
+            android:parentActivityName=".GamesMenuMain"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mobile.keithapps.drinkinggames.GamesMenu" />
+                android:value=".GamesMenuMain" />
         </activity>
         <activity
             android:name=".ridethebus.RideTheBusMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/text_ridethebus"
-            android:parentActivityName=".GamesMenu"
+            android:parentActivityName=".GamesMenuMain"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mobile.keithapps.drinkinggames.GamesMenu" />
+                android:value=".GamesMenuMain" />
+        </activity>
+        <activity
+            android:name=".SettingsMain"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/text_settings"
+            android:parentActivityName=".GamesMenuMain"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GamesMenuMain" />
         </activity>
     </application>
 
