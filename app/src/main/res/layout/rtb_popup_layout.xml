@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/rtb_popup_uppercardsview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="1sp">
+
+        <ImageView
+            android:id="@+id/rtb_popup_card1"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
+            android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/rtb_popup_card2"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
+            android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2sp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/rtb_popup_card3"
+            android:layout_width="0sp"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_weight="@integer/one"
+            android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="2sp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/rtb_popup_card4"
+            android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
+            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:background="@drawable/cardback"
+            android:paddingLeft="1sp"
+            android:paddingRight="1sp"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0sp"
+        android:layout_weight="@integer/two">
+
+        <ImageView
+            android:id="@+id/rtb_popup_maincard"
+            android:layout_width="@dimen/ridethebus_middlecardview_width"
+            android:layout_height="@dimen/ridethebus_middlecardview_height"
+            android:layout_centerInParent="true"
+            android:background="@drawable/cardback"
+            android:scaleType="fitStart" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/rtb_popup_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twenty_sp" />
+</LinearLayout>

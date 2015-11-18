@@ -1,12 +1,17 @@
 package mobile.keithapps.drinkinggames.ridethebus;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -152,7 +157,41 @@ public class RideTheBusMain extends AppCompatActivity {
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND)
             this.setState(State.High_Low);
         else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card1.toString(), Toast.LENGTH_LONG).show();
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout,
+                    (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s", getString(R.string.rtb_incorrectmessage), this.card1.toString()));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            if (this.card1 != null)
+                ((ImageView) findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            else findViewById(R.id.rtb_popup_card1).setVisibility(View.INVISIBLE);
+            if (this.card2 != null)
+                ((ImageView) findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            else findViewById(R.id.rtb_popup_card2).setVisibility(View.INVISIBLE);
+            if (this.card3 != null)
+                ((ImageView) findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            else findViewById(R.id.rtb_popup_card3).setVisibility(View.INVISIBLE);
+            if (this.card4 != null)
+                ((ImageView) findViewById(R.id.rtb_popup_card4)).setImageResource(this.card4.getImageId());
+            else findViewById(R.id.rtb_popup_card4).setVisibility(View.INVISIBLE);
+            imageView.setImageResource(this.card1.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
             this.setState(State.Color);
         }
     }
