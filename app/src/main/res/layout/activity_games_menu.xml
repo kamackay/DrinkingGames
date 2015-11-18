@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GamesMenu">
     <!-- This FrameLayout insets its children based on system windows using
@@ -15,80 +16,50 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ten_sp" />
             <Button
                 android:id="@+id/codButton_gamesMenuScreen"
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
+                android:background="@drawable/buttonbackground_allsides"
                 android:onClick="openCOD"
                 android:text="@string/text_circleofdeath"
                 android:textAllCaps="false"
                 android:textColor="@color/darkRed"
                 android:textSize="50sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ten_sp" />
+
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
+                android:background="@drawable/buttonbackground_allsides"
                 android:onClick="openRTB"
                 android:text="@string/text_ridethebus"
                 android:textAllCaps="false"
                 android:textColor="@color/darkRed"
                 android:textSize="50sp" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button3_text"
-                android:textAllCaps="false"
-                android:textColor="@color/darkRed"
-                android:textSize="40sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ten_sp" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button4_text"
+                android:background="@drawable/buttonbackground_allsides"
+                android:text="@string/text_moretocome"
                 android:textAllCaps="false"
                 android:textColor="@color/darkRed"
                 android:textSize="40sp" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button5_text"
-                android:textAllCaps="false"
-                android:textColor="@color/darkRed"
-                android:textSize="40sp" />
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button6_text"
-                android:textAllCaps="false"
-                android:textColor="@color/darkRed"
-                android:textSize="40sp" />
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button7_text"
-                android:textAllCaps="false"
-                android:textColor="@color/darkRed"
-                android:textSize="40sp" />
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/buttonbackground_vertical"
-                android:text="@string/gamesmenu_button8_text"
-                android:textAllCaps="false"
-                android:textColor="@color/darkRed"
-                android:textSize="40sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ten_sp" />
         </LinearLayout>
     </ScrollView>
 

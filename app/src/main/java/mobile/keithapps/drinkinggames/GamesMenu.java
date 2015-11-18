@@ -1,6 +1,7 @@
 package mobile.keithapps.drinkinggames;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,10 @@ public class GamesMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_menu);
+
+
+        if (Build.VERSION.SDK_INT >= 21)
+            this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
     }
 
     public void openCOD(View view) {

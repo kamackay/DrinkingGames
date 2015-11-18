@@ -2,6 +2,7 @@ package mobile.keithapps.drinkinggames.ridethebus;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -27,8 +28,8 @@ import mobile.keithapps.drinkinggames.R;
  */
 public class RideTheBusMain extends AppCompatActivity {
     private CardDeck deck;
-    private Button redButton;
-    private Button blackButton;
+    private RelativeLayout redButton;
+    private RelativeLayout blackButton;
     private Button higherButton;
     private Button lowerButton;
     private Button insideButton;
@@ -59,13 +60,18 @@ public class RideTheBusMain extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
+        if (Build.VERSION.SDK_INT >= 21)
+            this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
+
         this.deck = new CardDeck();
         this.cardView1 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card1);
         this.cardView2 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card2);
         this.cardView3 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card3);
         this.cardView4 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card4);
-        this.blackButton = (Button) findViewById(R.id.ridethebus_blackbutton);
-        this.redButton = (Button) findViewById(R.id.ridethebus_redbutton);
+        this.blackButton = (RelativeLayout) findViewById(R.id.ridethebus_blackbutton);
+        this.redButton = (RelativeLayout) findViewById(R.id.ridethebus_redbutton);
         this.higherButton = (Button) findViewById(R.id.ridethebus_higherbutton);
         this.lowerButton = (Button) findViewById(R.id.ridethebus_lowerbutton);
         this.questionText = (TextView) findViewById(R.id.ridethebus_questiontext);
@@ -80,7 +86,7 @@ public class RideTheBusMain extends AppCompatActivity {
         this.setState(State.Color);
     }
 
-    private void setState(State s) {
+    public void setState(State s) {
         switch (s) {
             case Color:
                 this.card1 = this.card2 = this.card3 = this.card4 = null;
@@ -159,28 +165,17 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout,
-                    (ViewGroup) findViewById(R.id.layout_root));
-            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s", getString(R.string.rtb_incorrectmessage), this.card1.toString()));
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            if (this.card1 != null)
-                ((ImageView) findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            else findViewById(R.id.rtb_popup_card1).setVisibility(View.INVISIBLE);
-            if (this.card2 != null)
-                ((ImageView) findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-            else findViewById(R.id.rtb_popup_card2).setVisibility(View.INVISIBLE);
-            if (this.card3 != null)
-                ((ImageView) findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
-            else findViewById(R.id.rtb_popup_card3).setVisibility(View.INVISIBLE);
-            if (this.card4 != null)
-                ((ImageView) findViewById(R.id.rtb_popup_card4)).setImageResource(this.card4.getImageId());
-            else findViewById(R.id.rtb_popup_card4).setVisibility(View.INVISIBLE);
             imageView.setImageResource(this.card1.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                    setState(State.Color);
                 }
             });
             final AlertDialog dialog = imageDialog.create();
@@ -192,7 +187,6 @@ public class RideTheBusMain extends AppCompatActivity {
                 }
             });
             dialog.show();
-            this.setState(State.Color);
         }
     }
 
@@ -200,8 +194,30 @@ public class RideTheBusMain extends AppCompatActivity {
         this.card1 = this.deck.drawRandom();
         Card.Suit s = this.card1.getSuit();
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card1.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            imageView.setImageResource(this.card1.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         } else {
             this.setState(State.High_Low);
         }
@@ -212,8 +228,31 @@ public class RideTheBusMain extends AppCompatActivity {
         if (this.card2.getNumericValue() > this.card1.getNumericValue()) {
             this.setState(State.Inside_Outside);
         } else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card2.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            imageView.setImageResource(this.card2.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -222,8 +261,31 @@ public class RideTheBusMain extends AppCompatActivity {
         if (this.card2.getNumericValue() < this.card1.getNumericValue()) {
             this.setState(State.Inside_Outside);
         } else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card2.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            imageView.setImageResource(this.card2.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -233,8 +295,32 @@ public class RideTheBusMain extends AppCompatActivity {
         if (i3 > Math.max(i1, i2) || i3 < Math.min(i1, i2)) {
             this.setState(State.Suit);
         } else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card3.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            imageView.setImageResource(this.card3.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -244,8 +330,32 @@ public class RideTheBusMain extends AppCompatActivity {
         if (i3 < Math.max(i1, i2) && i3 > Math.min(i1, i2)) {
             this.setState(State.Suit);
         } else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card3.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            imageView.setImageResource(this.card3.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -254,8 +364,40 @@ public class RideTheBusMain extends AppCompatActivity {
         Card.Suit s = this.card4.getSuit();
         if (s == Card.Suit.CLUB) this.setState(State.Won);
         else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card4.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            try {
+                if (this.card1 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+                if (this.card2 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+                if (this.card3 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            imageView.setImageResource(this.card4.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -264,8 +406,40 @@ public class RideTheBusMain extends AppCompatActivity {
         Card.Suit s = this.card4.getSuit();
         if (s == Card.Suit.HEART) this.setState(State.Won);
         else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card4.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            try {
+                if (this.card1 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+                if (this.card2 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+                if (this.card3 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            imageView.setImageResource(this.card4.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -274,8 +448,40 @@ public class RideTheBusMain extends AppCompatActivity {
         Card.Suit s = this.card4.getSuit();
         if (s == Card.Suit.DIAMOND) this.setState(State.Won);
         else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card4.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            try {
+                if (this.card1 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+                if (this.card2 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+                if (this.card3 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            imageView.setImageResource(this.card4.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
@@ -284,14 +490,59 @@ public class RideTheBusMain extends AppCompatActivity {
         Card.Suit s = this.card4.getSuit();
         if (s == Card.Suit.SPADE) this.setState(State.Won);
         else {
-            Toast.makeText(getApplicationContext(), "Nope, it was the " + this.card4.toString(), Toast.LENGTH_LONG).show();
-            this.setState(State.Color);
+            AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+            final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
+            ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
+            try {
+                if (this.card1 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
+                if (this.card2 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+                if (this.card3 != null)
+                    ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+            imageView.setImageResource(this.card4.getImageId());
+            imageDialog.setView(layout);
+            imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    setState(State.Color);
+                }
+            });
+            final AlertDialog dialog = imageDialog.create();
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                            .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                }
+            });
+            dialog.show();
         }
     }
 
     public void restart(View view) {
         this.deck.reset();
         this.setState(State.Color);
+        try {
+            View root = findViewById(R.id.rtb_root);
+/**            Snackbar.make(root, "This is main activity", Snackbar.LENGTH_LONG)
+ .setAction("CLOSE", new View.OnClickListener() {
+@Override public void onClick(View view) {
+
+}
+})
+ .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+ .show();*/
+        } catch (Exception e) {
+            //Do Nothing
+        }
     }
 
 
@@ -322,5 +573,5 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
-    private enum State {Color, High_Low, Inside_Outside, Suit, Won}
+    public enum State {Color, High_Low, Inside_Outside, Suit, Won}
 }

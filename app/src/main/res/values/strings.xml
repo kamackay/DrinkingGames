@@ -36,12 +36,7 @@
     <string name="king_directions_description">Make a rule that must be obeyed until the end of the game</string>
     <string name="circle_broken_message">You broke the circle!</string>
     <string name="circle_broken_message_2">Drink the beer in the middle of the table</string>
-    <string name="gamesmenu_button3_text">Game 3 Coming Soon!</string>
-    <string name="gamesmenu_button4_text">Game 4 Coming Soon!</string>
-    <string name="gamesmenu_button5_text">Game 5 Coming Soon!</string>
-    <string name="gamesmenu_button6_text">Game 6 Coming Soon!</string>
-    <string name="gamesmenu_button7_text">Game 7 Coming Soon!</string>
-    <string name="gamesmenu_button8_text">Game 8 Coming Soon!</string>
+    <string name="text_moretocome">More Games Coming Soon!</string>
     <string name="title_activity_pokemongame">Pokemon Drinking Game</string>
     <string name="ridethebus_question_color">What color is this card?</string>
     <string name="ridethebus_question_highlow">Is this card higher or lower than the last one?</string>
@@ -50,14 +45,15 @@
     <string name="app_version_name">2.0.1</string>
     <string name="text_black">Black</string>
     <string name="text_red">Red</string>
-    <string name="text_higher">higher</string>
-    <string name="text_lower">lower</string>
-    <string name="text_inside">inside</string>
-    <string name="text_outside">outside</string>
+    <string name="text_higher">Higher</string>
+    <string name="text_lower">Lower</string>
+    <string name="text_inside">Inside</string>
+    <string name="text_outside">Outside</string>
     <string name="text_youwon">You Won!</string>
-    <string name="text_restart">restart</string>
+    <string name="text_restart">Restart</string>
     <string name="ridethebus_warning_aceislow">Note: Aces are always low</string>
     <string name="rtb_incorrectmessage">"No, the card was the "</string>
+    <string name="text_takeadrink">Take a drink!</string>
 
     <string-array name="face_values">
         <item>Ace</item>

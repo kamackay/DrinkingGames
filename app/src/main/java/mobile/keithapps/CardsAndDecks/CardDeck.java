@@ -53,7 +53,10 @@ public class CardDeck extends ArrayList {
             int index = rand.nextInt(this.deck.size());
             return this.deck.remove(index);
         } else {
-            return null;
+            this.reset();
+            Random rand = new Random();
+            int index = rand.nextInt(this.deck.size());
+            return this.deck.remove(index);
         }
     }
 
@@ -209,7 +212,7 @@ public class CardDeck extends ArrayList {
         this.deck.add(new Card(FaceValue.QUEEN, Suit.SPADE, "Queen of Spades", R.drawable.sq));
         this.deck.add(new Card(FaceValue.QUEEN, Suit.DIAMOND, "Queen of Diamonds", R.drawable.dq));
         this.deck.add(new Card(FaceValue.QUEEN, Suit.HEART, "Queen of Hearts", R.drawable.hq));
-        this.deck.add(new Card(FaceValue.KING, Suit.CLUB, "King of Hearts", R.drawable.hk));
+        this.deck.add(new Card(FaceValue.KING, Suit.CLUB, "King of Clubs", R.drawable.ck));
         this.deck.add(new Card(FaceValue.KING, Suit.SPADE, "King of Spades", R.drawable.sk));
         this.deck.add(new Card(FaceValue.KING, Suit.DIAMOND, "King of Diamonds", R.drawable.dk));
         this.deck.add(new Card(FaceValue.KING, Suit.HEART, "King of Hearts", R.drawable.hk));

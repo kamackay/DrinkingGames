@@ -6,5 +6,10 @@
     <dimen name="ten_sp">10sp</dimen>
     <dimen name="ridethebus_bottombuttons_imagesize">75dp</dimen>
     <dimen name="ridethebus_topcards_height">125dp</dimen>
+    <dimen name="rtb_popup_topcards_height">100dp</dimen>
     <dimen name="twenty_sp">20sp</dimen>
+    <dimen name="twenty_five_sp">25sp</dimen>
+    <dimen name="thirty_sp">30sp</dimen>
+    <dimen name="zero">0sp</dimen>
+    <dimen name="fourty_sp">40sp</dimen>
 </resources>
