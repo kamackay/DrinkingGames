@@ -56,6 +56,7 @@
     <string name="text_outside">outside</string>
     <string name="text_youwon">You Won!</string>
     <string name="text_restart">restart</string>
+    <string name="ridethebus_warning_aceislow">Note: Aces are always low</string>
 
     <string-array name="face_values">
         <item>Ace</item>

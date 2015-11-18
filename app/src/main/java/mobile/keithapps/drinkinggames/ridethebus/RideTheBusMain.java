@@ -33,6 +33,7 @@ public class RideTheBusMain extends AppCompatActivity {
     private RelativeLayout clubButton;
     private RelativeLayout spadeButton;
     private TextView questionText;
+    private TextView warningAceIsLow;
     private Button restartButton;
     private ImageView cardView1, cardView2, cardView3, cardView4;
     private Card card1, card2, card3, card4;
@@ -70,6 +71,7 @@ public class RideTheBusMain extends AppCompatActivity {
         this.spadeButton = (RelativeLayout) findViewById(R.id.ridethebus_spadebutton);
         this.heartButton = (RelativeLayout) findViewById(R.id.ridethebus_heartbutton);
         this.restartButton = (Button) findViewById(R.id.ridethebus_restartbutton);
+        this.warningAceIsLow = (TextView) findViewById(R.id.ridethebus_aceislow_warning);
         this.setState(State.Color);
     }
 
@@ -133,6 +135,15 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.diamondButton.setVisibility(View.GONE);
                 this.restartButton.setVisibility(View.VISIBLE);
         }
+        if (this.card1 != null && this.card1.getNumericValue() == 1)
+            this.warningAceIsLow.setVisibility(View.VISIBLE);
+        else if (this.card2 != null && this.card2.getNumericValue() == 1)
+            this.warningAceIsLow.setVisibility(View.VISIBLE);
+        else if (this.card3 != null && this.card3.getNumericValue() == 1)
+            this.warningAceIsLow.setVisibility(View.VISIBLE);
+        else if (this.card4 != null && this.card4.getNumericValue() == 1)
+            this.warningAceIsLow.setVisibility(View.VISIBLE);
+        else this.warningAceIsLow.setVisibility(View.INVISIBLE);
     }
 
     public void guessRed(View view) {

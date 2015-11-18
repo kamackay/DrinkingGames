@@ -63,7 +63,14 @@
             android:paddingRight="1sp"
             android:scaleType="fitXY" />
     </LinearLayout>
-
+<TextView
+    android:layout_width="match_parent"
+    android:text="@string/ridethebus_warning_aceislow"
+    android:textColor="@color/darkRed"
+    android:textAlignment="center"
+    android:id="@+id/ridethebus_aceislow_warning"
+    android:textSize="@dimen/twenty_sp"
+    android:layout_height="wrap_content" />
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0sp"
@@ -86,8 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingBottom="@dimen/ten_padding"
-            android:paddingTop="@dimen/ten_padding"
+            android:paddingBottom="@dimen/ten_sp"
+            android:paddingTop="@dimen/ten_sp"
             android:text="@string/ridethebus_question_color"
             android:textAlignment="center"
             android:textColor="@color/white"
