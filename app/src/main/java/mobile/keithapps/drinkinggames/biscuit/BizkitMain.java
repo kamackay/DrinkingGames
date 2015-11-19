@@ -145,13 +145,26 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onShow(DialogInterface arg0) {
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                                .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                                .setTextColor(ContextCompat.getColor(getApplicationContext(),
+                                        R.color.darkRed));
                     }
                 });
                 dialog.show();
             }
         } else {
-            //TODO:Logic to see what has to happen for this die roll
+            if (this.leftDie == this.rightDie) {
+                if (this.leftDie == 1) {
+                    //Everyone take a drink
+                } else if (this.leftDie == 6) {
+                    //Roller has to invent a rule which will be applied for the rest of the game.
+                    // The non respect of this rule will result to a drink.
+                } else {
+                    //Roller gives drinks to one or several players. ex. a 5-5 would mean the roller
+                    // hands out 5 drinks
+                }
+            } else {
+
+            }
         }
     }
 
