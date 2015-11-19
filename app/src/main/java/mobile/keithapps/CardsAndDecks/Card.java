@@ -120,10 +120,10 @@ public class Card {
         return false;
     }
 
-    public int getNumericValue() {
+    public int getNumericValue(boolean acesLow) {
         switch (this.faceValue) {
             case ACE:
-                return 1;
+                return (acesLow) ? 1 : 14;
             case TWO:
                 return 2;
             case THREE:

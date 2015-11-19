@@ -1,6 +1,7 @@
 package mobile.keithapps.drinkinggames.ridethebus;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -39,7 +40,7 @@ public class RideTheBusMain extends AppCompatActivity {
     private Button outsideButton;
     private LinearLayout suitsButtons;
     private TextView questionText;
-    private TextView warningAceIsLow;
+    private TextView warningAce;
     private Button restartButton;
     private ImageView cardView1, cardView2, cardView3, cardView4;
     private Card card1, card2, card3, card4;
@@ -75,7 +76,7 @@ public class RideTheBusMain extends AppCompatActivity {
         this.outsideButton = (Button) findViewById(R.id.ridethebus_outsidebutton);
         this.suitsButtons = (LinearLayout) findViewById(R.id.rtb_buttons_suits);
         this.restartButton = (Button) findViewById(R.id.ridethebus_restartbutton);
-        this.warningAceIsLow = (TextView) findViewById(R.id.ridethebus_aceislow_warning);
+        this.warningAce = (TextView) findViewById(R.id.rtb_acewarning);
         this.cardView1 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card1);
         this.cardView2 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card2);
         this.cardView3 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card3);
@@ -134,16 +135,19 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.suitsButtons.setVisibility(View.GONE);
                 this.restartButton.setVisibility(View.VISIBLE);
         }
-        //getPreferences(0).getBoolean(getString(R.string.setting_acesalwayslow), true);
-        if (this.card1 != null && this.card1.getNumericValue() == 1)
-            this.warningAceIsLow.setVisibility(View.VISIBLE);
-        else if (this.card2 != null && this.card2.getNumericValue() == 1)
-            this.warningAceIsLow.setVisibility(View.VISIBLE);
-        else if (this.card3 != null && this.card3.getNumericValue() == 1)
-            this.warningAceIsLow.setVisibility(View.VISIBLE);
-        else if (this.card4 != null && this.card4.getNumericValue() == 1)
-            this.warningAceIsLow.setVisibility(View.VISIBLE);
-        else this.warningAceIsLow.setVisibility(View.INVISIBLE);
+        boolean aceIsLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+        this.warningAce.setText((aceIsLow) ? getString(R.string.ridethebus_warning_aceislow) :
+                getString(R.string.ridethebus_warning_aceishigh));
+        if (this.card1 != null && this.card1.getNumericValue(true) == 1)
+            this.warningAce.setVisibility(View.VISIBLE);
+        else if (this.card2 != null && this.card2.getNumericValue(true) == 1)
+            this.warningAce.setVisibility(View.VISIBLE);
+        else if (this.card3 != null && this.card3.getNumericValue(true) == 1)
+            this.warningAce.setVisibility(View.VISIBLE);
+        else if (this.card4 != null && this.card4.getNumericValue(true) == 1)
+            this.warningAce.setVisibility(View.VISIBLE);
+        else this.warningAce.setVisibility(View.INVISIBLE);
     }
 
     public void guessRed(View view) {
@@ -214,7 +218,9 @@ public class RideTheBusMain extends AppCompatActivity {
 
     public void guessHigher(View view) {
         this.card2 = this.deck.drawRandom();
-        if (this.card2.getNumericValue() > this.card1.getNumericValue()) {
+        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+        if (this.card2.getNumericValue(acesLow) > this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
@@ -222,6 +228,10 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
+            if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
+                ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
+                        Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
+                        getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             imageView.setImageResource(this.card2.getImageId());
@@ -247,7 +257,9 @@ public class RideTheBusMain extends AppCompatActivity {
 
     public void guessLower(View view) {
         this.card2 = this.deck.drawRandom();
-        if (this.card2.getNumericValue() < this.card1.getNumericValue()) {
+        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+        if (this.card2.getNumericValue(acesLow) < this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
@@ -255,6 +267,10 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
+            if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
+                ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
+                        Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
+                        getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             imageView.setImageResource(this.card2.getImageId());
@@ -280,7 +296,9 @@ public class RideTheBusMain extends AppCompatActivity {
 
     public void guessOutside(View view) {
         this.card3 = this.deck.drawRandom();
-        int i1 = this.card1.getNumericValue(), i2 = this.card2.getNumericValue(), i3 = this.card3.getNumericValue();
+        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+        int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow), i3 = this.card3.getNumericValue(acesLow);
         if (i3 > Math.max(i1, i2) || i3 < Math.min(i1, i2)) {
             this.setState(State.Suit);
         } else {
@@ -289,6 +307,11 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
+            if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
+                ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
+                        .setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
+                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
@@ -315,7 +338,10 @@ public class RideTheBusMain extends AppCompatActivity {
 
     public void guessInside(View view) {
         this.card3 = this.deck.drawRandom();
-        int i1 = this.card1.getNumericValue(), i2 = this.card2.getNumericValue(), i3 = this.card3.getNumericValue();
+        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+        int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow),
+                i3 = this.card3.getNumericValue(acesLow);
         if (i3 < Math.max(i1, i2) && i3 > Math.min(i1, i2)) {
             this.setState(State.Suit);
         } else {
@@ -324,6 +350,11 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
+            if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
+                ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
+                        .setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
+                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
@@ -463,6 +494,10 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
+            if (this.warningAce.getVisibility() == View.VISIBLE || this.card4.getNumericValue(true) == 1)
+                ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
+                        Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
+                        getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());

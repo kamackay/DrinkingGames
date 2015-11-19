@@ -58,6 +58,8 @@
     <string name="text_save">Save</string>
     <string name="text_acesalwayslow">Aces Always Low</string>
     <string name="setting_acesalwayslow">AcesAlwaysLow</string>
+    <string name="ridethebus_warning_aceishigh">Note: Aces are always high</string>
+    <string name="setting_preferences_file">mobile.keithapps.drinkinggames</string>
 
     <string-array name="face_values">
         <item>Ace</item>

@@ -18,10 +18,8 @@
             android:layout_width="0sp"
             android:layout_height="@dimen/ridethebus_topcards_height"
             android:layout_weight="@integer/one"
-            android:background="@drawable/cardback"
-            android:paddingLeft="1sp"
-            android:paddingRight="1dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/cardback" />
 
         <TextView
             android:layout_width="2dp"
@@ -32,10 +30,8 @@
             android:layout_width="0sp"
             android:layout_height="@dimen/ridethebus_topcards_height"
             android:layout_weight="@integer/one"
-            android:background="@drawable/cardback"
-            android:paddingLeft="1sp"
-            android:paddingRight="1sp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/cardback" />
 
         <TextView
             android:layout_width="2sp"
@@ -46,10 +42,8 @@
             android:layout_width="0sp"
             android:layout_height="@dimen/ridethebus_topcards_height"
             android:layout_weight="@integer/one"
-            android:background="@drawable/cardback"
-            android:paddingLeft="1sp"
-            android:paddingRight="1sp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/cardback" />
 
         <TextView
             android:layout_width="2sp"
@@ -59,14 +53,12 @@
             android:id="@+id/ridethebus_uppercardsview_card4"
             android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
             android:layout_height="@dimen/ridethebus_topcards_height"
-            android:background="@drawable/cardback"
-            android:paddingLeft="1sp"
-            android:paddingRight="1sp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/cardback" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/ridethebus_aceislow_warning"
+        android:id="@+id/rtb_acewarning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ridethebus_warning_aceislow"
@@ -80,11 +72,11 @@
         android:layout_weight="@integer/two">
 
         <ImageView
-            android:layout_width="@dimen/ridethebus_middlecardview_width"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/ridethebus_middlecardview_height"
             android:layout_centerInParent="true"
-            android:background="@drawable/cardback"
-            android:scaleType="fitStart" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/cardback" />
     </RelativeLayout>
 
     <RelativeLayout

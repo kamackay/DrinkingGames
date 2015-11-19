@@ -53,6 +53,14 @@
             android:scaleType="fitXY" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/rtb_popup_warning_ace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twenty_sp" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0sp"
@@ -62,7 +70,8 @@
             android:id="@+id/rtb_popup_maincard"
             android:layout_width="@dimen/ridethebus_middlecardview_width"
             android:layout_height="@dimen/ridethebus_middlecardview_height"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:scaleType="center" />
     </RelativeLayout>
 
     <TextView
