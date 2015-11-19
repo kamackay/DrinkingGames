@@ -50,6 +50,10 @@ public class GamesMenuMain extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * @param item Menu Item that was selected
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

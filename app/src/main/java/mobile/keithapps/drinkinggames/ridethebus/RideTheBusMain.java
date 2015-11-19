@@ -58,14 +58,8 @@ public class RideTheBusMain extends AppCompatActivity {
 
         setContentView(R.layout.activity_ridethebusmain);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-
-        if (Build.VERSION.SDK_INT >= 21)
-            this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
-
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+        if (Build.VERSION.SDK_INT >= 21) this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
         this.deck = new CardDeck();
         this.blackButton = (RelativeLayout) findViewById(R.id.ridethebus_blackbutton);
         this.redButton = (RelativeLayout) findViewById(R.id.ridethebus_redbutton);
@@ -84,6 +78,11 @@ public class RideTheBusMain extends AppCompatActivity {
         this.setState(State.Color);
     }
 
+    /**
+     * FSM-like framework to control the state of the game
+     *
+     * @param s the state that the game is in
+     */
     public void setState(State s) {
         switch (s) {
             case Color:
@@ -150,11 +149,14 @@ public class RideTheBusMain extends AppCompatActivity {
         else this.warningAce.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Button press handler for the Red Button
+     * @param view the Red Button
+     */
     public void guessRed(View view) {
         this.card1 = this.deck.drawRandom();
         Card.Suit s = this.card1.getSuit();
-        if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND)
-            this.setState(State.High_Low);
+        if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) this.setState(State.High_Low);
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -183,6 +185,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Button Press Handler for the Black Button
+     * @param view Black Button
+     */
     public void guessBlack(View view) {
         this.card1 = this.deck.drawRandom();
         Card.Suit s = this.card1.getSuit();
@@ -216,6 +222,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Higher Press Handler for the Higher Button
+     * @param view Higher Button
+     */
     public void guessHigher(View view) {
         this.card2 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
@@ -255,6 +265,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Lower Press Handler for the Lower Button
+     * @param view Lower Button
+     */
     public void guessLower(View view) {
         this.card2 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
@@ -294,6 +308,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Outeside Press Handler for the Outside Button
+     * @param view Outside Button
+     */
     public void guessOutside(View view) {
         this.card3 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
@@ -336,6 +354,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Inside Press Handler for the Inside Button
+     * @param view Inside Button
+     */
     public void guessInside(View view) {
         this.card3 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
@@ -379,6 +401,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Club Press Handler for the Club Button
+     * @param view Club Button
+     */
     public void guessClub(View view) {
         this.card4 = this.deck.drawRandom();
         Card.Suit s = this.card4.getSuit();
@@ -414,6 +440,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Heart Press Handler for the Heart Button
+     * @param view Heart Button
+     */
     public void guessHeart(View view) {
         this.card4 = this.deck.drawRandom();
         Card.Suit s = this.card4.getSuit();
@@ -449,6 +479,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Diamond Press Handler for the Diamond Button
+     * @param view Diamond Button
+     */
     public void guessDiamond(View view) {
         this.card4 = this.deck.drawRandom();
         Card.Suit s = this.card4.getSuit();
@@ -484,6 +518,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * The Spade Press Handler for the Spade Button
+     * @param view Spade Button
+     */
     public void guessSpade(View view) {
         this.card4 = this.deck.drawRandom();
         Card.Suit s = this.card4.getSuit();
@@ -523,6 +561,10 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Restart the Game, reshuffle the deck
+     * @param view Irrelevant
+     */
     public void restart(View view) {
         this.deck.reset();
         this.setState(State.Color);
@@ -543,6 +585,11 @@ public class RideTheBusMain extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Options Item clicked
+     * @param item the item clicked
+     * @return like, always true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -560,5 +607,8 @@ public class RideTheBusMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Used by the FSM to determine where in the game you are
+     */
     public enum State {Color, High_Low, Inside_Outside, Suit, Won}
 }
