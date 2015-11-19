@@ -152,6 +152,7 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.show();
             }
         } else {
+            int sum = this.leftDie + this.rightDie;
             if (this.leftDie == this.rightDie) {
                 if (this.leftDie == 1) {
                     //Everyone take a drink
@@ -162,8 +163,30 @@ public class BizkitMain extends AppCompatActivity {
                     //Roller gives drinks to one or several players. ex. a 5-5 would mean the roller
                     // hands out 5 drinks
                 }
+            } else if (sum == 3) {
+                //Called a "challenge". Roller chooses a player, that player must roll the dice.
+                // Add the result of each dice. The first roller has to make a higher result.
+                // If the first roller wins, the chosen player has to drink the difference between
+                // the 2 results. If the first roller failed, he has to drink the difference
+                // between the 2 results.
+            } else if (sum == 7) {
+                //All players put a thumb on their forehead and say "Biscuit". Last player to do
+                // so drinks and becomes the new "Biscuit".
+            } else if (sum == 9) {
+                //Person to right of roller drinks
+            } else if (sum == 10) {
+                //Roller drinks
+            } else if (sum == 11) {
+                //Person to left of roller drinks
             } else {
+                //Is this a thing??
+            }
 
+            if (this.leftDie == 3 || this.rightDie == 3) {
+                //When the number "3" appears on the dice, the actual "Biscuit" has to take a drink.
+                // (If the dice show 3-3, the "Biscuit" has to take 2 drinks.)
+                // If the "Biscuit" does the number "3", his status of "Biscuit" is removed
+                // until another "Biscuit" is selected.
             }
         }
     }
