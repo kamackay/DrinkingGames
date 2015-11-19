@@ -29,6 +29,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".GamesMenuMain" />
         </activity>
+
+        <activity
+            android:name=".biscuit.BizkitMain"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/text_bizkit"
+            android:parentActivityName=".GamesMenuMain"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GamesMenuMain" />
+        </activity>
         <activity
             android:name=".ridethebus.RideTheBusMain"
             android:configChanges="orientation|keyboardHidden|screenSize"

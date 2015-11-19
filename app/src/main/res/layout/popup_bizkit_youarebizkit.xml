@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_bizkit_youarebizkit_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/twenty_five_sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bizkit_message_youarebizkit"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twenty_five_sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/thirty_sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/sixty_sp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/one" />
+
+        <EditText
+            android:id="@+id/popup_bizkit_youarebizkit_edittext"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/fourty_sp"
+            android:layout_weight="8"
+            android:background="@color/lightGray"
+            android:paddingEnd="@dimen/twenty_five_sp"
+            android:paddingStart="@dimen/twenty_five_sp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty_sp" />
+
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/one" />
+    </LinearLayout>
+</LinearLayout>

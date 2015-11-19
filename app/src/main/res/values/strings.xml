@@ -1,48 +1,43 @@
 <resources>
     <string name="app_name">Drinking Games</string>
     <string name="games_menu_title">KeithApps\' Drinking Games</string>
-
     <string name="title_activity_fullscreen">FullscreenActivity</string>
-
     <string name="text_circleofdeath">Circle of Death</string>
     <string name="text_ridethebus">Ride The Bus</string>
-    <string name="circlemain_resetcards_title">Reset all cards</string>
-
-    <string name="ace_directions">Waterfall</string>
-    <string name="two_directions">You</string>
-    <string name="three_directions">Me</string>
-    <string name="four_directions">Floor</string>
-    <string name="five_directions">Guys</string>
-    <string name="six_directions">Chicks</string>
-    <string name="seven_directions">Heaven</string>
-    <string name="eight_directions">Make a Date</string>
-    <string name="nine_directions">Rhyme</string>
-    <string name="ten_directions">Categories</string>
-    <string name="jack_directions">Never Have I Ever</string>
-    <string name="queen_directions">Question Master</string>
-    <string name="king_directions">Make a Rule</string>
-    <string name="ace_directions_description">Everyone begins drinking and each person cannot stop until the person to their left stops, however the person who drew this card may stop whenever they want</string>
-    <string name="two_directions_description">The person who drew this card picks someone else to drink</string>
-    <string name="three_directions_description">The person who drew this card must drink</string>
-    <string name="four_directions_description">Everyone points to the floor, the last person to do so must drink</string>
-    <string name="five_directions_description">All guys drink</string>
-    <string name="six_directions_description">All chicks drink</string>
-    <string name="seven_directions_description">Everyone points to the ceiling, the last person to do so must drink</string>
-    <string name="eight_directions_description">Pick a person, and from now on, whenever you drink, they drink</string>
-    <string name="nine_directions_description">Pick a word and go in a circle and rhyme a word with it. The first person who cannot must drink</string>
-    <string name="ten_directions_description">Pick a category and go in a circle and name something that fits in that category. The first person who cannot do so must drink</string>
-    <string name="jack_directions_description">Come on, you know what "Never Have I Ever" is.</string>
-    <string name="queen_directions_description">Until the next queen is drawn, you are the Question Master. If you ask anyone a question and they answer it, they must drink</string>
-    <string name="king_directions_description">Make a rule that must be obeyed until the end of the game</string>
-    <string name="circle_broken_message">You broke the circle!</string>
-    <string name="circle_broken_message_2">Drink the beer in the middle of the table</string>
+    <string name="text_resetallcards">Reset all cards</string>
+    <string name="circleofdeath_carddirection_ace">Waterfall</string>
+    <string name="circleofdeath_carddirection_two">You</string>
+    <string name="circleofdeath_carddirection_three">Me</string>
+    <string name="circleofdeath_carddirection_four">Floor</string>
+    <string name="circleofdeath_carddirection_five">Guys</string>
+    <string name="circleofdeath_carddirection_six">Chicks</string>
+    <string name="circleofdeath_carddirection_seven">Heaven</string>
+    <string name="circleofdeath_carddirection_eight">Make a Date</string>
+    <string name="circleofdeath_carddirection_nine">Rhyme</string>
+    <string name="circleofdeath_carddirection_ten">Categories</string>
+    <string name="circleofdeath_carddirection_jack">Never Have I Ever</string>
+    <string name="circleofdeath_carddirection_queen">Question Master</string>
+    <string name="circleofdeath_carddirection_king">Make a Rule</string>
+    <string name="circleofdeath_carddirection_description_ace">Everyone begins drinking and each person cannot stop until the person to their left stops, however the person who drew this card may stop whenever they want</string>
+    <string name="circleofdeath_carddirection_description_two">The person who drew this card picks someone else to drink</string>
+    <string name="circleofdeath_carddirection_description_three">The person who drew this card must drink</string>
+    <string name="circleofdeath_carddirection_description_four">Everyone points to the floor, the last person to do so must drink</string>
+    <string name="circleofdeath_carddirection_description_five">All guys drink</string>
+    <string name="circleofdeath_carddirection_description_six">All chicks drink</string>
+    <string name="circleofdeath_carddirection_description_seven">Everyone points to the ceiling, the last person to do so must drink</string>
+    <string name="circleofdeath_carddirection_description_eight">Pick a person, and from now on, whenever you drink, they drink</string>
+    <string name="circleofdeath_carddirection_description_nine">Pick a word and go in a circle and rhyme a word with it. The first person who cannot must drink</string>
+    <string name="circleofdeath_carddirection_description_ten">Pick a category and go in a circle and name something that fits in that category. The first person who cannot do so must drink</string>
+    <string name="circleofdeath_carddirection_description_jack">Come on, you know what "Never Have I Ever" is.</string>
+    <string name="circleofdeath_carddirection_description_queen">Until the next queen is drawn, you are the Question Master. If you ask anyone a question and they answer it, they must drink</string>
+    <string name="circleofdeath_carddirection_description_king">Make a rule that must be obeyed until the end of the game</string>
+    <string name="circleofdeath_circlebrokenmessage">You broke the circle!</string>
+    <string name="circleofdeath_circlebrokenmessage_2">Drink the beer in the middle of the table</string>
     <string name="text_moretocome">More Games Coming Soon!</string>
-    <string name="title_activity_pokemongame">Pokemon Drinking Game</string>
     <string name="ridethebus_question_color">What color is this card?</string>
     <string name="ridethebus_question_highlow">Is this card higher or lower than the last one?</string>
     <string name="ridethebus_question_inout">Is this card inside or outside of the last two?</string>
     <string name="ridethebus_question_suit">What suit is this card?</string>
-    <string name="app_version_name">2.0.1</string>
     <string name="text_black">Black</string>
     <string name="text_red">Red</string>
     <string name="text_higher">Higher</string>
@@ -52,7 +47,7 @@
     <string name="text_youwon">You Won!</string>
     <string name="text_restart">Restart</string>
     <string name="ridethebus_warning_aceislow">Note: Aces are always low</string>
-    <string name="rtb_incorrectmessage">"No, the card was the "</string>
+    <string name="ridethebus_incorrectmessage">"No, the card was the "</string>
     <string name="text_takeadrink">Take a drink!</string>
     <string name="text_settings">Settings</string>
     <string name="text_save">Save</string>
@@ -60,20 +55,16 @@
     <string name="setting_acesalwayslow">AcesAlwaysLow</string>
     <string name="ridethebus_warning_aceishigh">Note: Aces are always high</string>
     <string name="setting_preferences_file">mobile.keithapps.drinkinggames</string>
+    <string name="text_bizkit">Bizkit</string>
+    <string name="text_rolldice">Roll Dice</string>
+    <string name="bizkit_welcometext">Welcome to Bizkit! To start, everyone sit in a circle and roll the die until someone rolls a 7!</string>
+    <string name="bizkit_message_youarebizkit">You are now the Bizkit! What is your name?</string>
 
-    <string-array name="face_values">
-        <item>Ace</item>
-        <item>Two</item>
-        <item>Three</item>
-        <item>Four</item>
-        <item>Five</item>
-        <item>Six</item>
-        <item>Seven</item>
-        <item>Eight</item>
-        <item>Nine</item>
-        <item>Ten</item>
-        <item>Jack</item>
-        <item>Queen</item>
-        <item>King</item>
+    <string-array name="insults">
+        <item>what an asshole</item>
+        <item>that dick</item>
+        <item>such a jerk</item>
+        <item>that moron</item>
+        <item>Ha. Looser.</item>
     </string-array>
 </resources>

@@ -160,9 +160,9 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             imageView.setImageResource(this.card1.getImageId());
             imageDialog.setView(layout);
@@ -195,9 +195,9 @@ public class RideTheBusMain extends AppCompatActivity {
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             imageView.setImageResource(this.card1.getImageId());
             imageDialog.setView(layout);
@@ -235,9 +235,9 @@ public class RideTheBusMain extends AppCompatActivity {
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
                         Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
@@ -278,9 +278,9 @@ public class RideTheBusMain extends AppCompatActivity {
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
                         Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
@@ -322,9 +322,9 @@ public class RideTheBusMain extends AppCompatActivity {
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
@@ -369,9 +369,9 @@ public class RideTheBusMain extends AppCompatActivity {
         } else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
@@ -412,9 +412,9 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
@@ -451,9 +451,9 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
@@ -490,9 +490,9 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
@@ -529,9 +529,9 @@ public class RideTheBusMain extends AppCompatActivity {
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.rtb_popup_layout, (ViewGroup) findViewById(R.id.layout_root));
+            View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
+                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card4.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.setting_preferences_file),
                         Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
@@ -568,7 +568,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void restart(View view) {
         this.deck.reset();
         this.setState(State.Color);
-        Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.text_resetallcards), Toast.LENGTH_LONG).show();
     }
 
 

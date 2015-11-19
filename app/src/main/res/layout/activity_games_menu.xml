@@ -49,6 +49,20 @@
                 android:layout_height="@dimen/ten_sp" />
 
             <Button
+                android:id="@+id/bizkitbutton_gamesMenuScreen"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/buttonbackground_allsides"
+                android:onClick="openBizkit"
+                android:text="@string/text_bizkit"
+                android:textAllCaps="false"
+                android:textColor="@color/darkRed"
+                android:textSize="50sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ten_sp" />
+            <Button
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/buttonbackground_allsides"

@@ -41,31 +41,31 @@ public class Card {
     public int getDirections() {
         switch (this.getFaceValue()) {
             case ACE:
-                return R.string.ace_directions;
+                return R.string.circleofdeath_carddirection_ace;
             case TWO:
-                return R.string.two_directions;
+                return R.string.circleofdeath_carddirection_two;
             case THREE:
-                return R.string.three_directions;
+                return R.string.circleofdeath_carddirection_three;
             case FOUR:
-                return R.string.four_directions;
+                return R.string.circleofdeath_carddirection_four;
             case FIVE:
-                return R.string.five_directions;
+                return R.string.circleofdeath_carddirection_five;
             case SIX:
-                return R.string.six_directions;
+                return R.string.circleofdeath_carddirection_six;
             case SEVEN:
-                return R.string.seven_directions;
+                return R.string.circleofdeath_carddirection_seven;
             case EIGHT:
-                return R.string.eight_directions;
+                return R.string.circleofdeath_carddirection_eight;
             case NINE:
-                return R.string.nine_directions;
+                return R.string.circleofdeath_carddirection_nine;
             case TEN:
-                return R.string.ten_directions;
+                return R.string.circleofdeath_carddirection_ten;
             case JACK:
-                return R.string.jack_directions;
+                return R.string.circleofdeath_carddirection_jack;
             case QUEEN:
-                return R.string.queen_directions;
+                return R.string.circleofdeath_carddirection_queen;
             case KING:
-                return R.string.king_directions;
+                return R.string.circleofdeath_carddirection_king;
         }
         return -1;
     }

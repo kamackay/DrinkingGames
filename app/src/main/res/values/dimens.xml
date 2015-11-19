@@ -13,4 +13,5 @@
     <dimen name="zero">0sp</dimen>
     <dimen name="fourty_sp">40sp</dimen>
     <dimen name="one_hundred_sp">100sp</dimen>
+    <dimen name="sixty_sp">60sp</dimen>
 </resources>

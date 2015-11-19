@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import mobile.keithapps.drinkinggames.biscuit.BizkitMain;
 import mobile.keithapps.drinkinggames.circleofdeath.CircleOfDeathMain;
 import mobile.keithapps.drinkinggames.ridethebus.RideTheBusMain;
 
@@ -34,6 +35,11 @@ public class GamesMenuMain extends AppCompatActivity {
 
     public void openRTB(View view) {
         Intent i = new Intent(getApplicationContext(), RideTheBusMain.class);
+        startActivity(i);
+    }
+
+    public void openBizkit(View v) {
+        Intent i = new Intent(getApplicationContext(), BizkitMain.class);
         startActivity(i);
     }
 

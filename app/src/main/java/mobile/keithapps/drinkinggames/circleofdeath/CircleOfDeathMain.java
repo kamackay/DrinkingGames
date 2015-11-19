@@ -75,14 +75,14 @@ public class CircleOfDeathMain extends AppCompatActivity {
                     this.circleBroken = true;
                     AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                     final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View layout = inflater.inflate(R.layout.image_and_text_popup,
-                            (ViewGroup) findViewById(R.id.layout_root));
+                    View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
+                            (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
                     TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
-                    textView.setText(R.string.circle_broken_message);
+                    textView.setText(R.string.circleofdeath_circlebrokenmessage);
                     ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
                     imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.brokencircle));
                     final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-                    instructionsView.setText(R.string.circle_broken_message_2);
+                    instructionsView.setText(R.string.circleofdeath_circlebrokenmessage_2);
                     imageDialog.setView(layout);
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -183,8 +183,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
     private void showDrawn(final Card card) {
         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.image_and_text_popup,
-                (ViewGroup) findViewById(R.id.layout_root));
+        View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
+                (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
@@ -221,8 +221,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
     public void showDescription(final Card card) {
         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.image_and_text_popup,
-                (ViewGroup) findViewById(R.id.layout_root));
+        View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
+                (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.getFaceValue().toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
@@ -258,31 +258,31 @@ public class CircleOfDeathMain extends AppCompatActivity {
     public int getActionDescription(Card.FaceValue card) {
         switch (card) {
             case ACE:
-                return R.string.ace_directions_description;
+                return R.string.circleofdeath_carddirection_description_ace;
             case TWO:
-                return R.string.two_directions_description;
+                return R.string.circleofdeath_carddirection_description_two;
             case THREE:
-                return R.string.three_directions_description;
+                return R.string.circleofdeath_carddirection_description_three;
             case FOUR:
-                return R.string.four_directions_description;
+                return R.string.circleofdeath_carddirection_description_four;
             case FIVE:
-                return R.string.five_directions_description;
+                return R.string.circleofdeath_carddirection_description_five;
             case SIX:
-                return R.string.six_directions_description;
+                return R.string.circleofdeath_carddirection_description_six;
             case SEVEN:
-                return R.string.seven_directions_description;
+                return R.string.circleofdeath_carddirection_description_seven;
             case EIGHT:
-                return R.string.eight_directions_description;
+                return R.string.circleofdeath_carddirection_description_eight;
             case NINE:
-                return R.string.nine_directions_description;
+                return R.string.circleofdeath_carddirection_description_nine;
             case TEN:
-                return R.string.ten_directions_description;
+                return R.string.circleofdeath_carddirection_description_ten;
             case JACK:
-                return R.string.jack_directions_description;
+                return R.string.circleofdeath_carddirection_description_jack;
             case QUEEN:
-                return R.string.queen_directions_description;
+                return R.string.circleofdeath_carddirection_description_queen;
             case KING:
-                return R.string.king_directions_description;
+                return R.string.circleofdeath_carddirection_description_king;
         }
         return -1;
     }

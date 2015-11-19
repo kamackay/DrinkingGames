@@ -3,7 +3,7 @@
     <item
         android:id="@+id/circlemain_resetcards"
         android:icon="@android:drawable/ic_popup_sync"
-        android:title="@string/circlemain_resetcards_title"
+        android:title="@string/text_resetallcards"
         app:showAsAction="always" />
     <item
         android:id="@+id/circlemain_settings"
