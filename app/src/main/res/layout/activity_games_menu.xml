@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screen_background"
     tools:context=".GamesMenu">
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/foreground_material_dark_custom"
         android:fitsSystemWindows="true">
 
         <LinearLayout

@@ -12,7 +12,7 @@
             android:name=".GamesMenuMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/games_menu_title"
-            android:theme="@style/AppTheme">
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
