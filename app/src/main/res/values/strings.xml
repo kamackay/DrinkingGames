@@ -64,8 +64,10 @@
     <string name="bizkit_message_sum_9">The person to the right of the roller drinks.</string>
     <string name="bizkit_message_sum_10">The roller drinks.</string>
     <string name="bizkit_message_sum_11">The person to the left of the roller drinks.</string>
-    <string name="bizkit_message_three_present">When the number \"3\" appears on the dice, the actual \"Biscuit\" has to take a drink. (If the dice show 3-3, the \"Biscuit\" has to take 2 drinks.) If the \"Biscuit\" does the number \"3\", his status of \"Biscuit\" is removed until another \"Biscuit\" is selected.</string>
+    <string name="bizkit_message_three_present">When the number \"3\" appears on the dice, the actual \"Biscuit\" has to take a drink. (If the dice show 3–3, the \"Biscuit\" has to take 2 drinks.) If the \"Biscuit\" does the number \"3\", his status of \"Biscuit\" is removed until another \"Biscuit\" is selected.</string>
     <string name="bizkit_message_sum_3">Called a \"challenge\". Roller chooses a player, that player must roll the dice. Add the result of each dice. The first roller has to make a higher result. If the first roller wins, the chosen player has to drink the difference between the 2 results. If the first roller failed, he has to drink the difference between the 2 results.</string>
+    <string name="bizkit_message_message_dispensedrink">Now go clockwise and roll the dice, and perform action that is associated!</string>
+    <string name="bizkit_message_nocurrentbizkit">Current Bizkit: None</string>
 
     <string-array name="insults">
         <item>what an asshole</item>

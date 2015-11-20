@@ -34,6 +34,7 @@ public class BizkitMain extends AppCompatActivity {
     private ImageView leftDieView, rightDieView;
     private String bizkitName;
     private State currState;
+    private TextView currentBizkitView;
 
     /**
      * Initialize the screen and rotate all of the cards to make them look
@@ -54,22 +55,25 @@ public class BizkitMain extends AppCompatActivity {
         this.whatToDoTextView = (TextView) findViewById(R.id.bizkit_whattodotext);
         this.rightDieView = (ImageView) findViewById(R.id.bizkit_rightdie_imageview);
         this.leftDieView = (ImageView) findViewById(R.id.bizkit_leftdie_imageview);
+        this.currentBizkitView = (TextView) findViewById(R.id.bizkit_currentbizkit_text);
 
         //Start Actually doing things
         this.setState(State.FindBiscuit);
     }
 
     private void setState(State state) {
+        boolean change = !(state == this.currState);
         this.currState = state;
         switch (state) {
             case FindBiscuit:
                 this.bizkitName = "";
                 this.whatToDoTextView.setText(getString(R.string.bizkit_welcometext));
+                this.currentBizkitView.setText(R.string.bizkit_message_nocurrentbizkit);
                 break;
             case DispenseDrinks:
-                this.whatToDoTextView.setText(String.format("Now that %s (%s) is the bizkit, " +
-                                "go clockwise and roll the dice, and each value will have" +
-                                " an action that is associated!",
+                if (change)
+                    this.whatToDoTextView.setText(getString(R.string.bizkit_message_message_dispensedrink));
+                this.currentBizkitView.setText(String.format("Current Bizkit: %s (%s)",
                         this.bizkitName, DrinkingGamesGlobal.getRandomInsult(getResources())));
                 break;
         }
@@ -129,14 +133,16 @@ public class BizkitMain extends AppCompatActivity {
             }
         } else {
             int sum = leftDie + rightDie;
+            String message = "";
             if (leftDie == rightDie) {
                 if (leftDie == 1) {
+                    message = "Two ones:\nEveryone takes a drink!";
                     AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                     final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                             (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext))
-                            .setText("Two ones:\nEveryone takes a drink!");
+                            .setText(message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                             .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -146,6 +152,7 @@ public class BizkitMain extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
+                            setState(State.DispenseDrinks);
                         }
                     });
                     final AlertDialog dialog = imageDialog.create();
@@ -161,14 +168,15 @@ public class BizkitMain extends AppCompatActivity {
                 } else if (leftDie == 6) {
                     //Roller has to invent a rule which will be applied for the rest of the game.
                     // The non respect of this rule will result to a drink.
+                    message = String.format("%s%s%s", "Two sixes:\nRoller has to invent a rule which",
+                            " will be applied for the rest of the game.\n\nThe non respect",
+                            " of this rule will result to a drink.");
                     AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                     final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                             (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                            String.format("%s%s%s", "Two sixes:\nRoller has to invent a rule which",
-                                    " will be applied for the rest of the game.\n\nThe non respect",
-                                    " of this rule will result to a drink."));
+                            message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                             .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -178,6 +186,7 @@ public class BizkitMain extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
+                            setState(State.DispenseDrinks);
                         }
                     });
                     final AlertDialog dialog = imageDialog.create();
@@ -193,13 +202,14 @@ public class BizkitMain extends AppCompatActivity {
                 } else {
                     //Roller gives drinks to one or several players. ex. a 5-5 would mean the roller
                     // hands out 5 drinks
+                    message = String.format("Two %d's:\nRoller can assign %d drinks to other players.",
+                            leftDie, sum);
                     AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                     final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                             (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                            String.format("Two %d's:\nRoller can assign %d drinks to other players.",
-                                    leftDie, sum));
+                            message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                             .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -208,6 +218,7 @@ public class BizkitMain extends AppCompatActivity {
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            setState(State.DispenseDrinks);
                             dialog.dismiss();
                         }
                     });
@@ -223,12 +234,13 @@ public class BizkitMain extends AppCompatActivity {
                     dialog.show();
                 }
             } else if (sum == 3) {
+                message = String.format("The sum was 3\n%s", getString(R.string.bizkit_message_sum_3));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        String.format("The sum was 3\n%s", getString(R.string.bizkit_message_sum_3)));
+                        message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -238,6 +250,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -253,13 +266,13 @@ public class BizkitMain extends AppCompatActivity {
             } else if (sum == 7) {
                 //All players put a thumb on their forehead and say "Biscuit". Last player to do
                 // so drinks and becomes the new "Biscuit".
+                message = String.format("The sum was 7\n%s", getString(R.string.bizkit_message_sum_7));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        String.format("The sum was 7\n%s",
-                                getString(R.string.bizkit_message_sum_7)));
+                        message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -269,6 +282,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -283,12 +297,13 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.show();
             } else if (sum == 9) {
                 //Person to right of roller drinks
+                message = String.format("The sum was 9\n%s", getString(R.string.bizkit_message_sum_9));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        String.format("The sum was 9\n%s", getString(R.string.bizkit_message_sum_9)));
+                        message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -298,6 +313,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -312,12 +328,13 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.show();
             } else if (sum == 10) {
                 //Roller drinks
+                message = String.format("The sum was 7\n%s", getString(R.string.bizkit_message_sum_10));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        String.format("The sum was 7\n%s", getString(R.string.bizkit_message_sum_10)));
+                        message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -327,6 +344,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -341,12 +359,13 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.show();
             } else if (sum == 11) {
                 //Person to left of roller drinks
+                message = String.format("The sum was 9\n%s", getString(R.string.bizkit_message_sum_11));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        String.format("The sum was 9\n%s", getString(R.string.bizkit_message_sum_11)));
+                        message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
@@ -356,35 +375,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                    }
-                });
-                final AlertDialog dialog = imageDialog.create();
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface arg0) {
-                        dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                                .setTextColor(ContextCompat.getColor(getApplicationContext(),
-                                        R.color.darkRed));
-                    }
-                });
-                dialog.show();
-            } else {
-                //Is this a thing??
-                AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
-                final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
-                        (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
-                ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        "Unaccounted for.");
-                ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
-                ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
-                imageDialog.setView(layout);
-                imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -398,23 +389,25 @@ public class BizkitMain extends AppCompatActivity {
                 });
                 dialog.show();
             }
-
             if (leftDie == 3 || rightDie == 3) {
+                message += String.format("\n\n%s", getString(R.string.bizkit_message_three_present));
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
-                        R.string.bizkit_message_three_present);
+                        String.format("%s\n\nWas %s the one that rolled this?",
+                                getString(R.string.bizkit_message_three_present), bizkitName));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
                         .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
                 imageDialog.setView(layout);
-                imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                imageDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        setState(State.DispenseDrinks);
                     }
                 });
                 final AlertDialog dialog = imageDialog.create();
@@ -427,8 +420,9 @@ public class BizkitMain extends AppCompatActivity {
                     }
                 });
                 dialog.show();
-
             }
+            if (message.equals("")) message = "No action associated with this role";
+            this.whatToDoTextView.setText(message);
         }
     }
 

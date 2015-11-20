@@ -9,7 +9,22 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
-        android:layout_weight=".5" />
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/bizkit_currentbizkit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/fifteen_sp"
+        android:paddingStart="@dimen/fifteen_sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twenty_five_sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/bizkit_whattodotext"
