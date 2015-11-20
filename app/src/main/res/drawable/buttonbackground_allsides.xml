@@ -8,7 +8,7 @@
         android:startColor="@color/darkGray"
         android:type="radial" />
     <corners android:radius="10dp" />
-    <stroke
+    <!--<stroke
         android:width="1px"
-        android:color="@color/darkGray" />
+        android:color="@color/darkGray" />-->
 </shape>

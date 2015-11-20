@@ -58,7 +58,7 @@ public class GamesMenuMain extends AppCompatActivity {
 
     /**
      * @param item Menu Item that was selected
-     * @return
+     * @return pretty much always true
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

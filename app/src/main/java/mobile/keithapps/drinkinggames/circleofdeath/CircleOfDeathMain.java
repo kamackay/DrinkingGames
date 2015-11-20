@@ -131,16 +131,15 @@ public class CircleOfDeathMain extends AppCompatActivity {
         //Inform the user. Toast for builds that do not support Snackbar
         Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_SHORT).show();
         /** For now, just use toast
-        if (Build.VERSION.SDK_INT >= 21)
-        android.support.design.widget.Snackbar.make(parentlayout, "This is main activity", Snackbar.LENGTH_LONG)
-                    .setAction("CLOSE", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+         if (Build.VERSION.SDK_INT >= 21)
+         android.support.design.widget.Snackbar.make(parentlayout, "This is main activity", Snackbar.LENGTH_LONG)
+         .setAction("CLOSE", new View.OnClickListener() {
+        @Override public void onClick(View view) {
 
-                        }
-                    })
-                    .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
-        .show();
+        }
+        })
+         .setActionTextColor(getResources().getColor(android.R.color.holo_red_light ))
+         .show();
          */
     }
 

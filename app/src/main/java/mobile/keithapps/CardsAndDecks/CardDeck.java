@@ -27,15 +27,6 @@ public class CardDeck extends ArrayList {
     }
 
     /**
-     * Getter for the number of cards in the deck
-     *
-     * @return the number of cards in the deck
-     */
-    public int cardsInDeck() {
-        return this.deck.size();
-    }
-
-    /**
      * Determine whether or not the deck still has cards in it
      *
      * @return true if the deck is empty
@@ -58,106 +49,6 @@ public class CardDeck extends ArrayList {
             int index = rand.nextInt(this.deck.size());
             return this.deck.remove(index);
         }
-    }
-
-    /**
-     * Put a card back into the deck
-     */
-    public void putCardBackInDeck(Card returned) {
-        for (Card card : this.deck) {
-            if (returned.getFaceValue().equals(card.getFaceValue())
-                    && returned.getSuit().equals(card.getSuit())) {
-                return;
-            }
-        }
-        this.deck.add(returned);
-    }
-
-    /**
-     * Remove all cards of a certain suit
-     *
-     * @param suit the suit to be removed from the deck
-     */
-    public void removeAll(Suit suit) {
-        for (Card card : this.deck) {
-            if (card.getSuit().equals(suit)) {
-                this.deck.remove(card);
-            }
-        }
-    }
-
-    /**
-     * Remove all cards with a set face value
-     *
-     * @param faceValue the face value to be removed from the deck
-     */
-    public void removeAll(FaceValue faceValue) {
-        for (Card card : this.deck) {
-            if (card.getFaceValue().equals(faceValue)) {
-                this.deck.remove(card);
-            }
-        }
-    }
-
-    /**
-     * Remove a card from the deck
-     *
-     * @param faceValue facevalue of the card to remove
-     * @param suit      suit of the card to remove
-     */
-    public void remove(FaceValue faceValue, Suit suit) {
-        for (Card card : this.deck) {
-            if (card.getFaceValue().equals(faceValue) && card.getSuit().equals(suit)) {
-                this.deck.remove(card);
-            }
-        }
-    }
-
-    /**
-     * Remove a card from the deck
-     *
-     * @param card card to remove
-     */
-    public void remove(Card card) {
-        FaceValue faceValue = card.getFaceValue();
-        Suit suit = card.getSuit();
-        for (Card c : this.deck) {
-            if (c.getFaceValue().equals(faceValue) && c.getSuit().equals(suit)) {
-                this.deck.remove(card);
-            }
-        }
-    }
-
-    /**
-     * Get the last card in the deck
-     *
-     * @return last card in the deck
-     */
-    public Card getLast() {
-        return this.getCardAt(this.cardsInDeck() - 1);
-    }
-
-    /**
-     * @param index Index of the card
-     * @return Card at the given index
-     */
-    public Card getCardAt(int index) {
-        return this.deck.get(index);
-    }
-
-    /**
-     * Add a card to the deck
-     *
-     * @param card the card to add
-     * @return false if the card was already in the deck, or was false
-     */
-    public boolean add(Card card) {
-        if (card.equals(null)) return false;
-        for (Card inDeck : deck) {
-            if (inDeck.equals(card)) return false;
-        }
-        this.deck.add(card);
-        return true;
     }
 
     /**

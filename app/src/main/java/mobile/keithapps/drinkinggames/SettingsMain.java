@@ -29,8 +29,10 @@ public class SettingsMain extends AppCompatActivity {
     }
 
     public void save(View view) {
-        SharedPreferences.Editor prefsEditor = this.getSharedPreferences("mobile.keithapps.drinkinggames", Context.MODE_PRIVATE).edit();
-        prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow), ((CheckBox) findViewById(R.id.settingsscreen_acesarelow)).isChecked());
+        SharedPreferences.Editor prefsEditor = this.getSharedPreferences(
+                getString(R.string.text_package), Context.MODE_PRIVATE).edit();
+        prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow),
+                ((CheckBox) findViewById(R.id.settingsscreen_acesarelow)).isChecked());
         prefsEditor.apply();
         Intent i = new Intent(getApplicationContext(), GamesMenuMain.class);
         startActivity(i);

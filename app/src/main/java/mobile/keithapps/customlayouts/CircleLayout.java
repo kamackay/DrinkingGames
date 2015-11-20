@@ -46,7 +46,6 @@ import mobile.keithapps.drinkinggames.R;
 public class CircleLayout extends ViewGroup {
 
     public static final int LAYOUT_NORMAL = 1;
-    public static final int LAYOUT_PIE = 2;
 
     private int mLayoutMode = LAYOUT_NORMAL;
 
@@ -55,7 +54,6 @@ public class CircleLayout extends ViewGroup {
     private float mAngleOffset;
     private float mAngleRange;
 
-    private float mDividerWidth;
     private int mInnerRadius;
 
     private Paint mDividerPaint;
@@ -74,7 +72,7 @@ public class CircleLayout extends ViewGroup {
 
     private Bitmap mDrawingCache;
     private Canvas mCachedCanvas;
-    private Set<View> mDirtyViews = new HashSet<View>();
+    private Set<View> mDirtyViews = new HashSet<>();
     private boolean mCached = false;
 
     public CircleLayout(Context context) {
@@ -90,6 +88,7 @@ public class CircleLayout extends ViewGroup {
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CircleLayout, 0, 0);
 
+        float mDividerWidth;
         try {
             int dividerColor = a.getColor(R.styleable.CircleLayout_sliceDivider, Color.GRAY);
             mInnerCircle = a.getDrawable(R.styleable.CircleLayout_innerCircle);
