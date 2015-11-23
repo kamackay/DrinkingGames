@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/popup_global_showtext_root"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/thirty_sp"
+        android:id="@+id/popup_global_showtext_text"
+        android:paddingBottom="@dimen/thirty_sp"
+        android:textSize="@dimen/twenty_sp"
+        android:paddingEnd="@dimen/twenty_sp"
+        android:paddingStart="@dimen/twenty_sp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
