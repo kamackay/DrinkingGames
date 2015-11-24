@@ -169,6 +169,85 @@ public class SettingsMain extends AppCompatActivity {
                 getString(R.string.text_package), Context.MODE_PRIVATE).edit();
         prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow),
                 ((CheckBox) findViewById(R.id.settingsscreen_acesarelow)).isChecked());
+
+        prefsEditor.putString(getString(R.string.settings_cod_ace_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_ace_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_two_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_two_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_two_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_two_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_three_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_three_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_three_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_three_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_four_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_four_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_four_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_four_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_five_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_five_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_five_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_five_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_six_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_six_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_six_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_six_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_seven_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_seven_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_seven_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_seven_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_eight_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_eight_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_eight_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_eight_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_nine_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_nine_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_nine_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_nine_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_ten_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ten_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_ten_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ten_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_jack_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_jack_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_jack_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_jack_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_queen_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_queen_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_queen_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_queen_actiontext))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_king_actionname_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actionname))
+                        .getText().toString());
+        prefsEditor.putString(getString(R.string.settings_cod_king_actiontext_key),
+                ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
+                        .getText().toString());
         prefsEditor.apply();
         Intent i = new Intent(getApplicationContext(), GamesMenuMain.class);
         startActivity(i);
