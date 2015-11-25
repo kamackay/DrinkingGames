@@ -15,6 +15,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:onClick="resetToDefault"
+                    android:padding="@dimen/fifteen_sp"
+                    android:text="@string/text_resetalltodefault"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fifteen_sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twenty_five_sp" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -38,9 +59,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -96,9 +117,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -154,9 +175,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -210,9 +231,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -268,9 +289,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -326,9 +347,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -384,9 +405,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -442,9 +463,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -500,9 +521,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -558,9 +579,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -616,9 +637,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -674,9 +695,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -732,9 +753,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/ten_sp">
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -805,7 +826,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
                     android:paddingBottom="@dimen/twenty_five_sp"
                     android:text="@string/text_ridethebus"
                     android:textAlignment="center"
@@ -829,8 +849,24 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twenty_five_sp" />
+
+            <TextView
+                android:id="@+id/settingsscreen_textview_emaildeveloper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:text="@string/settings_text_information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_five_sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty_sp" />
+        </LinearLayout>
     </ScrollView>
 
     <Button
@@ -838,7 +874,7 @@
         android:layout_height="@dimen/zero"
         android:layout_weight="@integer/one"
         android:background="@drawable/buttonbackground_justborders"
-        android:onClick="save"
+        android:onClick="saveAndClose"
         android:text="@string/text_save"
         android:textColor="@color/white"
         android:textSize="@dimen/thirty_sp" />

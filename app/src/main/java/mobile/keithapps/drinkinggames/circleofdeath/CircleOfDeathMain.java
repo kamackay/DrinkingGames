@@ -1,6 +1,7 @@
 package mobile.keithapps.drinkinggames.circleofdeath;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -26,12 +27,16 @@ import mobile.keithapps.drinkinggames.R;
 import mobile.keithapps.drinkinggames.SettingsMain;
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
+ * Controller for the Circle of Death Screen
  */
 public class CircleOfDeathMain extends AppCompatActivity {
-
+    /**
+     * Whether or not the circle has been broken yet
+     */
     private boolean circleBroken;
+    /**
+     * The CardDeck manager
+     */
     private CardDeck cod;
 
     /**
@@ -64,6 +69,9 @@ public class CircleOfDeathMain extends AppCompatActivity {
         this.cod = new CardDeck();
     }
 
+    /**
+     * Check for a break in the cards
+     */
     private void checkForBreak() {
         if (circleBroken) return;
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
@@ -119,7 +127,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
     }
 
     /**
-     * Make all of the cards visibles
+     * Make all of the cards visible
      */
     private void resetCards() {
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
@@ -143,6 +151,12 @@ public class CircleOfDeathMain extends AppCompatActivity {
          */
     }
 
+    /**
+     * Whenever an option item is selected
+     *
+     * @param item the item that was pressed
+     * @return like, always true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -179,6 +193,11 @@ public class CircleOfDeathMain extends AppCompatActivity {
         this.checkForBreak();
     }
 
+    /**
+     * Show the card that the player drew to them in an alertdialog
+     *
+     * @param card the card that was drawn
+     */
     private void showDrawn(final Card card) {
         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -188,8 +207,10 @@ public class CircleOfDeathMain extends AppCompatActivity {
         textView.setText(card.toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
         imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), card.getImageId()));
-        final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-        instructionsView.setText(getResources().getString(card.getDirections()));
+        ((TextView) layout.findViewById(R.id.directions_on_popup))
+                .setText(this.getSharedPreferences(getString(R.string.text_package),
+                        Context.MODE_PRIVATE).getString(getString(card.getActionNameKey()),
+                        getString(card.getDefaultDirections())));
         imageDialog.setView(layout);
         imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -217,6 +238,11 @@ public class CircleOfDeathMain extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Show the action description of the drawn card
+     *
+     * @param card the card that was drawn
+     */
     public void showDescription(final Card card) {
         AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -226,8 +252,10 @@ public class CircleOfDeathMain extends AppCompatActivity {
         textView.setText(card.getFaceValue().toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
         imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), card.getImageId()));
-        final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-        instructionsView.setText(getResources().getString(getActionDescription(card.getFaceValue())));
+        ((TextView) layout.findViewById(R.id.directions_on_popup))
+                .setText(this.getSharedPreferences(getString(R.string.text_package),
+                        Context.MODE_PRIVATE).getString(getString(card.getActionDescriptionKey()),
+                        getString(card.getDefaultActionDescription())));
         imageDialog.setView(layout);
         imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -252,37 +280,5 @@ public class CircleOfDeathMain extends AppCompatActivity {
             }
         });
         dialog.show();
-    }
-
-    public int getActionDescription(Card.FaceValue card) {
-        switch (card) {
-            case ACE:
-                return R.string.circleofdeath_carddirection_description_ace;
-            case TWO:
-                return R.string.circleofdeath_carddirection_description_two;
-            case THREE:
-                return R.string.circleofdeath_carddirection_description_three;
-            case FOUR:
-                return R.string.circleofdeath_carddirection_description_four;
-            case FIVE:
-                return R.string.circleofdeath_carddirection_description_five;
-            case SIX:
-                return R.string.circleofdeath_carddirection_description_six;
-            case SEVEN:
-                return R.string.circleofdeath_carddirection_description_seven;
-            case EIGHT:
-                return R.string.circleofdeath_carddirection_description_eight;
-            case NINE:
-                return R.string.circleofdeath_carddirection_description_nine;
-            case TEN:
-                return R.string.circleofdeath_carddirection_description_ten;
-            case JACK:
-                return R.string.circleofdeath_carddirection_description_jack;
-            case QUEEN:
-                return R.string.circleofdeath_carddirection_description_queen;
-            case KING:
-                return R.string.circleofdeath_carddirection_description_king;
-        }
-        return -1;
     }
 }

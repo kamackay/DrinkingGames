@@ -38,8 +38,50 @@ public class Card {
         this.text = text;
     }
 
-    public int getDirections() {
-        switch (this.getFaceValue()) {
+    /**
+     * Get the ID of the string of this Card's Action Name (Is stored in Shared Prefrences)
+     *
+     * @return the ID of the needed string
+     */
+    public int getActionNameKey() {
+        switch (this.faceValue) {
+            case ACE:
+                return R.string.settings_cod_ace_actionname_key;
+            case TWO:
+                return R.string.settings_cod_two_actionname_key;
+            case THREE:
+                return R.string.settings_cod_three_actionname_key;
+            case FOUR:
+                return R.string.settings_cod_four_actionname_key;
+            case FIVE:
+                return R.string.settings_cod_five_actionname_key;
+            case SIX:
+                return R.string.settings_cod_six_actionname_key;
+            case SEVEN:
+                return R.string.settings_cod_seven_actionname_key;
+            case EIGHT:
+                return R.string.settings_cod_eight_actionname_key;
+            case NINE:
+                return R.string.settings_cod_nine_actionname_key;
+            case TEN:
+                return R.string.settings_cod_ten_actionname_key;
+            case JACK:
+                return R.string.settings_cod_jack_actionname_key;
+            case QUEEN:
+                return R.string.settings_cod_queen_actionname_key;
+            case KING:
+                return R.string.settings_cod_king_actionname_key;
+        }
+        return -1;
+    }
+
+    /**
+     * Get the ID of the string of this Card's Default Action Name (Is stored in Shared Prefrences)
+     *
+     * @return the ID of the needed string
+     */
+    public int getDefaultDirections() {
+        switch (this.faceValue) {
             case ACE:
                 return R.string.circleofdeath_carddirection_ace;
             case TWO:
@@ -66,6 +108,80 @@ public class Card {
                 return R.string.circleofdeath_carddirection_queen;
             case KING:
                 return R.string.circleofdeath_carddirection_king;
+        }
+        return -1;
+    }
+
+    /**
+     * Get the ID of the string of this Card's Action Description (Is stored in Shared Prefrences)
+     *
+     * @return the ID of the needed string
+     */
+    public int getActionDescriptionKey() {
+        switch (this.faceValue) {
+            case ACE:
+                return R.string.settings_cod_ace_actiontext_key;
+            case TWO:
+                return R.string.settings_cod_two_actiontext_key;
+            case THREE:
+                return R.string.settings_cod_three_actiontext_key;
+            case FOUR:
+                return R.string.settings_cod_four_actiontext_key;
+            case FIVE:
+                return R.string.settings_cod_five_actiontext_key;
+            case SIX:
+                return R.string.settings_cod_six_actiontext_key;
+            case SEVEN:
+                return R.string.settings_cod_seven_actiontext_key;
+            case EIGHT:
+                return R.string.settings_cod_eight_actiontext_key;
+            case NINE:
+                return R.string.settings_cod_nine_actiontext_key;
+            case TEN:
+                return R.string.settings_cod_ten_actiontext_key;
+            case JACK:
+                return R.string.settings_cod_jack_actiontext_key;
+            case QUEEN:
+                return R.string.settings_cod_queen_actiontext_key;
+            case KING:
+                return R.string.settings_cod_king_actiontext_key;
+        }
+        return -1;
+    }
+
+    /**
+     * Get the ID of the string of this Card's Default Action Description (Is stored in Shared Prefrences)
+     *
+     * @return the ID of the needed string
+     */
+    public int getDefaultActionDescription() {
+        switch (this.faceValue) {
+            case ACE:
+                return R.string.circleofdeath_carddirection_description_ace;
+            case TWO:
+                return R.string.circleofdeath_carddirection_description_two;
+            case THREE:
+                return R.string.circleofdeath_carddirection_description_three;
+            case FOUR:
+                return R.string.circleofdeath_carddirection_description_four;
+            case FIVE:
+                return R.string.circleofdeath_carddirection_description_five;
+            case SIX:
+                return R.string.circleofdeath_carddirection_description_six;
+            case SEVEN:
+                return R.string.circleofdeath_carddirection_description_seven;
+            case EIGHT:
+                return R.string.circleofdeath_carddirection_description_eight;
+            case NINE:
+                return R.string.circleofdeath_carddirection_description_nine;
+            case TEN:
+                return R.string.circleofdeath_carddirection_description_ten;
+            case JACK:
+                return R.string.circleofdeath_carddirection_description_jack;
+            case QUEEN:
+                return R.string.circleofdeath_carddirection_description_queen;
+            case KING:
+                return R.string.circleofdeath_carddirection_description_king;
         }
         return -1;
     }
@@ -120,6 +236,12 @@ public class Card {
         return false;
     }
 
+    /**
+     * Get the numeric value of this card
+     *
+     * @param acesLow whether or not Aces are low
+     * @return the numeric value of this card
+     */
     public int getNumericValue(boolean acesLow) {
         switch (this.faceValue) {
             case ACE:

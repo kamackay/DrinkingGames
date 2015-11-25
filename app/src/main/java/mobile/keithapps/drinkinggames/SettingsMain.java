@@ -6,9 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Arrays;
 
 /**
  * Created by Keith on 11/18/2015.
@@ -107,9 +111,19 @@ public class SettingsMain extends AppCompatActivity {
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                 .setText(prefs.getString(getString(R.string.settings_cod_king_actiontext_key),
                         getString(R.string.circleofdeath_carddirection_description_king)));
+        try {
+            ((TextView) findViewById(R.id.settingsscreen_textview_emaildeveloper))
+                    .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
+                            getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+        } catch (Exception e) {
+            Log.e(getString(R.string.text_package), e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()), e);
+        }
+        //feedback.setText(Html.fromHtml("<a href=\"mailto:keith.mackay3@gmail.com\">Send Feedback</a>"));
+        //feedback.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void resetToDefault() {
+    public void resetToDefault(View view) {
+        ((CheckBox) findViewById(R.id.settingsscreen_acesarelow)).setChecked(false);
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
                 .setText(getString(R.string.circleofdeath_carddirection_ace));
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
@@ -162,14 +176,20 @@ public class SettingsMain extends AppCompatActivity {
                 .setText(getString(R.string.circleofdeath_carddirection_king));
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                 .setText(getString(R.string.circleofdeath_carddirection_description_king));
+        this.save();
     }
 
-    public void save(View view) {
+    public void saveAndClose(View view) {
+        this.save();
+        Intent i = new Intent(getApplicationContext(), GamesMenuMain.class);
+        startActivity(i);
+    }
+
+    public void save() {
         SharedPreferences.Editor prefsEditor = this.getSharedPreferences(
                 getString(R.string.text_package), Context.MODE_PRIVATE).edit();
         prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow),
                 ((CheckBox) findViewById(R.id.settingsscreen_acesarelow)).isChecked());
-
         prefsEditor.putString(getString(R.string.settings_cod_ace_actionname_key),
                 ((EditText) findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
                         .getText().toString());
@@ -249,7 +269,5 @@ public class SettingsMain extends AppCompatActivity {
                 ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                         .getText().toString());
         prefsEditor.apply();
-        Intent i = new Intent(getApplicationContext(), GamesMenuMain.class);
-        startActivity(i);
     }
 }
