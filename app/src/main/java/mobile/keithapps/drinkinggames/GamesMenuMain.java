@@ -22,23 +22,35 @@ public class GamesMenuMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_menu);
-
-
-        if (Build.VERSION.SDK_INT >= 21)
-            this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
+        if (Build.VERSION.SDK_INT >= 21) this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
     }
 
+    /**
+     * Open Circle of Death
+     *
+     * @param view the button
+     */
     public void openCOD(View view) {
         Intent i = new Intent(getApplicationContext(), CircleOfDeathMain.class);
         startActivity(i);
     }
 
+    /**
+     * Open Ride the Bus
+     *
+     * @param view the button
+     */
     public void openRTB(View view) {
         Intent i = new Intent(getApplicationContext(), RideTheBusMain.class);
         startActivity(i);
     }
 
-    public void openBizkit(View v) {
+    /**
+     * Open Bizkit
+     *
+     * @param view the button
+     */
+    public void openBizkit(View view) {
         Intent i = new Intent(getApplicationContext(), BizkitMain.class);
         startActivity(i);
     }
@@ -71,7 +83,6 @@ public class GamesMenuMain extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }
