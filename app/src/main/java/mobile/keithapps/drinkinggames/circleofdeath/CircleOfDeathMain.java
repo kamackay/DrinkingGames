@@ -4,30 +4,30 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Arrays;
-
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
 import mobile.keithapps.customlayouts.CircleLayout;
+import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
 
 /**
@@ -55,22 +55,25 @@ public class CircleOfDeathMain extends AppCompatActivity {
 
         setContentView(R.layout.activity_circleofdeathmain);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
         if (Build.VERSION.SDK_INT >= 21)
             this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
 
-        //Rotate all cards for aesthetics
+        this.circleBroken = false;
+        this.cod = new CardDeck();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         double increment = 6.92307692308;
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
         for (int i = 0; i < 52; i++) {
-            Button b = (Button) cl.getChildAt(i);
-            b.setRotation((float) ((increment * i) + .5));
+            ImageView iv = (ImageView) cl.getChildAt(i);
+            iv.setRotation((float) ((increment * i) + .5));
+            iv.setImageResource(R.drawable.cardback);
         }
-        this.circleBroken = false;
-        this.cod = new CardDeck();
     }
 
     /**
@@ -171,7 +174,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 try {
                     showSettingsPopup();
                 } catch (Exception e) {
-                    Log.e(getString(R.string.text_package), e.getMessage(), e);
+                    DrinkingGamesGlobal.logException(e);
                 }
                 return true;
             default:
@@ -277,7 +280,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 try {
                     showSettingsPopup();
                 } catch (Exception e) {
-                    Log.e(getString(R.string.text_package), e.getMessage(), e);
+                    DrinkingGamesGlobal.logException(e);
                 }
             }
         });
@@ -301,6 +304,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         boolean acesLow = prefs.getBoolean(getString(R.string.setting_acesalwayslow), true);
+        ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(
+                prefs.getBoolean(getString(R.string.settings_bizkit_insultbizkit), true));
         ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).setChecked(acesLow);
         //Put Current Values in
         ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
@@ -386,7 +391,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
                     .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
                             getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()), e);
+            DrinkingGamesGlobal.logException(e);
         }
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -495,5 +500,20 @@ public class CircleOfDeathMain extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
+        for (int i = 0; i < 52; i++) {
+            ImageView b = (ImageView) cl.getChildAt(i);
+            Drawable drawable = b.getDrawable();
+            if (drawable instanceof BitmapDrawable) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                bitmap.recycle();
+            }
+        }
+        super.onDestroy();
     }
 }

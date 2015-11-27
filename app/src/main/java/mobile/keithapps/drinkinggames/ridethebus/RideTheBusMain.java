@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,10 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Arrays;
-
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
+import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
 
 /**
@@ -612,7 +610,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 try {
                     showSettingsPopup();
                 } catch (Exception e) {
-                    Log.e(getString(R.string.text_package), e.getMessage(), e);
+                    DrinkingGamesGlobal.logException(e);
                 }
             default:
                 // If we got here, the user's action was not recognized.
@@ -630,6 +628,8 @@ public class RideTheBusMain extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         boolean acesLow = prefs.getBoolean(getString(R.string.setting_acesalwayslow), true);
         ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).setChecked(acesLow);
+        ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(
+                prefs.getBoolean(getString(R.string.settings_bizkit_insultbizkit), true));
         //Put Current Values in
         ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
                 .setText(prefs.getString(getString(R.string.settings_cod_ace_actionname_key),
@@ -714,7 +714,7 @@ public class RideTheBusMain extends AppCompatActivity {
                     .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
                             getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()), e);
+            DrinkingGamesGlobal.logException(e);
         }
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

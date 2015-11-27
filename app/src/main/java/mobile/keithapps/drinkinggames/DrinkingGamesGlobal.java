@@ -1,6 +1,7 @@
 package mobile.keithapps.drinkinggames;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -29,5 +30,9 @@ public class DrinkingGamesGlobal {
                 return R.drawable.die_6;
         }
         return R.drawable.die_1;
+    }
+
+    public static void logException(Exception e) {
+        Log.e("keithapps.drinkinggames", e.getMessage(), e);
     }
 }

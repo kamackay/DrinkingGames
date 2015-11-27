@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,7 +35,7 @@ public class GamesMenuMain extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), CircleOfDeathMain.class);
             startActivity(i);
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage(), e);
+            DrinkingGamesGlobal.logException(e);
         }
     }
 
@@ -50,7 +49,7 @@ public class GamesMenuMain extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), RideTheBusMain.class);
             startActivity(i);
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage(), e);
+            DrinkingGamesGlobal.logException(e);
         }
     }
 
@@ -64,7 +63,7 @@ public class GamesMenuMain extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), BizkitMain.class);
             startActivity(i);
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage(), e);
+            DrinkingGamesGlobal.logException(e);
         }
     }
 

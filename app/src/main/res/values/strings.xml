@@ -55,6 +55,7 @@
     <string name="setting_acesalwayslow">AcesAlwaysLow</string>
     <string name="ridethebus_warning_aceishigh">Note: Aces are always high</string>
     <string name="text_package">mobile.keithapps.drinkinggames</string>
+    <string name="text_exceptionlogname">keithapps.drikinggames</string>
     <string name="text_bizkit">Bizkit</string>
     <string name="text_rolldice">Roll Dice</string>
     <string name="bizkit_welcometext">Welcome to Bizkit! To start, everyone sit in a circle and roll the die, then move clockwise, until someone rolls a 7!</string>
@@ -109,6 +110,8 @@
     <string name="settings_cod_king_actiontext_key">settings.circleofdeath.king.actiontext.key</string>
     <string name="text_resetalltodefault">Reset all to Default</string>
     <string name="settings_text_information">     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com</string>
+    <string name="text_alwaysinsultthebizkit">Constantly insult the Bizkit</string>
+    <string name="settings_bizkit_insultbizkit">settings.bizkit.insultbizkit</string>
 
     <string-array name="insults">
         <item>what an asshole</item>

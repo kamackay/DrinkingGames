@@ -1,20 +1,21 @@
 package mobile.keithapps.drinkinggames.biscuit;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +25,6 @@ import java.util.Random;
 
 import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
-import mobile.keithapps.drinkinggames.SettingsMain;
 
 /**
  * Created by Keith on 11/19/2015.
@@ -73,8 +73,12 @@ public class BizkitMain extends AppCompatActivity {
             case DispenseDrinks:
                 if (change)
                     this.whatToDoTextView.setText(getString(R.string.bizkit_message_message_dispensedrink));
-                this.currentBizkitView.setText(String.format("Current Bizkit: %s (%s)",
-                        this.bizkitName, DrinkingGamesGlobal.getRandomInsult(getResources())));
+                if (this.getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
+                        .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
+                    this.currentBizkitView.setText(String.format("Current Bizkit: %s (%s)",
+                            this.bizkitName, DrinkingGamesGlobal.getRandomInsult(getResources())));
+                else
+                    this.currentBizkitView.setText(String.format("Current Bizkit: %s", this.bizkitName));
                 break;
         }
     }
@@ -87,11 +91,6 @@ public class BizkitMain extends AppCompatActivity {
         this.leftDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
         if (this.currState == State.FindBiscuit) {
             if ((leftDie + rightDie) == 7) {
-                try {
-                    Thread.sleep(200);
-                } catch (Exception e) {
-                    Log.e(getString(R.string.text_package), e.getMessage(), e);
-                }
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
@@ -109,14 +108,10 @@ public class BizkitMain extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         bizkitName = editText.getText().toString().trim();
                         dialog.dismiss();
-                        try {
-                            //Thread.sleep(1000);
-                            Toast.makeText(getApplicationContext(),
-                                    String.format("Christ, %s, get your shit together.",
-                                            bizkitName), Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                            Log.e(getString(R.string.text_package), e.getMessage(), e);
-                        }
+                        if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
+                                .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
+                            Toast.makeText(getApplicationContext(), String.format("Christ, %s, get your shit together.",
+                                    bizkitName), Toast.LENGTH_LONG).show();
                         setState(State.DispenseDrinks);
                     }
                 });
@@ -470,14 +465,11 @@ public class BizkitMain extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 bizkitName = editText.getText().toString().trim();
                 dialog.dismiss();
-                try {
-                    //Thread.sleep(1000);
+                if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
+                        .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
                     Toast.makeText(getApplicationContext(),
                             String.format("Christ, %s, get your shit together.",
                                     bizkitName), Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    Log.e(getString(R.string.text_package), e.getMessage(), e);
-                }
                 setState(State.DispenseDrinks);
             }
         });
@@ -545,8 +537,7 @@ public class BizkitMain extends AppCompatActivity {
                 this.setState(State.FindBiscuit);
                 return true;
             case R.id.rtb_settings:
-                Intent i = new Intent(getApplicationContext(), SettingsMain.class);
-                startActivity(i);
+                showSettingsPopup();
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -555,6 +546,210 @@ public class BizkitMain extends AppCompatActivity {
         }
     }
 
+    private void showSettingsPopup() {
+        final AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
+        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.popup_settings,
+                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
+        boolean acesLow = prefs.getBoolean(getString(R.string.setting_acesalwayslow), true);
+        ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(
+                prefs.getBoolean(getString(R.string.settings_bizkit_insultbizkit), true));
+        ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).setChecked(acesLow);
+        //Put Current Values in
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_ace_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_ace)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_ace_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_ace)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_two_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_two)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_two_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_two)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_three_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_three)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_three_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_three)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_four_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_four)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_four_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_four)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_five_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_five)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_five_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_five)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_six_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_six)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_six_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_six)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_seven_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_seven)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_seven_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_seven)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_eight_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_eight)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_eight_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_eight)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_nine_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_nine)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_nine_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_nine)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_ten_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_ten)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_ten_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_ten)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_jack_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_jack)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_jack_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_jack)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_queen_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_queen)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_queen_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_queen)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actionname))
+                .setText(prefs.getString(getString(R.string.settings_cod_king_actionname_key),
+                        getString(R.string.circleofdeath_carddirection_king)));
+        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
+                .setText(prefs.getString(getString(R.string.settings_cod_king_actiontext_key),
+                        getString(R.string.circleofdeath_carddirection_description_king)));
+        try {
+            ((TextView) layout.findViewById(R.id.settingsscreen_textview_emaildeveloper))
+                    .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
+                            getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+        } catch (Exception e) {
+            DrinkingGamesGlobal.logException(e);
+        }
+        imageDialog.setView(layout);
+        imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        imageDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                SharedPreferences.Editor prefsEditor = getSharedPreferences(
+                        getString(R.string.text_package), Context.MODE_PRIVATE).edit();
+                prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow),
+                        ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).isChecked());
+                prefsEditor.putString(getString(R.string.settings_cod_ace_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_ace_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_two_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_two_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_three_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_three_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_four_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_four_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_five_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_five_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_six_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_six_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_seven_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_seven_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_eight_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_eight_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_nine_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_nine_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_ten_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_ten_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_jack_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_jack_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_queen_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_queen_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actiontext))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_king_actionname_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actionname))
+                                .getText().toString());
+                prefsEditor.putString(getString(R.string.settings_cod_king_actiontext_key),
+                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
+                                .getText().toString());
+                prefsEditor.apply();
+            }
+        });
+        final AlertDialog dialog = imageDialog.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+            }
+        });
+        dialog.show();
+    }
 
     enum State {FindBiscuit, DispenseDrinks}
 }

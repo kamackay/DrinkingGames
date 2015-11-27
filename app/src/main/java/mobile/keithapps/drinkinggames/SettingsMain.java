@@ -6,13 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.Arrays;
 
 /**
  * Created by Keith on 11/18/2015.
@@ -111,12 +108,14 @@ public class SettingsMain extends AppCompatActivity {
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                 .setText(prefs.getString(getString(R.string.settings_cod_king_actiontext_key),
                         getString(R.string.circleofdeath_carddirection_description_king)));
+        ((CheckBox) findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(
+                prefs.getBoolean(getString(R.string.settings_bizkit_insultbizkit), true));
         try {
             ((TextView) findViewById(R.id.settingsscreen_textview_emaildeveloper))
                     .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
                             getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
         } catch (Exception e) {
-            Log.e(getString(R.string.text_package), e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()), e);
+            DrinkingGamesGlobal.logException(e);
         }
         //feedback.setText(Html.fromHtml("<a href=\"mailto:keith.mackay3@gmail.com\">Send Feedback</a>"));
         //feedback.setMovementMethod(LinkMovementMethod.getInstance());
@@ -176,6 +175,7 @@ public class SettingsMain extends AppCompatActivity {
                 .setText(getString(R.string.circleofdeath_carddirection_king));
         ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                 .setText(getString(R.string.circleofdeath_carddirection_description_king));
+        ((CheckBox) findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(true);
         this.save();
     }
 
@@ -268,6 +268,8 @@ public class SettingsMain extends AppCompatActivity {
         prefsEditor.putString(getString(R.string.settings_cod_king_actiontext_key),
                 ((EditText) findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                         .getText().toString());
+        prefsEditor.putBoolean(getString(R.string.settings_bizkit_insultbizkit),
+                ((CheckBox) findViewById(R.id.settingsscreen_bizkit_insult)).isChecked());
         prefsEditor.apply();
     }
 }

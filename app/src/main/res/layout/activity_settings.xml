@@ -856,6 +856,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/twenty_five_sp" />
 
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonbackground_justborders"
+                android:orientation="vertical"
+                android:padding="@dimen/ten_sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/twenty_five_sp"
+                    android:text="@string/text_bizkit"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/thirty_sp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/settingsscreen_bizkit_insult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true"
+                        android:text="@string/text_alwaysinsultthebizkit"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_sp"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twenty_five_sp" />
+
             <TextView
                 android:id="@+id/settingsscreen_textview_emaildeveloper"
                 android:layout_width="match_parent"
