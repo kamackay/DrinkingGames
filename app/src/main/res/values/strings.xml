@@ -59,7 +59,6 @@
     <string name="text_rolldice">Roll Dice</string>
     <string name="bizkit_welcometext">Welcome to Bizkit! To start, everyone sit in a circle and roll the die, then move clockwise, until someone rolls a 7!</string>
     <string name="bizkit_message_youarebizkit">You are now the Bizkit! What is your name?</string>
-    <string name="text_bitch">Daniel Brown</string>
     <string name="bizkit_message_sum_7">All players put a thumb on their forehead and say Bizkit.\n\nLast player to do so drinks and becomes the new Bizkit.</string>
     <string name="bizkit_message_sum_9">The person to the right of the roller drinks.</string>
     <string name="bizkit_message_sum_10">The roller drinks.</string>

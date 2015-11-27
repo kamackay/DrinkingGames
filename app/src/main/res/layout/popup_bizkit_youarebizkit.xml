@@ -10,8 +10,8 @@
         android:layout_height="@dimen/twenty_five_sp" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/popup_bizkit_diecontainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -78,7 +78,6 @@
             android:inputType="textPersonName"
             android:paddingEnd="@dimen/twenty_five_sp"
             android:paddingStart="@dimen/twenty_five_sp"
-            android:text="@string/text_bitch"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty_sp" />

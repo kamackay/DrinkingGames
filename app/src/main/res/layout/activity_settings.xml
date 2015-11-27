@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/settingsscreen_scrollview_root"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/zero"
         android:layout_weight="@integer/nine">
@@ -37,6 +38,7 @@
                 android:layout_height="@dimen/twenty_five_sp" />
 
             <LinearLayout
+                android:id="@+id/settingsscreen_circleofdeath_root"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonbackground_justborders"
