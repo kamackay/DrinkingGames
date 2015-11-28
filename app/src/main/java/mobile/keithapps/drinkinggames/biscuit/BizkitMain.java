@@ -15,9 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +35,7 @@ public class BizkitMain extends AppCompatActivity {
     private String bizkitName;
     private State currState;
     private TextView currentBizkitView;
+    private boolean bizkitIsMale;
 
     /**
      * Initialize the screen and rotate all of the cards to make them look
@@ -83,6 +84,10 @@ public class BizkitMain extends AppCompatActivity {
         }
     }
 
+    private String getBizkitPronoun() {
+        return (this.bizkitIsMale) ? "He" : "She";
+    }
+
     public void rollDie(View view) {
         Random rand = new Random();
         final int rightDie = rand.nextInt(6) + 1;
@@ -96,6 +101,7 @@ public class BizkitMain extends AppCompatActivity {
                 View layout = inflater.inflate(R.layout.popup_bizkit_youarebizkit,
                         (ViewGroup) findViewById(R.id.popup_bizkit_youarebizkit_root));
                 final EditText editText = (EditText) layout.findViewById(R.id.popup_bizkit_youarebizkit_edittext);
+                final RadioButton isMale = (RadioButton) layout.findViewById(R.id.popup_bizkit_youarebizkit_combobox_male);
                 layout.findViewById(R.id.popup_bizkit_youarebizkit_edittext_container)
                         .setVisibility(View.VISIBLE);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
@@ -107,6 +113,7 @@ public class BizkitMain extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         bizkitName = editText.getText().toString().trim();
+                        bizkitIsMale = isMale.isChecked();
                         dialog.dismiss();
                         if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
                                 .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
@@ -130,8 +137,9 @@ public class BizkitMain extends AppCompatActivity {
             int sum = leftDie + rightDie;
             String message = "";
             if (leftDie == 3 || rightDie == 3) {
-                String temp = String.format("If %s rolled this, he is no longer the Bizkit, and another Bizkit must be found. If %s did not roll this, then they have to drink once per '3' present",
-                        bizkitName, bizkitName);
+                String pronoun = this.getBizkitPronoun().toLowerCase();
+                String temp = String.format("If %s rolled this, %s is no longer the Bizkit, and another Bizkit must be found. If %s did not roll this, then %s have to drink once per '3' present",
+                        bizkitName, pronoun, bizkitName, pronoun);
                 message += temp;
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
                 final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -546,102 +554,16 @@ public class BizkitMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Show the settings popup
+     */
     private void showSettingsPopup() {
         final AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
-        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.popup_settings,
-                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
-        boolean acesLow = prefs.getBoolean(getString(R.string.setting_acesalwayslow), true);
-        ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult)).setChecked(
-                prefs.getBoolean(getString(R.string.settings_bizkit_insultbizkit), true));
-        ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).setChecked(acesLow);
-        //Put Current Values in
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_ace_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_ace)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_ace_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_ace)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_two_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_two)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_two_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_two)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_three_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_three)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_three_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_three)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_four_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_four)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_four_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_four)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_five_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_five)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_five_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_five)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_six_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_six)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_six_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_six)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_seven_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_seven)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_seven_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_seven)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_eight_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_eight)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_eight_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_eight)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_nine_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_nine)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_nine_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_nine)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_ten_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_ten)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_ten_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_ten)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_jack_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_jack)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_jack_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_jack)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_queen_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_queen)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_queen_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_queen)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actionname))
-                .setText(prefs.getString(getString(R.string.settings_cod_king_actionname_key),
-                        getString(R.string.circleofdeath_carddirection_king)));
-        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
-                .setText(prefs.getString(getString(R.string.settings_cod_king_actiontext_key),
-                        getString(R.string.circleofdeath_carddirection_description_king)));
-        try {
-            ((TextView) layout.findViewById(R.id.settingsscreen_textview_emaildeveloper))
-                    .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
-                            getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
-        } catch (Exception e) {
-            DrinkingGamesGlobal.logException(e);
-        }
+        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View l = inflater.inflate(R.layout.popup_settings,
+                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+        final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -655,86 +577,7 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.dismiss();
                 SharedPreferences.Editor prefsEditor = getSharedPreferences(
                         getString(R.string.text_package), Context.MODE_PRIVATE).edit();
-                prefsEditor.putBoolean(getString(R.string.setting_acesalwayslow),
-                        ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).isChecked());
-                prefsEditor.putString(getString(R.string.settings_cod_ace_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_ace_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_two_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_two_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_two_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_three_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_three_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_three_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_four_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_four_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_four_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_five_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_five_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_five_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_six_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_six_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_six_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_seven_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_seven_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_seven_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_eight_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_eight_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_eight_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_nine_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_nine_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_nine_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_ten_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_ten_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ten_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_jack_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_jack_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_jack_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_queen_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_queen_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_queen_actiontext))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_king_actionname_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actionname))
-                                .getText().toString());
-                prefsEditor.putString(getString(R.string.settings_cod_king_actiontext_key),
-                        ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
-                                .getText().toString());
+                DrinkingGamesGlobal.saveSettingsFromPopup(prefsEditor, getApplicationContext(), layout);
                 prefsEditor.apply();
             }
         });

@@ -112,6 +112,8 @@
     <string name="settings_text_information">     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com</string>
     <string name="text_alwaysinsultthebizkit">Constantly insult the Bizkit</string>
     <string name="settings_bizkit_insultbizkit">settings.bizkit.insultbizkit</string>
+    <string name="text_male">Male</string>
+    <string name="text_female">Female</string>
 
     <string-array name="insults">
         <item>what an asshole</item>
