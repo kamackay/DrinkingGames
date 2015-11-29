@@ -31,57 +31,53 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/fifteen_sp" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/twenty_five_sp" />
+            </RelativeLayout><View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/twenty_sp"/>
 
             <LinearLayout
-                android:id="@+id/settingsscreen_circleofdeath_root"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/buttonbackground_justborders"
-                android:orientation="vertical"
-                android:padding="@dimen/ten_sp"
-                android:paddingBottom="@dimen/twenty_five_sp"
-                android:paddingTop="@dimen/five_sp"
-                android:visibility="visible">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/twenty_five_sp"
-                    android:text="@string/text_circleofdeath"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/settingsscreen_circleofdeath_root"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten_sp"
+                    android:paddingBottom="@dimen/twenty_five_sp"
+                    android:paddingTop="@dimen/five_sp"
+                    android:visibility="visible">
 
                     <TextView
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
+                        android:background="@drawable/buttonbackground_allsides"
                         android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_ace"
+                        android:text="@string/text_circleofdeath"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
+                        android:textSize="@dimen/thirty_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_ace"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -94,6 +90,7 @@
                             android:id="@+id/settingsscreen_circleofdeath_ace_actionname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
                             android:padding="@dimen/ten_sp"
                             android:textColor="@color/white"
                             android:textSize="@dimen/fifteen_sp" />
@@ -109,37 +106,29 @@
                             android:id="@+id/settingsscreen_circleofdeath_ace_actiontext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
                             android:padding="@dimen/ten_sp"
                             android:textColor="@color/white"
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_two"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_two"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -172,30 +161,23 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:text="@string/text_three"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_three"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -228,32 +210,23 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_four"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_four"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -286,32 +259,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_five"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_five"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -344,32 +309,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_six"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_six"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -402,32 +359,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_seven"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_seven"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -460,32 +409,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_eight"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_eight"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -518,32 +459,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_nine"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_nine"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -576,32 +509,25 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_ten"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_ten"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -634,32 +560,23 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_jack"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_jack"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -692,32 +609,23 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_queen"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_queen"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -750,32 +658,24 @@
                             android:textSize="@dimen/fifteen_sp" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/one"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/twenty_five_sp"
-                        android:paddingTop="@dimen/twenty_five_sp"
-                        android:text="@string/text_king"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
 
                     <LinearLayout
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="@integer/four"
-                        android:orientation="vertical">
+                        android:background="@drawable/buttonbackground_justborders"
+                        android:orientation="vertical"
+                        android:padding="@dimen/ten_sp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/ten_sp"
+                            android:paddingBottom="@dimen/twenty_five_sp"
+                            android:paddingTop="@dimen/twenty_five_sp"
+                            android:text="@string/text_king"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_five_sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -809,103 +709,101 @@
 
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/twenty_five_sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/twenty_five_sp" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonbackground_justborders"
-                android:dividerPadding="@dimen/twenty_five_sp"
-                android:orientation="vertical"
-                android:padding="@dimen/ten_sp"
-                android:paddingBottom="@dimen/twenty_five_sp"
-                android:paddingTop="@dimen/five_sp">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten_sp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/twenty_five_sp"
+                        android:text="@string/text_ridethebus"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/thirty_sp" />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/settingsscreen_acesarelow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="true"
+                            android:text="@string/text_acesalwayslow"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_sp"
+                            android:visibility="visible" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/twenty_five_sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten_sp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/twenty_five_sp"
+                        android:text="@string/text_bizkit"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/thirty_sp" />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/settingsscreen_bizkit_insult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="true"
+                            android:text="@string/text_alwaysinsultthebizkit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/twenty_sp"
+                            android:visibility="visible" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/twenty_five_sp" />
 
                 <TextView
+                    android:id="@+id/settingsscreen_textview_emaildeveloper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/twenty_five_sp"
-                    android:text="@string/text_ridethebus"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
+                    android:autoLink="email"
+                    android:text="@string/settings_text_information"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/twenty_five_sp" />
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <CheckBox
-                        android:id="@+id/settingsscreen_acesarelow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:checked="true"
-                        android:text="@string/text_acesalwayslow"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp"
-                        android:visibility="visible" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/twenty_five_sp" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonbackground_justborders"
-                android:orientation="vertical"
-                android:padding="@dimen/ten_sp">
-
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/twenty_five_sp"
-                    android:text="@string/text_bizkit"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <CheckBox
-                        android:id="@+id/settingsscreen_bizkit_insult"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:checked="true"
-                        android:text="@string/text_alwaysinsultthebizkit"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp"
-                        android:visibility="visible" />
-                </RelativeLayout>
-
+                    android:layout_height="@dimen/fifty_sp" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/twenty_five_sp" />
-
-            <TextView
-                android:id="@+id/settingsscreen_textview_emaildeveloper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="email"
-                android:text="@string/settings_text_information"
-                android:textColor="@color/black"
-                android:textSize="@dimen/twenty_five_sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/fifty_sp" />
         </LinearLayout>
     </ScrollView>
 
