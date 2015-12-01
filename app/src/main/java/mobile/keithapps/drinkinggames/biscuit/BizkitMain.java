@@ -564,6 +564,7 @@ public class BizkitMain extends AppCompatActivity {
         View l = inflater.inflate(R.layout.popup_settings,
                 (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
+        layout.findViewById(R.id.settings_tabs_bizkit).callOnClick();
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -589,6 +590,8 @@ public class BizkitMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
             }
         });
         dialog.show();

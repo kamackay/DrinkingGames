@@ -134,7 +134,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.suitsButtons.setVisibility(View.GONE);
                 this.restartButton.setVisibility(View.VISIBLE);
         }
-        boolean aceIsLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+        boolean aceIsLow = this.getSharedPreferences(getString(R.string.text_package),
                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
         this.warningAce.setText((aceIsLow) ? getString(R.string.ridethebus_warning_aceislow) :
                 getString(R.string.ridethebus_warning_aceishigh));
@@ -151,6 +151,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * Button press handler for the Red Button
+     *
      * @param view the Red Button
      */
     public void guessRed(View view) {
@@ -164,7 +165,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            imageView.setImageResource(this.card1.getImageId());
+            imageView.setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -179,6 +182,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -187,6 +191,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Button Press Handler for the Black Button
+     *
      * @param view Black Button
      */
     public void guessBlack(View view) {
@@ -199,7 +204,9 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            imageView.setImageResource(this.card1.getImageId());
+            imageView.setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -214,6 +221,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -224,11 +232,12 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Higher Press Handler for the Higher Button
+     *
      * @param view Higher Button
      */
     public void guessHigher(View view) {
         this.card2 = this.deck.drawRandom();
-        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+        boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
         if (this.card2.getNumericValue(acesLow) > this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
@@ -245,8 +254,12 @@ public class RideTheBusMain extends AppCompatActivity {
                                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
                                 getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            imageView.setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            imageView.setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -261,6 +274,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -269,11 +283,12 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Lower Press Handler for the Lower Button
+     *
      * @param view Lower Button
      */
     public void guessLower(View view) {
         this.card2 = this.deck.drawRandom();
-        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+        boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
         if (this.card2.getNumericValue(acesLow) < this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
@@ -290,9 +305,13 @@ public class RideTheBusMain extends AppCompatActivity {
                                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
                                 getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1))
-                    .setImageResource(this.card1.getImageId());
-            imageView.setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(
+                    this.card1.getDrawable(getApplicationContext(),
+                            getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                                    .getInt(getString(R.string.settings_cardskin), 1)));
+            imageView.setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -308,6 +327,7 @@ public class RideTheBusMain extends AppCompatActivity {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(),
                                     R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -316,11 +336,12 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Outeside Press Handler for the Outside Button
+     *
      * @param view Outside Button
      */
     public void guessOutside(View view) {
         this.card3 = this.deck.drawRandom();
-        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+        boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
         int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow),
                 i3 = this.card3.getNumericValue(acesLow);
@@ -339,8 +360,14 @@ public class RideTheBusMain extends AppCompatActivity {
                                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
                                 getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1))
+                    .setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                            getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                                    .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2))
+                    .setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                            getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                                    .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card3.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -356,6 +383,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -364,11 +392,12 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Inside Press Handler for the Inside Button
+     *
      * @param view Inside Button
      */
     public void guessInside(View view) {
         this.card3 = this.deck.drawRandom();
-        boolean acesLow = this.getSharedPreferences("mobile.keithapps.drinkinggames",
+        boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
         int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow),
                 i3 = this.card3.getNumericValue(acesLow);
@@ -386,8 +415,14 @@ public class RideTheBusMain extends AppCompatActivity {
                                 Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
                                 getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1))
+                    .setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                            getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                                    .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(
+                    this.card2.getDrawable(getApplicationContext(), getSharedPreferences(
+                            getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card3.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -403,6 +438,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -411,6 +447,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Club Press Handler for the Club Button
+     *
      * @param view Club Button
      */
     public void guessClub(View view) {
@@ -424,9 +461,15 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -442,6 +485,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -450,6 +494,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Heart Press Handler for the Heart Button
+     *
      * @param view Heart Button
      */
     public void guessHeart(View view) {
@@ -463,9 +508,15 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -481,6 +532,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -489,6 +541,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Diamond Press Handler for the Diamond Button
+     *
      * @param view Diamond Button
      */
     public void guessDiamond(View view) {
@@ -502,9 +555,15 @@ public class RideTheBusMain extends AppCompatActivity {
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
                     getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -520,6 +579,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -528,6 +588,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * The Spade Press Handler for the Spade Button
+     *
      * @param view Spade Button
      */
     public void guessSpade(View view) {
@@ -545,9 +606,15 @@ public class RideTheBusMain extends AppCompatActivity {
                         Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
                         getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageResource(this.card1.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageResource(this.card2.getImageId());
-            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageResource(this.card3.getImageId());
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
+            ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
+                    getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                            .getInt(getString(R.string.settings_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -563,6 +630,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 public void onShow(DialogInterface arg0) {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                             .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
             dialog.show();
@@ -571,6 +639,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * Restart the Game, reshuffle the deck
+     *
      * @param view Irrelevant
      */
     public void restart(View view) {
@@ -595,6 +664,7 @@ public class RideTheBusMain extends AppCompatActivity {
 
     /**
      * Options Item clicked
+     *
      * @param item the item clicked
      * @return like, always true
      */
@@ -628,6 +698,7 @@ public class RideTheBusMain extends AppCompatActivity {
         View l = inflater.inflate(R.layout.popup_settings,
                 (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
+        layout.findViewById(R.id.settings_tabs_ridethebus).callOnClick();
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -653,6 +724,8 @@ public class RideTheBusMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
             }
         });
         dialog.show();
@@ -661,5 +734,7 @@ public class RideTheBusMain extends AppCompatActivity {
     /**
      * Used by the FSM to determine where in the game you are
      */
-    public enum State {Color, High_Low, Inside_Outside, Suit, Won}
+    public enum State {
+        Color, High_Low, Inside_Outside, Suit, Won
+    }
 }

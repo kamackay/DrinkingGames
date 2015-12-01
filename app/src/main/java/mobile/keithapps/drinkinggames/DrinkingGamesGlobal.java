@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -29,6 +34,7 @@ public class DrinkingGamesGlobal {
 
     /**
      * Get the drawable for a die
+     *
      * @param dieVal the value of the die needed
      * @return the drawable for the given die value
      */
@@ -52,13 +58,14 @@ public class DrinkingGamesGlobal {
 
     /**
      * Log an exception
+     *
      * @param e the exception, duh
      */
     public static void logException(Exception e) {
         Log.e("keithapps.drinkinggames", e.getMessage(), e);
     }
 
-    public static View loadSettingsToLayout(View layout, SharedPreferences prefs, Activity t) {
+    public static View loadSettingsToLayout(final View layout, SharedPreferences prefs, final Activity t) {
         ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult))
                 .setChecked(prefs.getBoolean(t.getString(R.string.settings_bizkit_insultbizkit), true));
         ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow))
@@ -141,6 +148,84 @@ public class DrinkingGamesGlobal {
         ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_king_actiontext))
                 .setText(prefs.getString(t.getString(R.string.settings_cod_king_actiontext_key),
                         t.getString(R.string.circleofdeath_carddirection_description_king)));
+        int skin = prefs.getInt(t.getString(R.string.settings_cardskin), 1);
+        if (skin == 2) {
+            ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_1)).setChecked(false);
+            ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).setChecked(true);
+        } else {
+            ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_1)).setChecked(true);
+            ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).setChecked(false);
+        }
+        layout.findViewById(R.id.settings_general_cardskin_imageview_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_1)).setChecked(true);
+                ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).setChecked(false);
+            }
+        });
+        layout.findViewById(R.id.settings_general_cardskin_imageview_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_1)).setChecked(false);
+                ((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).setChecked(true);
+            }
+        });
+        layout.findViewById(R.id.settings_tabs_general).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.findViewById(R.id.settings_tabs_circleofdeath).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_ridethebus).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_bizkit).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_general).setBackgroundResource(R.drawable.buttonbackground_allsides_small);
+                layout.findViewById(R.id.settings_circleofdeath_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_ridethebus_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_bizkit_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_general_root).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.settingsscreen_scrollview_root).scrollTo(0, 0);
+            }
+        });
+        layout.findViewById(R.id.settings_tabs_circleofdeath).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.findViewById(R.id.settings_tabs_circleofdeath).setBackgroundResource(R.drawable.buttonbackground_allsides_small);
+                layout.findViewById(R.id.settings_tabs_ridethebus).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_bizkit).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_general).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_circleofdeath_root).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.settings_ridethebus_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_bizkit_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_general_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settingsscreen_scrollview_root).scrollTo(0, 0);
+            }
+        });
+        layout.findViewById(R.id.settings_tabs_ridethebus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.findViewById(R.id.settings_tabs_circleofdeath).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_ridethebus).setBackgroundResource(R.drawable.buttonbackground_allsides_small);
+                layout.findViewById(R.id.settings_tabs_bizkit).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_general).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_circleofdeath_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_ridethebus_root).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.settings_bizkit_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_general_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settingsscreen_scrollview_root).scrollTo(0, 0);
+            }
+        });
+        layout.findViewById(R.id.settings_tabs_bizkit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.findViewById(R.id.settings_tabs_circleofdeath).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_ridethebus).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_tabs_bizkit).setBackgroundResource(R.drawable.buttonbackground_allsides_small);
+                layout.findViewById(R.id.settings_tabs_general).setBackgroundColor(ContextCompat.getColor(t, R.color.transparent));
+                layout.findViewById(R.id.settings_circleofdeath_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_ridethebus_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_bizkit_root).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.settings_general_root).setVisibility(View.GONE);
+                layout.findViewById(R.id.settingsscreen_scrollview_root).scrollTo(0, 0);
+            }
+        });
         try {
             ((TextView) layout.findViewById(R.id.settingsscreen_textview_emaildeveloper))
                     .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
@@ -156,6 +241,9 @@ public class DrinkingGamesGlobal {
                 ((CheckBox) layout.findViewById(R.id.settingsscreen_acesarelow)).isChecked());
         prefsEditor.putBoolean(a.getString(R.string.settings_bizkit_insultbizkit),
                 ((CheckBox) layout.findViewById(R.id.settingsscreen_bizkit_insult)).isChecked());
+        if (((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).isChecked())
+            prefsEditor.putInt(a.getString(R.string.settings_cardskin), 2);
+        else prefsEditor.putInt(a.getString(R.string.settings_cardskin), 1);
         prefsEditor.putString(a.getString(R.string.settings_cod_ace_actionname_key),
                 ((EditText) layout.findViewById(R.id.settingsscreen_circleofdeath_ace_actionname))
                         .getText().toString());

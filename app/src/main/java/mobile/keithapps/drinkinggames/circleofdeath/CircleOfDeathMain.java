@@ -203,7 +203,9 @@ public class CircleOfDeathMain extends AppCompatActivity {
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-        imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), card.getImageId()));
+        imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
+                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.settings_cardskin), 1)));
         ((TextView) layout.findViewById(R.id.directions_on_popup))
                 .setText(this.getSharedPreferences(getString(R.string.text_package),
                         Context.MODE_PRIVATE).getString(getString(card.getActionNameKey()),
@@ -230,6 +232,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
             }
         });
         dialog.show();
@@ -248,7 +252,9 @@ public class CircleOfDeathMain extends AppCompatActivity {
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.getFaceValue().toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-        imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), card.getImageId()));
+        imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
+                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.settings_cardskin), 1)));
         ((TextView) layout.findViewById(R.id.directions_on_popup))
                 .setText(this.getSharedPreferences(getString(R.string.text_package),
                         Context.MODE_PRIVATE).getString(getString(card.getActionDescriptionKey()),
@@ -279,6 +285,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
             }
         });
         dialog.show();
@@ -294,6 +302,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         View l = inflater.inflate(R.layout.popup_settings,
                 (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
+        layout.findViewById(R.id.settings_tabs_circleofdeath).callOnClick();
         imageDialog.setView(layout);
         imageDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -319,6 +328,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
             }
         });
         dialog.show();

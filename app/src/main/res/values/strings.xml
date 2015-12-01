@@ -114,6 +114,9 @@
     <string name="settings_bizkit_insultbizkit">settings.bizkit.insultbizkit</string>
     <string name="text_male">Male</string>
     <string name="text_female">Female</string>
+    <string name="text_general">General</string>
+    <string name="text_cardskin">Card Skin</string>
+    <string name="settings_cardskin">settings.cardskin</string>
 
     <string-array name="insults">
         <item>what an asshole</item>

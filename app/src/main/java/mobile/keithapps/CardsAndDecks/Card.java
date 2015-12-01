@@ -1,5 +1,9 @@
 package mobile.keithapps.CardsAndDecks;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+
 import mobile.keithapps.drinkinggames.R;
 
 /**
@@ -286,5 +290,154 @@ public class Card {
      */
     public enum Suit {
         HEART, DIAMOND, CLUB, SPADE
+    }
+
+    public Drawable getDrawable(Context c, int skin){
+        switch (this.faceValue){
+            case ACE:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h1 : R.drawable.h1_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d1 : R.drawable.d1_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s1 : R.drawable.s1_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c1 : R.drawable.c1_2);
+                }
+            case TWO:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h2 : R.drawable.h2_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d2 : R.drawable.d2_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s2 : R.drawable.s2_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c2 : R.drawable.c2_2);
+                }
+            case THREE:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h3 : R.drawable.h3_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d3 : R.drawable.d3_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s3 : R.drawable.s3_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c3 : R.drawable.c3_2);
+                }
+            case FOUR:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h4 : R.drawable.h4_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d4 : R.drawable.d4_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s4 : R.drawable.s4_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c4 : R.drawable.c4_2);
+                }
+            case FIVE:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h5 : R.drawable.h5_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d5 : R.drawable.d5_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s5 : R.drawable.s5_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c5 : R.drawable.c5_2);
+                }
+            case SIX:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h6 : R.drawable.h6_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d6 : R.drawable.d6_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s6 : R.drawable.s6_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c6 : R.drawable.c6_2);
+                }
+            case SEVEN:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h7 : R.drawable.h7_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d7 : R.drawable.d7_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s7 : R.drawable.s7_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c7 : R.drawable.c7_2);
+                }
+            case EIGHT:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h8 : R.drawable.h8_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d8 : R.drawable.d8_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s8 : R.drawable.s8_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c8 : R.drawable.c8_2);
+                }
+            case NINE:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h9 : R.drawable.h9_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d9 : R.drawable.d9_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s9 : R.drawable.s9_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c9 : R.drawable.c9_2);
+                }
+            case TEN:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h10 : R.drawable.h10_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.d10 : R.drawable.d10_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.s10 : R.drawable.s10_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.c10 : R.drawable.c10_2);
+                }
+            case JACK:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.hj : R.drawable.hj_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.dj : R.drawable.dj_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.sj : R.drawable.sj_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.cj : R.drawable.cj_2);
+                }
+            case QUEEN:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.hq : R.drawable.hq_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.dq : R.drawable.dq_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.sq : R.drawable.sq_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.cq : R.drawable.cq_2);
+                }
+            case KING:
+                switch (this.suit){
+                    case HEART:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.hk : R.drawable.hk_2);
+                    case DIAMOND:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.dk : R.drawable.dk_2);
+                    case SPADE:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.sk : R.drawable.sk_2);
+                    case CLUB:
+                        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.ck : R.drawable.ck_2);
+                }
+        }
+        return ContextCompat.getDrawable(c, (skin == 1) ? R.drawable.h1 : R.drawable.h1_2);
     }
 }

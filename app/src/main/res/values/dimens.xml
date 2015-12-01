@@ -19,4 +19,6 @@
     <dimen name="one_hundred_fifty_sp">150sp</dimen>
     <dimen name="five_sp">5sp</dimen>
     <dimen name="seventy_five_sp">75sp</dimen>
+    <dimen name="two_hundred_sp">200sp</dimen>
+    <dimen name="settings_tabs_height">60sp</dimen>
 </resources>
