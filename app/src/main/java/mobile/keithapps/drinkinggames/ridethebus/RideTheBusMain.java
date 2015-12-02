@@ -98,7 +98,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.insideButton.setVisibility(View.GONE);
                 this.outsideButton.setVisibility(View.GONE);
                 this.suitsButtons.setVisibility(View.GONE);
-                this.questionText.setText(R.string.ridethebus_question_color);
+                this.questionText.setText(R.string.rtb_question_color);
                 this.restartButton.setVisibility(View.GONE);
                 break;
             case High_Low:
@@ -108,7 +108,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.redButton.setVisibility(View.GONE);
                 this.higherButton.setVisibility(View.VISIBLE);
                 this.lowerButton.setVisibility(View.VISIBLE);
-                this.questionText.setText(R.string.ridethebus_question_highlow);
+                this.questionText.setText(R.string.rtb_question_highlow);
                 break;
             case Inside_Outside:
                 this.cardView2.setVisibility(View.VISIBLE);
@@ -117,7 +117,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.insideButton.setVisibility(View.VISIBLE);
                 this.higherButton.setVisibility(View.GONE);
                 this.lowerButton.setVisibility(View.GONE);
-                this.questionText.setText(R.string.ridethebus_question_inout);
+                this.questionText.setText(R.string.rtb_question_inout);
                 break;
             case Suit:
                 this.cardView3.setVisibility(View.VISIBLE);
@@ -125,7 +125,7 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.outsideButton.setVisibility(View.GONE);
                 this.insideButton.setVisibility(View.GONE);
                 this.suitsButtons.setVisibility(View.VISIBLE);
-                this.questionText.setText(R.string.ridethebus_question_suit);
+                this.questionText.setText(R.string.rtb_question_suit);
                 break;
             case Won:
                 this.cardView4.setVisibility(View.VISIBLE);
@@ -135,9 +135,9 @@ public class RideTheBusMain extends AppCompatActivity {
                 this.restartButton.setVisibility(View.VISIBLE);
         }
         boolean aceIsLow = this.getSharedPreferences(getString(R.string.text_package),
-                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
-        this.warningAce.setText((aceIsLow) ? getString(R.string.ridethebus_warning_aceislow) :
-                getString(R.string.ridethebus_warning_aceishigh));
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true);
+        this.warningAce.setText((aceIsLow) ? getString(R.string.rtb_warning_aceislow) :
+                getString(R.string.rtb_warning_aceishigh));
         if (this.card1 != null && this.card1.getNumericValue(true) == 1)
             this.warningAce.setVisibility(View.VISIBLE);
         else if (this.card2 != null && this.card2.getNumericValue(true) == 1)
@@ -163,11 +163,11 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
+                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Red)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             imageView.setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -202,11 +202,11 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
+                    getString(R.string.rtb_incorrectmessage), this.card1.toString(), "(You guessed Black)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             imageView.setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -238,7 +238,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessHigher(View view) {
         this.card2 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
-                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true);
         if (this.card2.getNumericValue(acesLow) > this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
         } else {
@@ -247,19 +247,19 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn,
                     (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
+                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Higher)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.text_package),
-                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
-                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true)) ?
+                                getString(R.string.rtb_warning_aceislow) : getString(R.string.rtb_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -289,7 +289,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessLower(View view) {
         this.card2 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
-                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true);
         if (this.card2.getNumericValue(acesLow) < this.card1.getNumericValue(acesLow)) {
             this.setState(State.Inside_Outside);
         } else {
@@ -298,20 +298,20 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn,
                     (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
+                    getString(R.string.rtb_incorrectmessage), this.card2.toString(), "(You guessed Lower)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card2.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.text_package),
-                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
-                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true)) ?
+                                getString(R.string.rtb_warning_aceislow) : getString(R.string.rtb_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(
                     this.card1.getDrawable(getApplicationContext(),
                             getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                                    .getInt(getString(R.string.settings_cardskin), 1)));
+                                    .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -342,7 +342,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessOutside(View view) {
         this.card3 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
-                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true);
         int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow),
                 i3 = this.card3.getNumericValue(acesLow);
         if (i3 > Math.max(i1, i2) || i3 < Math.min(i1, i2)) {
@@ -353,21 +353,21 @@ public class RideTheBusMain extends AppCompatActivity {
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn,
                     (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
+                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Outside)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.text_package),
-                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
-                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true)) ?
+                                getString(R.string.rtb_warning_aceislow) : getString(R.string.rtb_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1))
                     .setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                             getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                                    .getInt(getString(R.string.settings_cardskin), 1)));
+                                    .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2))
                     .setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                             getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                                    .getInt(getString(R.string.settings_cardskin), 1)));
+                                    .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card3.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -398,7 +398,7 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessInside(View view) {
         this.card3 = this.deck.drawRandom();
         boolean acesLow = this.getSharedPreferences(getString(R.string.text_package),
-                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true);
+                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true);
         int i1 = this.card1.getNumericValue(acesLow), i2 = this.card2.getNumericValue(acesLow),
                 i3 = this.card3.getNumericValue(acesLow);
         if (i3 < Math.max(i1, i2) && i3 > Math.min(i1, i2)) {
@@ -408,21 +408,21 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
+                    getString(R.string.rtb_incorrectmessage), this.card3.toString(), "(You guessed Inside)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card3.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace))
                         .setText((this.getSharedPreferences(getString(R.string.text_package),
-                                Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
-                                getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
+                                Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true)) ?
+                                getString(R.string.rtb_warning_aceislow) : getString(R.string.rtb_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1))
                     .setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                             getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                                    .getInt(getString(R.string.settings_cardskin), 1)));
+                                    .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(
                     this.card2.getDrawable(getApplicationContext(), getSharedPreferences(
                             getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card3.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -459,17 +459,17 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Clubs)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -506,17 +506,17 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Hearts)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -553,17 +553,17 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Diamonds)"));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -600,21 +600,21 @@ public class RideTheBusMain extends AppCompatActivity {
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_ridethebus_carddrawn, (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
             ((TextView) layout.findViewById(R.id.rtb_popup_text)).setText(String.format("%s%s\n%s",
-                    getString(R.string.ridethebus_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
+                    getString(R.string.rtb_incorrectmessage), this.card4.toString(), "(You guessed Spades)"));
             if (this.warningAce.getVisibility() == View.VISIBLE || this.card4.getNumericValue(true) == 1)
                 ((TextView) layout.findViewById(R.id.rtb_popup_warning_ace)).setText((this.getSharedPreferences(getString(R.string.text_package),
-                        Context.MODE_PRIVATE).getBoolean(getString(R.string.setting_acesalwayslow), true)) ?
-                        getString(R.string.ridethebus_warning_aceislow) : getString(R.string.ridethebus_warning_aceishigh));
+                        Context.MODE_PRIVATE).getBoolean(getString(R.string.s_acesalwayslow), true)) ?
+                        getString(R.string.rtb_warning_aceislow) : getString(R.string.rtb_warning_aceishigh));
             ImageView imageView = (ImageView) layout.findViewById(R.id.rtb_popup_maincard);
             ((ImageView) layout.findViewById(R.id.rtb_popup_card1)).setImageDrawable(this.card1.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card2)).setImageDrawable(this.card2.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             ((ImageView) layout.findViewById(R.id.rtb_popup_card3)).setImageDrawable(this.card3.getDrawable(getApplicationContext(),
                     getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                            .getInt(getString(R.string.settings_cardskin), 1)));
+                            .getInt(getString(R.string.s_general_cardskin), 1)));
             imageView.setImageResource(this.card4.getImageId());
             imageDialog.setView(layout);
             imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -696,7 +696,7 @@ public class RideTheBusMain extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View l = inflater.inflate(R.layout.popup_settings,
-                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+                (ViewGroup) findViewById(R.id.settings_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
         layout.findViewById(R.id.settings_tabs_ridethebus).callOnClick();
         imageDialog.setView(layout);

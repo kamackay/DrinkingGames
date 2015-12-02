@@ -1,6 +1,7 @@
 package mobile.keithapps.drinkinggames.circleofdeath;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -37,6 +38,11 @@ public class CircleOfDeathMain extends AppCompatActivity {
      */
     private boolean circleBroken;
     /**
+     * Use this as a bastardized semaphore to resolve the ability to
+     * open multiple cards at the same time
+     */
+    private boolean lock;
+    /**
      * The CardDeck manager
      */
     private CardDeck cod;
@@ -60,6 +66,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
 
         this.circleBroken = false;
         this.cod = new CardDeck();
+        this.lock = false;
     }
 
     @Override
@@ -91,11 +98,11 @@ public class CircleOfDeathMain extends AppCompatActivity {
                     View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
                             (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
                     TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
-                    textView.setText(R.string.circleofdeath_circlebrokenmessage);
+                    textView.setText(R.string.cod_circlebrokenmessage);
                     ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
                     imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.brokencircle));
                     final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-                    instructionsView.setText(R.string.circleofdeath_circlebrokenmessage_2);
+                    instructionsView.setText(R.string.cod_circlebrokenmessage_2);
                     imageDialog.setView(layout);
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -179,6 +186,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
      * @param view the button that was clicked
      */
     public void drawCard(View view) {
+        if (this.lock) return; //Statement that blocks multiple simeultaneous cards
+        this.lock = true; //Claim this as the only drawCard to allow run (right now)
         //Make Button Invisible
         view.setVisibility(View.GONE);
 
@@ -188,6 +197,9 @@ public class CircleOfDeathMain extends AppCompatActivity {
 
         //Check for a break in the circle
         this.checkForBreak();
+        //this.lock = false;
+        //Put this on the off chance that the popup is cancelled with the back button,
+        //because that would not trigger either of the button presses
     }
 
     /**
@@ -205,7 +217,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
         imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
                 getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.settings_cardskin), 1)));
+                        .getInt(getString(R.string.s_general_cardskin), 1)));
         ((TextView) layout.findViewById(R.id.directions_on_popup))
                 .setText(this.getSharedPreferences(getString(R.string.text_package),
                         Context.MODE_PRIVATE).getString(getString(card.getActionNameKey()),
@@ -215,6 +227,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                lock = false;
             }
         });
         imageDialog.setNegativeButton("Description", new DialogInterface.OnClickListener() {
@@ -222,6 +235,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int which) {
                 dialogInterface.dismiss();
                 showDescription(card);
+                lock = false;
             }
         });
         final AlertDialog dialog = imageDialog.create();
@@ -234,6 +248,12 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
+            }
+        });
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                lock = false;
             }
         });
         dialog.show();
@@ -254,7 +274,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
         imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
                 getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.settings_cardskin), 1)));
+                        .getInt(getString(R.string.s_general_cardskin), 1)));
         ((TextView) layout.findViewById(R.id.directions_on_popup))
                 .setText(this.getSharedPreferences(getString(R.string.text_package),
                         Context.MODE_PRIVATE).getString(getString(card.getActionDescriptionKey()),
@@ -300,7 +320,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View l = inflater.inflate(R.layout.popup_settings,
-                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+                (ViewGroup) findViewById(R.id.settings_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
         layout.findViewById(R.id.settings_tabs_circleofdeath).callOnClick();
         imageDialog.setView(layout);

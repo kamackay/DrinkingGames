@@ -10,56 +10,56 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="@dimen/zero"
-            android:textSize="@dimen/fifteen_sp"
-            android:layout_height="match_parent"
             android:id="@+id/settings_tabs_general"
-            android:textAlignment="center"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/transparent"
-            android:textColor="@color/darkRed"
             android:text="@string/text_general"
-            android:textAllCaps="false"/>
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkRed"
+            android:textSize="@dimen/fifteen" />
 
         <Button
-            android:layout_width="@dimen/zero"
-            android:textSize="@dimen/fifteen_sp"
             android:id="@+id/settings_tabs_circleofdeath"
-            android:textAlignment="center"
+            android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/darkRed"
             android:background="@color/transparent"
             android:text="@string/text_circleofdeath"
-            android:textAllCaps="false" />
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkRed"
+            android:textSize="@dimen/fifteen" />
 
         <Button
-            android:layout_width="@dimen/zero"
             android:id="@+id/settings_tabs_ridethebus"
+            android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
-            android:textSize="@dimen/fifteen_sp"
-            android:textAlignment="center"
-            android:textColor="@color/darkRed"
             android:layout_weight="1"
             android:background="@color/transparent"
             android:text="@string/text_ridethebus"
-            android:textAllCaps="false" />
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkRed"
+            android:textSize="@dimen/fifteen" />
 
         <Button
+            android:id="@+id/settings_tabs_bizkit"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:id="@+id/settings_tabs_bizkit"
-            android:textSize="@dimen/fifteen_sp"
-            android:textColor="@color/darkRed"
             android:layout_weight="1"
             android:background="@color/transparent"
             android:text="@string/text_bizkit"
-            android:textAllCaps="false" />
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/darkRed"
+            android:textSize="@dimen/fifteen" />
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/settingsscreen_scrollview_root"
+        android:id="@+id/settings_scrollview_root"
         android:layout_width="fill_parent"
         android:layout_height="match_parent">
 
@@ -74,791 +74,773 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonbackground_justborders"
                 android:orientation="vertical"
-                android:padding="@dimen/ten_sp"
-                android:paddingBottom="@dimen/ten_sp"
-                android:paddingTop="@dimen/five_sp"
+                android:padding="@dimen/ten"
+                android:paddingBottom="@dimen/ten"
+                android:paddingTop="@dimen/five"
                 android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/ten_sp"
+                    android:padding="@dimen/ten"
+                    android:paddingBottom="@dimen/ten"
                     android:text="@string/text_circleofdeath"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_ace"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_ace_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_ace_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_two"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_two_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_two_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_three"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_three_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_three_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_four"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_four_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_four_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_five"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_five_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_five_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_six"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_six_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_six_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_seven"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_seven_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_seven_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_eight"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_eight_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_eight_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_nine"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_nine_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_nine_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_ten"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_ten_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_ten_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_jack"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_jack_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_jack_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_queen"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_queen_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_queen_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buttonbackground_justborders"
-                    android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/five_sp"
-                        android:text="@string/text_king"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_actionname_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_king_actionname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_action_andcolon"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp" />
-
-                    <EditText
-                        android:id="@+id/settingsscreen_circleofdeath_king_actiontext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ten_sp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/fifteen_sp" />
-
-                </LinearLayout>
+                    android:textSize="@dimen/thirty" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/twenty_five_sp" />
+                    android:layout_height="@dimen/ten" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_ace"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_ace_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_ace_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_two"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_two_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_two_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_three"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_three_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_three_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_four"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_four_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_four_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_five"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_five_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_five_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_six"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_six_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_six_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_seven"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_seven_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_seven_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_eight"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_eight_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_eight_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_nine"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_nine_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_nine_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_ten"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_ten_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_ten_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_jack"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_jack_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_jack_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_queen"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_queen_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_queen_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:text="@string/text_king"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_actionname_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_king_actionname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_action_andcolon"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+
+                    <EditText
+                        android:id="@+id/settings_cod_king_actiontext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ten"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fifteen" />
+                </LinearLayout>
             </LinearLayout>
 
-
             <LinearLayout
-                android:layout_width="fill_parent"
                 android:id="@+id/settings_ridethebus_root"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonbackground_justborders"
                 android:orientation="vertical"
-                android:padding="@dimen/ten_sp"
+                android:padding="@dimen/ten"
                 android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/ten_sp"
+                    android:paddingBottom="@dimen/ten"
                     android:text="@string/text_ridethebus"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
+                    android:textSize="@dimen/thirty" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ten" />
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
 
                     <CheckBox
-                        android:id="@+id/settingsscreen_acesarelow"
+                        android:id="@+id/settings_acesarelow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:checked="true"
                         android:text="@string/text_acesalwayslow"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp"
+                        android:textSize="@dimen/twenty"
                         android:visibility="visible" />
                 </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/twenty_five_sp" />
+                    android:layout_height="@dimen/twenty_five" />
             </LinearLayout>
 
-
             <LinearLayout
+                android:id="@+id/settings_bizkit_root"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonbackground_justborders"
-                android:id="@+id/settings_bizkit_root"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:padding="@dimen/ten_sp">
+                android:padding="@dimen/ten"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/ten_sp"
+                    android:paddingBottom="@dimen/ten"
                     android:text="@string/text_bizkit"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
+                    android:textSize="@dimen/thirty" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ten" />
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
 
                     <CheckBox
-                        android:id="@+id/settingsscreen_bizkit_insult"
+                        android:id="@+id/settings_bizkit_insult"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:checked="true"
                         android:text="@string/text_alwaysinsultthebizkit"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_sp"
+                        android:textSize="@dimen/twenty"
                         android:visibility="visible" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/twenty_five_sp" />
+                    android:layout_height="@dimen/twenty_five" />
             </LinearLayout>
 
-
-
             <LinearLayout
+                android:id="@+id/settings_general_root"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonbackground_justborders"
                 android:orientation="vertical"
-                android:id="@+id/settings_general_root"
-                android:visibility="gone"
-                android:padding="@dimen/ten_sp">
+                android:padding="@dimen/ten"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/ten_sp"
+                    android:paddingBottom="@dimen/ten"
                     android:text="@string/text_general"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/thirty_sp" />
+                    android:textSize="@dimen/thirty" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ten" />
 
                 <LinearLayout
+                    android:id="@+id/settings_general_cardskin_root"
                     android:layout_width="fill_parent"
                     android:layout_height="250sp"
                     android:background="@drawable/buttonbackground_justborders"
                     android:orientation="vertical"
-                    android:padding="@dimen/ten_sp">
+                    android:padding="@dimen/ten">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/ten_sp"
-                        android:paddingTop="@dimen/ten_sp"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:paddingBottom="@dimen/ten"
+                        android:paddingTop="@dimen/ten"
                         android:text="@string/text_cardskin"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/twenty_five_sp" />
+                        android:textSize="@dimen/twenty_five" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ten" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -889,7 +871,7 @@
                         </RelativeLayout>
 
                         <View
-                            android:layout_width="@dimen/thirty_sp"
+                            android:layout_width="@dimen/thirty"
                             android:layout_height="wrap_content" />
 
                         <RelativeLayout
@@ -915,21 +897,96 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/twenty_five_sp" />
+                <LinearLayout
+                    android:id="@+id/settings_general_dieskin_root"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200sp"
+                    android:background="@drawable/buttonbackground_justborders"
+                    android:orientation="vertical"
+                    android:padding="@dimen/ten">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttonbackground_allsides"
+                        android:paddingBottom="@dimen/ten"
+                        android:paddingTop="@dimen/ten"
+                        android:text="@string/text_dieskin"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty_five" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ten" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <RelativeLayout
+                            android:id="@+id/settings_general_dieskin_relativelayout_1"
+                            android:layout_width="@dimen/zero"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/settings_general_dieskin_imageview_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/settings_general_dieskin_radiobutton_1"
+                                android:contentDescription="@string/text_skin1preview"
+                                android:src="@drawable/die6_1" />
+
+                            <RadioButton
+                                android:id="@+id/settings_general_dieskin_radiobutton_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:checked="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/settings_general_dieskin_relativelayout_2"
+                            android:layout_width="@dimen/zero"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/settings_general_dieskin_imageview_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/settings_general_dieskin_radiobutton_2"
+                                android:contentDescription="@string/text_dieskin2preview"
+                                android:src="@drawable/die6_2" />
+
+                            <RadioButton
+                                android:id="@+id/settings_general_dieskin_radiobutton_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/twenty_five" />
+                </LinearLayout>
             </LinearLayout>
 
-
             <TextView
-                android:id="@+id/settingsscreen_textview_emaildeveloper"
+                android:id="@+id/settings_textview_emaildeveloper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoLink="email"
-                android:paddingBottom="@dimen/ten_sp"
-                android:text="@string/settings_text_information"
+                android:paddingBottom="@dimen/ten"
+                android:text="@string/s_text_information"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fifteen_sp" />
+                android:textSize="@dimen/fifteen" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

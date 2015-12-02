@@ -50,31 +50,31 @@ public class Card {
     public int getActionNameKey() {
         switch (this.faceValue) {
             case ACE:
-                return R.string.settings_cod_ace_actionname_key;
+                return R.string.s_cod_ace_actionname_key;
             case TWO:
-                return R.string.settings_cod_two_actionname_key;
+                return R.string.s_cod_two_actionname_key;
             case THREE:
-                return R.string.settings_cod_three_actionname_key;
+                return R.string.s_cod_three_actionname_key;
             case FOUR:
-                return R.string.settings_cod_four_actionname_key;
+                return R.string.s_cod_four_actionname_key;
             case FIVE:
-                return R.string.settings_cod_five_actionname_key;
+                return R.string.s_cod_five_actionname_key;
             case SIX:
-                return R.string.settings_cod_six_actionname_key;
+                return R.string.s_cod_six_actionname_key;
             case SEVEN:
-                return R.string.settings_cod_seven_actionname_key;
+                return R.string.s_cod_seven_actionname_key;
             case EIGHT:
-                return R.string.settings_cod_eight_actionname_key;
+                return R.string.s_cod_eight_actionname_key;
             case NINE:
-                return R.string.settings_cod_nine_actionname_key;
+                return R.string.s_cod_nine_actionname_key;
             case TEN:
-                return R.string.settings_cod_ten_actionname_key;
+                return R.string.s_cod_ten_actionname_key;
             case JACK:
-                return R.string.settings_cod_jack_actionname_key;
+                return R.string.s_cod_jack_actionname_key;
             case QUEEN:
-                return R.string.settings_cod_queen_actionname_key;
+                return R.string.s_cod_queen_actionname_key;
             case KING:
-                return R.string.settings_cod_king_actionname_key;
+                return R.string.s_cod_king_actionname_key;
         }
         return -1;
     }
@@ -87,31 +87,31 @@ public class Card {
     public int getDefaultDirections() {
         switch (this.faceValue) {
             case ACE:
-                return R.string.circleofdeath_carddirection_ace;
+                return R.string.cod_dir_a;
             case TWO:
-                return R.string.circleofdeath_carddirection_two;
+                return R.string.cod_dir_2;
             case THREE:
-                return R.string.circleofdeath_carddirection_three;
+                return R.string.cod_dir_3;
             case FOUR:
-                return R.string.circleofdeath_carddirection_four;
+                return R.string.cod_dir_4;
             case FIVE:
-                return R.string.circleofdeath_carddirection_five;
+                return R.string.cod_dir_5;
             case SIX:
-                return R.string.circleofdeath_carddirection_six;
+                return R.string.cod_dir_6;
             case SEVEN:
-                return R.string.circleofdeath_carddirection_seven;
+                return R.string.cod_dir_7;
             case EIGHT:
-                return R.string.circleofdeath_carddirection_eight;
+                return R.string.cod_dir_8;
             case NINE:
-                return R.string.circleofdeath_carddirection_nine;
+                return R.string.cod_dir_9;
             case TEN:
-                return R.string.circleofdeath_carddirection_ten;
+                return R.string.cod_dir_10;
             case JACK:
-                return R.string.circleofdeath_carddirection_jack;
+                return R.string.cod_dir_j;
             case QUEEN:
-                return R.string.circleofdeath_carddirection_queen;
+                return R.string.cod_dir_q;
             case KING:
-                return R.string.circleofdeath_carddirection_king;
+                return R.string.cod_dir_k;
         }
         return -1;
     }
@@ -124,31 +124,31 @@ public class Card {
     public int getActionDescriptionKey() {
         switch (this.faceValue) {
             case ACE:
-                return R.string.settings_cod_ace_actiontext_key;
+                return R.string.s_cod_ace_actiontext_key;
             case TWO:
-                return R.string.settings_cod_two_actiontext_key;
+                return R.string.s_cod_two_actiontext_key;
             case THREE:
-                return R.string.settings_cod_three_actiontext_key;
+                return R.string.s_cod_three_actiontext_key;
             case FOUR:
-                return R.string.settings_cod_four_actiontext_key;
+                return R.string.s_cod_four_actiontext_key;
             case FIVE:
-                return R.string.settings_cod_five_actiontext_key;
+                return R.string.s_cod_five_actiontext_key;
             case SIX:
-                return R.string.settings_cod_six_actiontext_key;
+                return R.string.s_cod_six_actiontext_key;
             case SEVEN:
-                return R.string.settings_cod_seven_actiontext_key;
+                return R.string.s_cod_seven_actiontext_key;
             case EIGHT:
-                return R.string.settings_cod_eight_actiontext_key;
+                return R.string.s_cod_eight_actiontext_key;
             case NINE:
-                return R.string.settings_cod_nine_actiontext_key;
+                return R.string.s_cod_nine_actiontext_key;
             case TEN:
-                return R.string.settings_cod_ten_actiontext_key;
+                return R.string.s_cod_ten_actiontext_key;
             case JACK:
-                return R.string.settings_cod_jack_actiontext_key;
+                return R.string.s_cod_jack_actiontext_key;
             case QUEEN:
-                return R.string.settings_cod_queen_actiontext_key;
+                return R.string.s_cod_queen_actiontext_key;
             case KING:
-                return R.string.settings_cod_king_actiontext_key;
+                return R.string.s_cod_king_actiontext_key;
         }
         return -1;
     }
@@ -161,31 +161,31 @@ public class Card {
     public int getDefaultActionDescription() {
         switch (this.faceValue) {
             case ACE:
-                return R.string.circleofdeath_carddirection_description_ace;
+                return R.string.cod_des_a;
             case TWO:
-                return R.string.circleofdeath_carddirection_description_two;
+                return R.string.cod_des_2;
             case THREE:
-                return R.string.circleofdeath_carddirection_description_three;
+                return R.string.cod_des_3;
             case FOUR:
-                return R.string.circleofdeath_carddirection_description_four;
+                return R.string.cod_des_4;
             case FIVE:
-                return R.string.circleofdeath_carddirection_description_five;
+                return R.string.cod_des_5;
             case SIX:
-                return R.string.circleofdeath_carddirection_description_six;
+                return R.string.cod_des_6;
             case SEVEN:
-                return R.string.circleofdeath_carddirection_description_seven;
+                return R.string.cod_des_7;
             case EIGHT:
-                return R.string.circleofdeath_carddirection_description_eight;
+                return R.string.cod_des_8;
             case NINE:
-                return R.string.circleofdeath_carddirection_description_nine;
+                return R.string.cod_des_9;
             case TEN:
-                return R.string.circleofdeath_carddirection_description_ten;
+                return R.string.cod_des_10;
             case JACK:
-                return R.string.circleofdeath_carddirection_description_jack;
+                return R.string.cod_des_j;
             case QUEEN:
-                return R.string.circleofdeath_carddirection_description_queen;
+                return R.string.cod_des_q;
             case KING:
-                return R.string.circleofdeath_carddirection_description_king;
+                return R.string.cod_des_k;
         }
         return -1;
     }

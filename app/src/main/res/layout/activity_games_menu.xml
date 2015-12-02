@@ -18,7 +18,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ten_sp" />
+                android:layout_height="@dimen/ten" />
             <Button
                 android:id="@+id/codButton_gamesMenuScreen"
                 android:layout_width="fill_parent"
@@ -32,7 +32,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ten_sp" />
+                android:layout_height="@dimen/ten" />
 
             <Button
                 android:layout_width="fill_parent"
@@ -46,7 +46,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ten_sp" />
+                android:layout_height="@dimen/ten" />
 
             <Button
                 android:id="@+id/bizkitbutton_gamesMenuScreen"
@@ -61,7 +61,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ten_sp" />
+                android:layout_height="@dimen/ten" />
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
@@ -73,7 +73,16 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ten_sp" />
+                android:layout_height="@dimen/ten" />
+            <TextView
+                android:id="@+id/menu_textview_emaildeveloper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:paddingBottom="@dimen/ten"
+                android:text="@string/s_text_information"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen" />
         </LinearLayout>
     </ScrollView>
 

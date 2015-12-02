@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/twenty_sp" />
+        android:textSize="@dimen/twenty" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -68,8 +68,8 @@
 
         <ImageView
             android:id="@+id/rtb_popup_maincard"
-            android:layout_width="@dimen/ridethebus_middlecardview_width"
-            android:layout_height="@dimen/ridethebus_middlecardview_height"
+            android:layout_width="@dimen/rtb_middlecardview_width"
+            android:layout_height="@dimen/rtb_middlecardview_height"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter" />
     </RelativeLayout>
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/twenty_sp" />
+        android:textSize="@dimen/twenty" />
 
     <TextView
         android:id="@+id/rtb_popup_takeadrinktext"
@@ -89,5 +89,5 @@
         android:text="@string/text_takeadrink"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/twenty_five_sp" />
+        android:textSize="@dimen/twenty_five" />
 </LinearLayout>

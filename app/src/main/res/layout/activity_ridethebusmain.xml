@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card1"
             android:layout_width="0sp"
-            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
             android:src="@drawable/cardback" />
@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card2"
             android:layout_width="0sp"
-            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
             android:src="@drawable/cardback" />
@@ -40,7 +40,7 @@
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card3"
             android:layout_width="0sp"
-            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
             android:src="@drawable/cardback" />
@@ -51,8 +51,8 @@
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card4"
-            android:layout_width="@dimen/ridethebus_uppercardsview_cardwidth"
-            android:layout_height="@dimen/ridethebus_topcards_height"
+            android:layout_width="@dimen/rtb_uppercardsview_cardwidth"
+            android:layout_height="@dimen/rtb_topcards_height"
             android:scaleType="fitXY"
             android:src="@drawable/cardback" />
     </LinearLayout>
@@ -61,10 +61,10 @@
         android:id="@+id/rtb_acewarning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ridethebus_warning_aceislow"
+        android:text="@string/rtb_warning_aceislow"
         android:textAlignment="center"
         android:textColor="@color/darkRed"
-        android:textSize="@dimen/twenty_sp" />
+        android:textSize="@dimen/twenty" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -73,7 +73,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/ridethebus_middlecardview_height"
+            android:layout_height="@dimen/rtb_middlecardview_height"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
             android:src="@drawable/cardback" />
@@ -88,9 +88,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingBottom="@dimen/ten_sp"
-            android:paddingTop="@dimen/ten_sp"
-            android:text="@string/ridethebus_question_color"
+            android:paddingBottom="@dimen/ten"
+            android:paddingTop="@dimen/ten"
+            android:text="@string/rtb_question_color"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp" />
@@ -125,7 +125,7 @@
                     android:text="@string/text_red"
                     android:textAlignment="center"
                     android:textColor="@color/darkRed"
-                    android:textSize="@dimen/fourty_sp" />
+                    android:textSize="@dimen/fourty" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -135,14 +135,14 @@
 
                     <ImageView
                         android:layout_width="@dimen/zero"
-                        android:layout_height="@dimen/thirty_sp"
+                        android:layout_height="@dimen/thirty"
                         android:layout_weight="@integer/one"
                         android:onClick="guessRed"
                         android:src="@drawable/heart" />
 
                     <ImageView
                         android:layout_width="@dimen/zero"
-                        android:layout_height="@dimen/thirty_sp"
+                        android:layout_height="@dimen/thirty"
                         android:layout_weight="@integer/one"
                         android:onClick="guessRed"
                         android:src="@drawable/diamond" />
@@ -174,7 +174,7 @@
                     android:text="@string/text_black"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/fourty_sp"
+                    android:textSize="@dimen/fourty"
                     android:visibility="visible" />
 
                 <LinearLayout
@@ -185,14 +185,14 @@
 
                     <ImageView
                         android:layout_width="@dimen/zero"
-                        android:layout_height="@dimen/thirty_sp"
+                        android:layout_height="@dimen/thirty"
                         android:layout_weight="@integer/one"
                         android:onClick="guessBlack"
                         android:src="@drawable/spade" />
 
                     <ImageView
                         android:layout_width="@dimen/zero"
-                        android:layout_height="@dimen/thirty_sp"
+                        android:layout_height="@dimen/thirty"
                         android:layout_weight="@integer/one"
                         android:onClick="guessBlack"
                         android:src="@drawable/club" />
@@ -210,7 +210,7 @@
             android:text="@string/text_higher"
             android:textAllCaps="false"
             android:textColor="@color/darkRed"
-            android:textSize="@dimen/thirty_sp"
+            android:textSize="@dimen/thirty"
             android:visibility="gone" />
 
         <Button
@@ -223,7 +223,7 @@
             android:text="@string/text_lower"
             android:textAllCaps="false"
             android:textColor="@color/darkRed"
-            android:textSize="@dimen/thirty_sp"
+            android:textSize="@dimen/thirty"
             android:visibility="gone" />
 
         <Button
@@ -236,7 +236,7 @@
             android:text="@string/text_inside"
             android:textAllCaps="false"
             android:textColor="@color/darkRed"
-            android:textSize="@dimen/thirty_sp"
+            android:textSize="@dimen/thirty"
             android:visibility="visible" />
 
         <Button
@@ -249,7 +249,7 @@
             android:text="@string/text_outside"
             android:textAllCaps="false"
             android:textColor="@color/darkRed"
-            android:textSize="@dimen/thirty_sp"
+            android:textSize="@dimen/thirty"
             android:visibility="visible" />
 
         <LinearLayout
@@ -267,8 +267,8 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_width="@dimen/rtb_bottombuttons_imagesize"
+                    android:layout_height="@dimen/rtb_bottombuttons_imagesize"
                     android:layout_centerInParent="true"
                     android:background="@drawable/spade"
                     android:onClick="guessSpade" />
@@ -283,8 +283,8 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_width="@dimen/rtb_bottombuttons_imagesize"
+                    android:layout_height="@dimen/rtb_bottombuttons_imagesize"
                     android:layout_centerInParent="true"
                     android:background="@drawable/heart"
                     android:onClick="guessHeart" />
@@ -299,8 +299,8 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_width="@dimen/rtb_bottombuttons_imagesize"
+                    android:layout_height="@dimen/rtb_bottombuttons_imagesize"
                     android:layout_centerInParent="true"
                     android:background="@drawable/diamond"
                     android:onClick="guessDiamond" />
@@ -315,8 +315,8 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="@dimen/ridethebus_bottombuttons_imagesize"
-                    android:layout_height="@dimen/ridethebus_bottombuttons_imagesize"
+                    android:layout_width="@dimen/rtb_bottombuttons_imagesize"
+                    android:layout_height="@dimen/rtb_bottombuttons_imagesize"
                     android:layout_centerInParent="true"
                     android:background="@drawable/club"
                     android:onClick="guessClub" />

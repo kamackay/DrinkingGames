@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import mobile.keithapps.drinkinggames.biscuit.BizkitMain;
 import mobile.keithapps.drinkinggames.circleofdeath.CircleOfDeathMain;
@@ -30,6 +31,13 @@ public class GamesMenuMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_menu);
         if (Build.VERSION.SDK_INT >= 21) this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
+        try {
+            ((TextView) this.findViewById(R.id.menu_textview_emaildeveloper))
+                    .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
+                            this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName));
+        } catch (Exception e) {
+            DrinkingGamesGlobal.logException(e);
+        }
     }
 
     /**
@@ -112,7 +120,7 @@ public class GamesMenuMain extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View l = inflater.inflate(R.layout.popup_settings,
-                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+                (ViewGroup) findViewById(R.id.settings_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
         layout.findViewById(R.id.settings_tabs_general).callOnClick();
         imageDialog.setView(layout);

@@ -31,6 +31,7 @@ import mobile.keithapps.drinkinggames.R;
  */
 public class BizkitMain extends AppCompatActivity {
     private TextView whatToDoTextView;
+    int dieR, dieL;
     private ImageView leftDieView, rightDieView;
     private String bizkitName;
     private State currState;
@@ -60,6 +61,12 @@ public class BizkitMain extends AppCompatActivity {
 
         //Start Actually doing things
         this.setState(State.FindBiscuit);
+
+        this.dieL = this.dieR = 1;
+
+        //Account for the skin
+        this.rightDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(this.dieR, getApplicationContext()));
+        this.leftDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(this.dieL, getApplicationContext()));
     }
 
     private void setState(State state) {
@@ -72,10 +79,12 @@ public class BizkitMain extends AppCompatActivity {
                 this.currentBizkitView.setText(R.string.bizkit_message_nocurrentbizkit);
                 break;
             case DispenseDrinks:
+                if (this.bizkitName.trim().equals(""))
+                    this.getNewBizkitName(getString(R.string.error_bizkitnamenothing));
                 if (change)
                     this.whatToDoTextView.setText(getString(R.string.bizkit_message_message_dispensedrink));
                 if (this.getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
-                        .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
+                        .getBoolean(getString(R.string.s_bizkit_insultbizkit), true))
                     this.currentBizkitView.setText(String.format("Current Bizkit: %s (%s)",
                             this.bizkitName, DrinkingGamesGlobal.getRandomInsult(getResources())));
                 else
@@ -90,10 +99,10 @@ public class BizkitMain extends AppCompatActivity {
 
     public void rollDie(View view) {
         Random rand = new Random();
-        final int rightDie = rand.nextInt(6) + 1;
-        final int leftDie = rand.nextInt(6) + 1;
-        this.rightDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
-        this.leftDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+        final int rightDie = this.dieR = rand.nextInt(6) + 1;
+        final int leftDie = this.dieL = rand.nextInt(6) + 1;
+        this.rightDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
+        this.leftDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
         if (this.currState == State.FindBiscuit) {
             if ((leftDie + rightDie) == 7) {
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
@@ -105,9 +114,9 @@ public class BizkitMain extends AppCompatActivity {
                 layout.findViewById(R.id.popup_bizkit_youarebizkit_edittext_container)
                         .setVisibility(View.VISIBLE);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -116,9 +125,10 @@ public class BizkitMain extends AppCompatActivity {
                         bizkitIsMale = isMale.isChecked();
                         dialog.dismiss();
                         if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
-                                .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
-                            Toast.makeText(getApplicationContext(), String.format("Christ, %s, get your shit together.",
-                                    bizkitName), Toast.LENGTH_LONG).show();
+                                .getBoolean(getString(R.string.s_bizkit_insultbizkit), true))
+                            if (!bizkitName.trim().equals(""))
+                                Toast.makeText(getApplicationContext(), String.format("Christ, %s, get your shit together.",
+                                        bizkitName), Toast.LENGTH_LONG).show();
                         setState(State.DispenseDrinks);
                     }
                 });
@@ -131,6 +141,19 @@ public class BizkitMain extends AppCompatActivity {
                                         R.color.darkRed));
                     }
                 });
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        bizkitName = editText.getText().toString().trim();
+                        bizkitIsMale = isMale.isChecked();
+                        if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
+                                .getBoolean(getString(R.string.s_bizkit_insultbizkit), true))
+                            if (!bizkitName.trim().equals(""))
+                                Toast.makeText(getApplicationContext(), String.format("Christ, %s, get your shit together.",
+                                        bizkitName), Toast.LENGTH_LONG).show();
+                        setState(State.DispenseDrinks);
+                    }
+                });
                 dialog.show();
             }
         } else {
@@ -138,7 +161,7 @@ public class BizkitMain extends AppCompatActivity {
             String message = "";
             if (leftDie == 3 || rightDie == 3) {
                 String pronoun = this.getBizkitPronoun().toLowerCase();
-                String temp = String.format("If %s rolled this, %s is no longer the Bizkit, and another Bizkit must be found. If %s did not roll this, then %s have to drink once per '3' present",
+                String temp = String.format("If %s rolled this, %s is no longer the Bizkit, and another Bizkit must be found. If %s did not roll this, then %s has to drink once per '3' present",
                         bizkitName, pronoun, bizkitName, pronoun);
                 message += temp;
                 AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
@@ -148,9 +171,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         String.format("%s\n\nWas %s the one that rolled this?", temp, bizkitName));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -199,9 +222,9 @@ public class BizkitMain extends AppCompatActivity {
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext))
                             .setText(message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                     imageDialog.setView(layout);
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -233,9 +256,9 @@ public class BizkitMain extends AppCompatActivity {
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                             message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                     imageDialog.setView(layout);
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -266,9 +289,9 @@ public class BizkitMain extends AppCompatActivity {
                     ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                             message);
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                     ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                            .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                     imageDialog.setView(layout);
                     imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -297,9 +320,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("Challenge Accepted", new DialogInterface.OnClickListener() {
                     @Override
@@ -336,9 +359,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -367,9 +390,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -398,9 +421,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -429,9 +452,9 @@ public class BizkitMain extends AppCompatActivity {
                 ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                         message);
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_leftdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(leftDie, getApplicationContext()));
                 ((ImageView) layout.findViewById(R.id.popup_bizkit_rightdie))
-                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie));
+                        .setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(rightDie, getApplicationContext()));
                 imageDialog.setView(layout);
                 imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -464,6 +487,7 @@ public class BizkitMain extends AppCompatActivity {
         ((TextView) layout.findViewById(R.id.popup_bizkit_messagetext)).setText(
                 String.format("%sWhat is the name of the new Bizkit?", message));
         final EditText editText = (EditText) layout.findViewById(R.id.popup_bizkit_youarebizkit_edittext);
+        final RadioButton isMale = (RadioButton) layout.findViewById(R.id.popup_bizkit_youarebizkit_combobox_male);
         layout.findViewById(R.id.popup_bizkit_youarebizkit_edittext_container)
                 .setVisibility(View.VISIBLE);
         layout.findViewById(R.id.popup_bizkit_diecontainer).setVisibility(View.GONE);
@@ -472,12 +496,14 @@ public class BizkitMain extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 bizkitName = editText.getText().toString().trim();
+                bizkitIsMale = isMale.isChecked();
                 dialog.dismiss();
                 if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
-                        .getBoolean(getString(R.string.settings_bizkit_insultbizkit), true))
-                    Toast.makeText(getApplicationContext(),
-                            String.format("Christ, %s, get your shit together.",
-                                    bizkitName), Toast.LENGTH_LONG).show();
+                        .getBoolean(getString(R.string.s_bizkit_insultbizkit), true))
+                    if (!bizkitName.trim().equals(""))
+                        Toast.makeText(getApplicationContext(),
+                                String.format("Christ, %s, get your shit together.",
+                                        bizkitName), Toast.LENGTH_LONG).show();
                 setState(State.DispenseDrinks);
             }
         });
@@ -488,6 +514,20 @@ public class BizkitMain extends AppCompatActivity {
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         .setTextColor(ContextCompat.getColor(getApplicationContext(),
                                 R.color.darkRed));
+            }
+        });
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                bizkitName = editText.getText().toString().trim();
+                bizkitIsMale = isMale.isChecked();
+                if (getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE)
+                        .getBoolean(getString(R.string.s_bizkit_insultbizkit), true))
+                    if (!bizkitName.trim().equals(""))
+                        Toast.makeText(getApplicationContext(),
+                                String.format("Christ, %s, get your shit together.",
+                                        bizkitName), Toast.LENGTH_LONG).show();
+                setState(State.DispenseDrinks);
             }
         });
         dialog.show();
@@ -562,7 +602,7 @@ public class BizkitMain extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.text_package), Context.MODE_PRIVATE);
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View l = inflater.inflate(R.layout.popup_settings,
-                (ViewGroup) findViewById(R.id.settingsscreen_scrollview_root));
+                (ViewGroup) findViewById(R.id.settings_scrollview_root));
         final View layout = DrinkingGamesGlobal.loadSettingsToLayout(l, prefs, this);
         layout.findViewById(R.id.settings_tabs_bizkit).callOnClick();
         imageDialog.setView(layout);
@@ -580,6 +620,12 @@ public class BizkitMain extends AppCompatActivity {
                         getString(R.string.text_package), Context.MODE_PRIVATE).edit();
                 DrinkingGamesGlobal.saveSettingsFromPopup(prefsEditor, getApplicationContext(), layout);
                 prefsEditor.apply();
+
+                //Account for the skin
+                rightDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(dieR, getApplicationContext()));
+                leftDieView.setImageResource(DrinkingGamesGlobal.getDrawableIdForDie(dieL, getApplicationContext()));
+                //Account for possiblility
+                setState(currState);
             }
         });
         final AlertDialog dialog = imageDialog.create();
