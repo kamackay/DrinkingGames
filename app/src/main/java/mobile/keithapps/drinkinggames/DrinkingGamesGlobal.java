@@ -289,7 +289,7 @@ public class DrinkingGamesGlobal {
                 layout.findViewById(R.id.settings_general_dieskin_root).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.settings_scrollview_root).scrollTo(0, 0);
             }
-        });
+        });//Yay, Convolution!
         try {
             ((TextView) layout.findViewById(R.id.settings_textview_emaildeveloper))
                     .setText(String.format("     //Created by Keith MacKay\n\n     //Feedback: keith.mackay3@gmail.com\n\n     //Version: %s",
