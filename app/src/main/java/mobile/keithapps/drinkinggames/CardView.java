@@ -1,36 +1,21 @@
 package mobile.keithapps.drinkinggames;
 
 import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v4.content.ContextCompat;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.RotateAnimation;
-import android.widget.FrameLayout;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-/**
- * TODO: document your custom view class.
- */
-public class CardView extends FrameLayout {
-    private ImageView imageView;
+public class CardView extends ImageView {
+    private Drawable draw;
     private boolean frontShowing = false;
-    private boolean flipOnClick;
 
     public CardView(Context context) {
         this(context, null);
@@ -42,95 +27,87 @@ public class CardView extends FrameLayout {
 
     public CardView(Context context, AttributeSet attrs, int defaultStyle) {
         super(context, attrs, defaultStyle);
-        imageView = new ImageView(context, attrs, defaultStyle);
-        imageView.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.cardback));
-        int width = getWidth() - 20, height = getHeight() - 20;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setMinimumWidth(width);
-        imageView.setMinimumHeight(height);
-        imageView.setMaxHeight(width);
-        imageView.setMaxWidth(height);
-        this.addView(imageView, params);
-        imageView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (frontShowing) return;
-                ObjectAnimator animation = ObjectAnimator.ofFloat(v, "rotationY", 0.0f, 90f);
-                animation.setDuration(500);
-                animation.setRepeatCount(0);
-                animation.setInterpolator(new AccelerateDecelerateInterpolator());
-                final ObjectAnimator a2 = ObjectAnimator.ofFloat(v, "rotationY", 270f, 360);
-                a2.setDuration(500);
-                a2.setRepeatCount(0);
-                a2.setInterpolator(new AccelerateDecelerateInterpolator());
-                animation.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        imageView.setImageResource(R.drawable.hk);
-                        a2.start();
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                });
-                a2.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        frontShowing = true;
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                });
-                animation.start();
-
-            }
-        });
+        draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback);
         setClickable(true);
-        setFocusable(true);
-        setBackgroundResource(R.color.transparent);
-        if (imageView.getDrawable() != null) imageView.setVisibility(View.VISIBLE);
-        else imageView.setVisibility(View.GONE);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void onDraw(Canvas c) {
+        super.onDraw(c);
+        draw.setBounds(20, 20, getWidth() - 20, getHeight() - 20);
+        draw.draw(c);
     }
 
-    public void setImageResource(int resId) {
-        imageView.setVisibility(View.VISIBLE);
-        imageView.setImageResource(resId);
+    public void reset() {
+        draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback);
+        setVisibility(View.VISIBLE);
+        invalidate();
     }
 
-    public void setImageDrawable(Drawable drawable) {
-        imageView.setVisibility(View.VISIBLE);
-        imageView.setImageDrawable(drawable);
+    public synchronized void flip() {
+        if (frontShowing) {
+            setVisibility(View.GONE);
+            setClickable(false);
+            return;
+        }
+        if (lock) return;
+        lock = true;
+        AnimatorSet as = new AnimatorSet();
+        final Drawable d = ContextCompat.getDrawable(getContext(), R.drawable.hk);
+        ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
+        a1.setDuration(2000);
+        a1.setRepeatCount(0);
+        a1.setInterpolator(new AccelerateInterpolator());
+        ObjectAnimator a2 = ObjectAnimator.ofFloat(this, "rotationY", 270f, 360f);
+        a2.setDuration(2000);
+        a2.setRepeatCount(0);
+        a2.setInterpolator(new DecelerateInterpolator());
+        a1.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                draw = d;
+                invalidate();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        as.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                frontShowing = true;
+                lock = false;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        as.playSequentially(a1, a2);
+        as.start();
     }
+
+    private static boolean lock = false;
 }

@@ -8,8 +8,8 @@ android {
         applicationId "mobile.keithapps.drinkinggames"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 11
-        versionName "2.3.5"
+        versionCode 12
+        versionName "2.4.0"
     }
     buildTypes {
         release {

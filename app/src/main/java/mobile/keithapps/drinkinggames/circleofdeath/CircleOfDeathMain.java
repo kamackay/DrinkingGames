@@ -1,13 +1,9 @@
 package mobile.keithapps.drinkinggames.circleofdeath;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -26,6 +22,7 @@ import android.widget.Toast;
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
 import mobile.keithapps.customlayouts.CircleLayout;
+import mobile.keithapps.drinkinggames.CardView;
 import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
 
@@ -132,7 +129,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
     private void resetCards() {
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
         for (int i = 0; i < 52; i++)
-            cl.getChildAt(i).setVisibility(View.VISIBLE);
+            ((CardView)cl.getChildAt(i)).reset();
         this.circleBroken = false; //Circle no longer broken
         this.cod.reset(); //Restore all cards to the deck
 
@@ -177,17 +174,22 @@ public class CircleOfDeathMain extends AppCompatActivity {
         if (this.lock) return; //Statement that blocks multiple simeultaneous cards
         this.lock = true; //Claim this as the only drawCard to allow run (right now)
         //Make Button Invisible
-        view.setVisibility(View.GONE);
+        /**view.setVisibility(View.GONE);
 
-        //Show drawn card
-        Card drawn = this.cod.drawRandom();
-        showDrawn(drawn);
+         //Show drawn card
+         Card drawn = this.cod.drawRandom();
+         showDrawn(drawn);
 
-        //Check for a break in the circle
-        this.checkForBreak();
+         //Check for a break in the circle
+         this.checkForBreak();*/
         //this.lock = false;
         //Put this on the off chance that the popup is cancelled with the back button,
         //because that would not trigger either of the button presses
+
+        final CardView cv = (CardView) view;
+        cv.flip();
+        this.lock = false;
+
     }
 
     /**
@@ -344,17 +346,26 @@ public class CircleOfDeathMain extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
-        for (int i = 0; i < 52; i++) {
-            ImageView b = (ImageView) cl.getChildAt(i);
-            Drawable drawable = b.getDrawable();
-            if (drawable instanceof BitmapDrawable) {
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                bitmap.recycle();
-            }
-        }
+    protected void onDestroy() {/**
+     CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
+     for (int i = 0; i < 52; i++) {
+     ImageView b = (ImageView) cl.getChildAt(i);
+     Drawable drawable = b.getDrawable();
+     if (drawable instanceof BitmapDrawable) {
+     BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+     Bitmap bitmap = bitmapDrawable.getBitmap();
+     bitmap.recycle();
+     }
+     }*/
         super.onDestroy();
     }
+/**
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        double increment = 6.92307692308;
+        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
+        for (int i = 0; i < 52; i++)
+            cl.getChildAt(i).setRotation((float) ((increment * i) + .5));
+    }*/
 }
