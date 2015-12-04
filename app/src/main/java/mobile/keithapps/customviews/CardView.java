@@ -1,4 +1,4 @@
-package mobile.keithapps.drinkinggames;
+package mobile.keithapps.customviews;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+
+import mobile.keithapps.drinkinggames.R;
 
 public class CardView extends ImageView {
     private static boolean lock = false;
@@ -53,6 +55,7 @@ public class CardView extends ImageView {
         }
         if (lock) return false;
         lock = true;
+        final boolean[] done = {false};
         AnimatorSet as = new AnimatorSet();
         ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
         a1.setDuration(2000);
@@ -93,6 +96,7 @@ public class CardView extends ImageView {
             public void onAnimationEnd(Animator animation) {
                 frontShowing = true;
                 lock = false;
+                done[0] = true;
             }
 
             @Override
@@ -107,6 +111,8 @@ public class CardView extends ImageView {
         });
         as.playSequentially(a1, a2);
         as.start();
+        while (!done[0])
+            ;
         return true;
     }
 }

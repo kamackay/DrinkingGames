@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="cardbutton_width">100dp</dimen>
-    <dimen name="cardbutton_height">150dp</dimen>
+    <dimen name="cardbutton_width">150dp</dimen>
+    <dimen name="cardbutton_height">225dp</dimen>
     <integer name="two">2</integer>
     <integer name="three">3</integer>
     <integer name="one">1</integer>

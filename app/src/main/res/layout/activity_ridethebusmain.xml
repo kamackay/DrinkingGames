@@ -71,12 +71,11 @@
         android:layout_height="0sp"
         android:layout_weight="@integer/two">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/rtb_middlecardview_height"
-            android:layout_centerInParent="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/cardback" />
+        <mobile.keithapps.customviews.CardView
+            android:id="@+id/rtb_cardview_main"
+            android:layout_width="@dimen/cardbutton_width"
+            android:layout_height="@dimen/cardbutton_height"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
+import mobile.keithapps.customviews.CardView;
 import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
 
@@ -157,6 +158,10 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessRed(View view) {
         this.card1 = this.deck.drawRandom();
         Card.Suit s = this.card1.getSuit();
+        ((CardView) findViewById(R.id.rtb_cardview_main))
+                .flip(card1.getDrawable(getApplicationContext(), getSharedPreferences(
+                        getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.s_general_cardskin), 1)));
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) this.setState(State.High_Low);
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
@@ -197,6 +202,10 @@ public class RideTheBusMain extends AppCompatActivity {
     public void guessBlack(View view) {
         this.card1 = this.deck.drawRandom();
         Card.Suit s = this.card1.getSuit();
+        ((CardView) findViewById(R.id.rtb_cardview_main))
+                .flip(card1.getDrawable(getApplicationContext(), getSharedPreferences(
+                        getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.s_general_cardskin), 1)));
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);

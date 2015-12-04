@@ -1,4 +1,4 @@
-package mobile.keithapps.customlayouts;
+package mobile.keithapps.customviews;
 /*
  * Copyright dmitry.zaicew@gmail.com Dmitry Zaitsev
  *

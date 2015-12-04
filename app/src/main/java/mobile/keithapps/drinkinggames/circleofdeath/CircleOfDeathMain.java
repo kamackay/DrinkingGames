@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
-import mobile.keithapps.customlayouts.CircleLayout;
+import mobile.keithapps.customviews.CircleLayout;
 import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
 

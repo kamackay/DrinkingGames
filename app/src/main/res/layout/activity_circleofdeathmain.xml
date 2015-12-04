@@ -6,7 +6,7 @@
     tools:context="mobile.keithapps.drinkinggames.circleofdeath.CircleOfDeathMain">
 
 
-    <mobile.keithapps.customlayouts.CircleLayout
+    <mobile.keithapps.customviews.CircleLayout
         android:id="@+id/circleofdeath_circlelayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -322,6 +322,6 @@
             android:layout_height="@dimen/cardbutton_height"
             android:onClick="drawCard"
             android:scaleType="fitXY" />
-    </mobile.keithapps.customlayouts.CircleLayout>
+    </mobile.keithapps.customviews.CircleLayout>
 
 </FrameLayout>
