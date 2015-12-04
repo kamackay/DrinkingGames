@@ -14,6 +14,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
 public class CardView extends ImageView {
+    private static boolean lock = false;
     private Drawable draw;
     private boolean frontShowing = false;
 
@@ -34,7 +35,7 @@ public class CardView extends ImageView {
     @Override
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-        draw.setBounds(20, 20, getWidth() - 20, getHeight() - 20);
+        draw.setBounds(0, 0, getWidth(), getHeight());
         draw.draw(c);
     }
 
@@ -44,16 +45,15 @@ public class CardView extends ImageView {
         invalidate();
     }
 
-    public synchronized void flip() {
+    public synchronized boolean flip(final Drawable card) {
         if (frontShowing) {
             setVisibility(View.GONE);
             setClickable(false);
-            return;
+            return false;
         }
-        if (lock) return;
+        if (lock) return false;
         lock = true;
         AnimatorSet as = new AnimatorSet();
-        final Drawable d = ContextCompat.getDrawable(getContext(), R.drawable.hk);
         ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
         a1.setDuration(2000);
         a1.setRepeatCount(0);
@@ -69,7 +69,7 @@ public class CardView extends ImageView {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                draw = d;
+                draw = card;
                 invalidate();
             }
 
@@ -107,7 +107,6 @@ public class CardView extends ImageView {
         });
         as.playSequentially(a1, a2);
         as.start();
+        return true;
     }
-
-    private static boolean lock = false;
 }

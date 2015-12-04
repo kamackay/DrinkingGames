@@ -174,20 +174,18 @@ public class CircleOfDeathMain extends AppCompatActivity {
         if (this.lock) return; //Statement that blocks multiple simeultaneous cards
         this.lock = true; //Claim this as the only drawCard to allow run (right now)
         //Make Button Invisible
-        /**view.setVisibility(View.GONE);
-
-         //Show drawn card
-         Card drawn = this.cod.drawRandom();
-         showDrawn(drawn);
+        //view.setVisibility(View.GONE);
 
          //Check for a break in the circle
-         this.checkForBreak();*/
-        //this.lock = false;
-        //Put this on the off chance that the popup is cancelled with the back button,
-        //because that would not trigger either of the button presses
+        //this.checkForBreak();
+
+        Card card = this.cod.drawRandom();
 
         final CardView cv = (CardView) view;
-        cv.flip();
+        boolean ret = cv.flip(card.getDrawable(getApplicationContext(),
+                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.s_general_cardskin), 1)));
+        if (!ret) this.cod.putBack(card);
         this.lock = false;
 
     }

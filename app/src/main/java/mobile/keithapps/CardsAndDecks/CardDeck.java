@@ -51,6 +51,11 @@ public class CardDeck extends ArrayList {
         }
     }
 
+    public void putBack(Card card) {
+        this.deck.add(card);
+        this.shuffle();
+    }
+
     /**
      * Puts all 52 of the cards in the deck
      */
