@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="CardView">
+        <attr name="flipOnClick" format="boolean" />
+    </declare-styleable>
+</resources>

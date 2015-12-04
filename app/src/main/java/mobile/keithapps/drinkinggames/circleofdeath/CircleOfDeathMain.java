@@ -69,18 +69,6 @@ public class CircleOfDeathMain extends AppCompatActivity {
         this.lock = false;
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        double increment = 6.92307692308;
-        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
-        for (int i = 0; i < 52; i++) {
-            ImageView iv = (ImageView) cl.getChildAt(i);
-            iv.setRotation((float) ((increment * i) + .5));
-            iv.setImageResource(R.drawable.cardback);
-        }
-    }
-
     /**
      * Check for a break in the cards
      */
