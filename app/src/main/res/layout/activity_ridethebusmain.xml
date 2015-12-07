@@ -73,8 +73,8 @@
 
         <mobile.keithapps.customviews.CardView
             android:id="@+id/rtb_cardview_main"
-            android:layout_width="@dimen/cardbutton_width"
-            android:layout_height="@dimen/cardbutton_height"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 

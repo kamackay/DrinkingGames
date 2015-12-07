@@ -40,7 +40,7 @@ public class CardView extends ImageView {
     @Override
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-        float h = getHeight() * .8f, w = getWidth() * .8f;
+        float h = getHeight() * .72f, w = getWidth() * .72f;
         if ((h * (2f / 3f)) > w) h = w * 3f / 2f;
         else w = h * 2f / 3f;
         draw.setBounds((int) ((getWidth() - w) / 2),
