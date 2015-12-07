@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -39,6 +40,7 @@ public class RideTheBusMain extends AppCompatActivity {
     private Button lowerButton;
     private Button insideButton;
     private Button outsideButton;
+    private CardView cv;
     private LinearLayout suitsButtons;
     private TextView questionText;
     private TextView warningAce;
@@ -76,6 +78,7 @@ public class RideTheBusMain extends AppCompatActivity {
         this.cardView2 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card2);
         this.cardView3 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card3);
         this.cardView4 = (ImageView) findViewById(R.id.ridethebus_uppercardsview_card4);
+        this.cv = (CardView) findViewById(R.id.rtb_cardview_main);
         this.setState(State.Color);
     }
 
@@ -157,12 +160,12 @@ public class RideTheBusMain extends AppCompatActivity {
      */
     public void guessRed(View view) {
         this.card1 = this.deck.drawRandom();
+        Drawable d = card1.getDrawable(getApplicationContext(),
+                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.s_general_cardskin), 1));
         Card.Suit s = this.card1.getSuit();
-        ((CardView) findViewById(R.id.rtb_cardview_main))
-                .flip(card1.getDrawable(getApplicationContext(), getSharedPreferences(
-                        getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.s_general_cardskin), 1)));
-        if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) this.setState(State.High_Low);
+        if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND)
+            cv.flipAndMoveOn(d, this, State.High_Low);
         else {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -190,7 +193,7 @@ public class RideTheBusMain extends AppCompatActivity {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
-            dialog.show();
+            cv.flipAndShowDialog(dialog, d);
         }
     }
 
@@ -201,11 +204,10 @@ public class RideTheBusMain extends AppCompatActivity {
      */
     public void guessBlack(View view) {
         this.card1 = this.deck.drawRandom();
+        Drawable d = card1.getDrawable(getApplicationContext(),
+                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getInt(getString(R.string.s_general_cardskin), 1));
         Card.Suit s = this.card1.getSuit();
-        ((CardView) findViewById(R.id.rtb_cardview_main))
-                .flip(card1.getDrawable(getApplicationContext(), getSharedPreferences(
-                        getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.s_general_cardskin), 1)));
         if (s == Card.Suit.HEART || s == Card.Suit.DIAMOND) {
             AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -233,10 +235,9 @@ public class RideTheBusMain extends AppCompatActivity {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 }
             });
-            dialog.show();
-        } else {
-            this.setState(State.High_Low);
-        }
+            cv.flipAndShowDialog(dialog, d);
+        } else
+            cv.flipAndMoveOn(d, this, State.High_Low);
     }
 
     /**

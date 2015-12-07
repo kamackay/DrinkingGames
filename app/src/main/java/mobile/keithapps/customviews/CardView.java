@@ -3,6 +3,7 @@ package mobile.keithapps.customviews;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -13,7 +14,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
+import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
+import mobile.keithapps.drinkinggames.ridethebus.RideTheBusMain;
 
 public class CardView extends ImageView {
     private static boolean lock = false;
@@ -43,11 +46,24 @@ public class CardView extends ImageView {
 
     public void reset() {
         draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback);
+        this.frontShowing = false;
         setVisibility(View.VISIBLE);
-        invalidate();
+        this.invalidate();
     }
 
-    public synchronized boolean flip(final Drawable card) {
+    public boolean flipAndShowDialog(final AlertDialog dialog, final Drawable card) {
+        return flip(card, dialog, null, null);
+    }
+
+    public boolean flip(final Drawable card) {
+        return flip(card, null, null, null);
+    }
+
+    public boolean flipAndMoveOn(final Drawable card, RideTheBusMain rtb, RideTheBusMain.State s) {
+        return flip(card, null, s, rtb);
+    }
+
+    public synchronized boolean flip(final Drawable card, final AlertDialog dialog, final RideTheBusMain.State s, final RideTheBusMain rtb) {
         if (frontShowing) {
             setVisibility(View.GONE);
             setClickable(false);
@@ -55,7 +71,6 @@ public class CardView extends ImageView {
         }
         if (lock) return false;
         lock = true;
-        final boolean[] done = {false};
         AnimatorSet as = new AnimatorSet();
         ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
         a1.setDuration(2000);
@@ -96,7 +111,21 @@ public class CardView extends ImageView {
             public void onAnimationEnd(Animator animation) {
                 frontShowing = true;
                 lock = false;
-                done[0] = true;
+                if (s != null && rtb != null) {
+                    try {
+                        rtb.setState(s);
+                    } catch (Exception e) {
+                        DrinkingGamesGlobal.logException(e);
+                    }
+                }
+                if (dialog != null) {
+                    try {
+                        dialog.show();
+                    } catch (Exception e) {
+                        DrinkingGamesGlobal.logException(e);
+                    }
+                }
+                reset();
             }
 
             @Override
@@ -111,8 +140,6 @@ public class CardView extends ImageView {
         });
         as.playSequentially(a1, a2);
         as.start();
-        while (!done[0])
-            ;
         return true;
     }
 }
