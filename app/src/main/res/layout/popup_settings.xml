@@ -803,21 +803,33 @@
                 android:background="@drawable/buttonbackground_justborders"
                 android:orientation="vertical"
                 android:padding="@dimen/ten"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/buttonbackground_allsides"
-                    android:paddingBottom="@dimen/ten"
+                    android:paddingBottom="@dimen/twenty"
                     android:text="@string/text_general"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/thirty" />
 
-                <View
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/ten" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/twenty">
+
+                    <CheckBox
+                        android:id="@+id/settings_general_showanimations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/ten"
+                        android:text="@string/text_showanimations"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/twenty" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/settings_general_cardskin_root"
@@ -831,16 +843,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/buttonbackground_allsides"
-                        android:paddingBottom="@dimen/ten"
+                        android:paddingBottom="@dimen/twenty"
                         android:paddingTop="@dimen/ten"
                         android:text="@string/text_cardskin"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/twenty_five" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/ten" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -859,6 +867,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/settings_general_cardskin_radiobutton_1"
+                                android:paddingEnd="@dimen/ten"
+                                android:paddingStart="@dimen/ten"
                                 android:src="@drawable/ck" />
 
                             <RadioButton
@@ -869,10 +879,6 @@
                                 android:layout_centerHorizontal="true"
                                 android:checked="true" />
                         </RelativeLayout>
-
-                        <View
-                            android:layout_width="@dimen/thirty"
-                            android:layout_height="wrap_content" />
 
                         <RelativeLayout
                             android:id="@+id/settings_general_cardskin_relativelayout_2"
@@ -885,6 +891,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/settings_general_cardskin_radiobutton_2"
+                                android:paddingEnd="@dimen/ten"
+                                android:paddingStart="@dimen/ten"
                                 android:src="@drawable/ck_2" />
 
                             <RadioButton
@@ -903,28 +911,25 @@
                     android:layout_height="200sp"
                     android:background="@drawable/buttonbackground_justborders"
                     android:orientation="vertical"
-                    android:padding="@dimen/ten">
+                    android:padding="@dimen/ten"
+                    android:paddingBottom="@dimen/twenty_five">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/buttonbackground_allsides"
-                        android:paddingBottom="@dimen/ten"
+                        android:paddingBottom="@dimen/twenty"
                         android:paddingTop="@dimen/ten"
                         android:text="@string/text_dieskin"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/twenty_five" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/ten" />
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
                         <RelativeLayout
                             android:id="@+id/settings_general_dieskin_relativelayout_1"
@@ -971,10 +976,6 @@
                                 android:layout_centerHorizontal="true" />
                         </RelativeLayout>
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/twenty_five" />
                 </LinearLayout>
             </LinearLayout>
 

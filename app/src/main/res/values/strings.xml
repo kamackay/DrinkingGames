@@ -122,6 +122,8 @@
     <string name="text_dieskin">Die Skin</string>
     <string name="text_skin1preview">Skin 1 preview</string>
     <string name="text_dieskin2preview">Die Skin 2 Preview</string>
+    <string name="text_showanimations">Show Animations</string>
+    <string name="s_general_showanimations">s.general.showanimations</string>
 
     <string-array name="insults">
         <item>what an asshole</item>

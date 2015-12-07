@@ -40,7 +40,13 @@ public class CardView extends ImageView {
     @Override
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-        draw.setBounds(0, 0, getWidth(), getHeight());
+        float h = getHeight() * .8f, w = getWidth() * .8f;
+        if ((h * (2f / 3f)) > w) h = w * 3f / 2f;
+        else w = h * 2f / 3f;
+        draw.setBounds((int) ((getWidth() - w) / 2),
+                (int) ((getHeight() - h) / 2),
+                (int) (getWidth() - (getWidth() - w) / 2),
+                (int) (getHeight() - (getHeight() - h) / 2));
         draw.draw(c);
     }
 
@@ -63,7 +69,8 @@ public class CardView extends ImageView {
         return flip(card, null, s, rtb);
     }
 
-    public synchronized boolean flip(final Drawable card, final AlertDialog dialog, final RideTheBusMain.State s, final RideTheBusMain rtb) {
+    public synchronized boolean flip(final Drawable card, final AlertDialog dialog,
+                                     final RideTheBusMain.State s, final RideTheBusMain rtb) {
         if (frontShowing) {
             setVisibility(View.GONE);
             setClickable(false);
@@ -73,11 +80,11 @@ public class CardView extends ImageView {
         lock = true;
         AnimatorSet as = new AnimatorSet();
         ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
-        a1.setDuration(2000);
+        a1.setDuration(1000);
         a1.setRepeatCount(0);
         a1.setInterpolator(new AccelerateInterpolator());
         ObjectAnimator a2 = ObjectAnimator.ofFloat(this, "rotationY", 270f, 360f);
-        a2.setDuration(2000);
+        a2.setDuration(1000);
         a2.setRepeatCount(0);
         a2.setInterpolator(new DecelerateInterpolator());
         a1.addListener(new Animator.AnimatorListener() {

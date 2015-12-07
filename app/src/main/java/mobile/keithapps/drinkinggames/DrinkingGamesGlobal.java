@@ -99,6 +99,8 @@ public class DrinkingGamesGlobal {
                 .setChecked(prefs.getBoolean(t.getString(R.string.s_bizkit_insultbizkit), true));
         ((CheckBox) layout.findViewById(R.id.settings_acesarelow))
                 .setChecked(prefs.getBoolean(t.getString(R.string.s_acesalwayslow), true));
+        ((CheckBox) layout.findViewById(R.id.settings_general_showanimations))
+                .setChecked(prefs.getBoolean(t.getString(R.string.s_general_showanimations), true));
         ((EditText) layout.findViewById(R.id.settings_cod_ace_actionname))
                 .setText(prefs.getString(t.getString(R.string.s_cod_ace_actionname_key),
                         t.getString(R.string.cod_dir_a)));
@@ -305,6 +307,8 @@ public class DrinkingGamesGlobal {
                 ((CheckBox) layout.findViewById(R.id.settings_acesarelow)).isChecked());
         prefsEditor.putBoolean(a.getString(R.string.s_bizkit_insultbizkit),
                 ((CheckBox) layout.findViewById(R.id.settings_bizkit_insult)).isChecked());
+        prefsEditor.putBoolean(a.getString(R.string.s_general_showanimations),
+                ((CheckBox) layout.findViewById(R.id.settings_general_showanimations)).isChecked());
         if (((RadioButton) layout.findViewById(R.id.settings_general_cardskin_radiobutton_2)).isChecked())
             prefsEditor.putInt(a.getString(R.string.s_general_cardskin), 2);
         else prefsEditor.putInt(a.getString(R.string.s_general_cardskin), 1);
