@@ -3,7 +3,6 @@ package mobile.keithapps.customviews;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -14,9 +13,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
-import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
-import mobile.keithapps.drinkinggames.ridethebus.RideTheBusMain;
 
 public class CardView extends ImageView {
     private static boolean lock = false;
@@ -36,6 +33,7 @@ public class CardView extends ImageView {
         draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback);
         setClickable(true);
     }
+
 
     @Override
     protected void onDraw(Canvas c) {
@@ -57,27 +55,12 @@ public class CardView extends ImageView {
         this.invalidate();
     }
 
-    public boolean flipAndShowDialog(final AlertDialog dialog, final Drawable card) {
-        return flip(card, dialog, null, null);
-    }
-
-    public boolean flip(final Drawable card) {
-        return flip(card, null, null, null);
-    }
-
-    public boolean flipAndMoveOn(final Drawable card, RideTheBusMain rtb, RideTheBusMain.State s) {
-        return flip(card, null, s, rtb);
-    }
-
-    public synchronized boolean flip(final Drawable card, final AlertDialog dialog,
-                                     final RideTheBusMain.State s, final RideTheBusMain rtb) {
+    public boolean flipThen(final Drawable card, final Runnable runnable) {
         if (frontShowing) {
             setVisibility(View.GONE);
             setClickable(false);
             return false;
         }
-        if (lock) return false;
-        lock = true;
         AnimatorSet as = new AnimatorSet();
         ObjectAnimator a1 = ObjectAnimator.ofFloat(this, "rotationY", 0.0f, 90f);
         a1.setDuration(1000);
@@ -94,8 +77,7 @@ public class CardView extends ImageView {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                draw = card;
-                invalidate();
+                setImageDrawable(card);
             }
 
             @Override
@@ -118,21 +100,7 @@ public class CardView extends ImageView {
             public void onAnimationEnd(Animator animation) {
                 frontShowing = true;
                 lock = false;
-                if (s != null && rtb != null) {
-                    try {
-                        rtb.setState(s);
-                    } catch (Exception e) {
-                        DrinkingGamesGlobal.logException(e);
-                    }
-                }
-                if (dialog != null) {
-                    try {
-                        dialog.show();
-                    } catch (Exception e) {
-                        DrinkingGamesGlobal.logException(e);
-                    }
-                }
-                reset();
+                runnable.run();
             }
 
             @Override
@@ -148,5 +116,17 @@ public class CardView extends ImageView {
         as.playSequentially(a1, a2);
         as.start();
         return true;
+    }
+
+    /**
+     * Sets a drawable as the content of this ImageView.
+     *
+     * @param drawable the Drawable to set, or {@code null} to clear the
+     *                 content
+     */
+    @Override
+    public void setImageDrawable(Drawable drawable) {
+        draw = drawable;
+        invalidate();
     }
 }

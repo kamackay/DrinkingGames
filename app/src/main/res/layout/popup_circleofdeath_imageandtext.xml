@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/ten">
 
-    <ImageView
+    <mobile.keithapps.customviews.CardView
         android:id="@+id/image_on_popup"
         android:layout_width="match_parent"
         android:layout_height="300sp" />

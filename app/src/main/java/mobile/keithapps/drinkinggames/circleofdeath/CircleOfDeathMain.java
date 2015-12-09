@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
+import mobile.keithapps.customviews.CardView;
 import mobile.keithapps.customviews.CircleLayout;
 import mobile.keithapps.drinkinggames.DrinkingGamesGlobal;
 import mobile.keithapps.drinkinggames.R;
@@ -211,16 +212,13 @@ public class CircleOfDeathMain extends AppCompatActivity {
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
                 (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
-        TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
+        final TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.toString());
-        ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-        imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
-                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.s_general_cardskin), 1)));
-        ((TextView) layout.findViewById(R.id.directions_on_popup))
-                .setText(this.getSharedPreferences(getString(R.string.text_package),
-                        Context.MODE_PRIVATE).getString(getString(card.getActionNameKey()),
-                        getString(card.getDefaultDirections())));
+        final CardView imageView = (CardView) layout.findViewById(R.id.image_on_popup);
+        final TextView directions = (TextView) layout.findViewById(R.id.directions_on_popup);
+        directions.setText(this.getSharedPreferences(getString(R.string.text_package),
+                Context.MODE_PRIVATE).getString(getString(card.getActionNameKey()),
+                getString(card.getDefaultDirections())));
         imageDialog.setView(layout);
         imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -247,6 +245,30 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
+                directions.setVisibility(View.INVISIBLE);
+                textView.setVisibility(View.INVISIBLE);
+                imageView.flipThen(card.getDrawable(getApplicationContext()), new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setVisibility(View.VISIBLE);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(500);
+                                    CircleOfDeathMain.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            directions.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    DrinkingGamesGlobal.logException(e);
+                                }
+                            }
+                        }).start();
+                    }
+                });
             }
         });
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -256,6 +278,10 @@ public class CircleOfDeathMain extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    public void show(View v) {
+        v.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -271,9 +297,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
         TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
         textView.setText(card.getFaceValue().toString());
         ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-        imageView.setImageDrawable(card.getDrawable(getApplicationContext(),
-                getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
-                        .getInt(getString(R.string.s_general_cardskin), 1)));
+        imageView.setImageDrawable(card.getDrawable(getApplicationContext()));
         ((TextView) layout.findViewById(R.id.directions_on_popup))
                 .setText(this.getSharedPreferences(getString(R.string.text_package),
                         Context.MODE_PRIVATE).getString(getString(card.getActionDescriptionKey()),
