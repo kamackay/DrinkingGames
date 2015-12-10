@@ -247,28 +247,35 @@ public class CircleOfDeathMain extends AppCompatActivity {
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
                 directions.setVisibility(View.INVISIBLE);
                 textView.setVisibility(View.INVISIBLE);
-                imageView.flipThen(card.getDrawable(getApplicationContext()), new Runnable() {
-                    @Override
-                    public void run() {
-                        textView.setVisibility(View.VISIBLE);
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(500);
-                                    CircleOfDeathMain.this.runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            directions.setVisibility(View.VISIBLE);
-                                        }
-                                    });
-                                } catch (Exception e) {
-                                    DrinkingGamesGlobal.logException(e);
+                if (getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                        .getBoolean(getString(R.string.s_general_showanimations), true)) {
+                    imageView.flipThen(card.getDrawable(getApplicationContext()), new Runnable() {
+                        @Override
+                        public void run() {
+                            textView.setVisibility(View.VISIBLE);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Thread.sleep(500);
+                                        CircleOfDeathMain.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                directions.setVisibility(View.VISIBLE);
+                                            }
+                                        });
+                                    } catch (Exception e) {
+                                        DrinkingGamesGlobal.logException(e);
+                                    }
                                 }
-                            }
-                        }).start();
-                    }
-                });
+                            }).start();
+                        }
+                    });
+                } else {
+                    textView.setVisibility(View.VISIBLE);
+                    directions.setVisibility(View.VISIBLE);
+                    imageView.setImageDrawable(card.getDrawable(getApplicationContext()));
+                }
             }
         });
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {

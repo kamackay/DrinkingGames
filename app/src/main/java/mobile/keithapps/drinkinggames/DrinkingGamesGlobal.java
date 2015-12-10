@@ -258,7 +258,7 @@ public class DrinkingGamesGlobal {
                 layout.findViewById(R.id.settings_general_root).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.settings_general_cardskin_root).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.settings_general_dieskin_root).setVisibility(View.GONE);
-                layout.findViewById(R.id.settings_general_showanimations).setVisibility(View.GONE);
+                layout.findViewById(R.id.settings_general_showanimations).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.settings_scrollview_root).scrollTo(0, 0);
             }
         });
