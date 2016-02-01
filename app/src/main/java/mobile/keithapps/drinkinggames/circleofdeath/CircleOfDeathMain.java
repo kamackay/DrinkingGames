@@ -64,21 +64,49 @@ public class CircleOfDeathMain extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21)
             this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
 
-        this.circleBroken = false;
-        this.cod = new CardDeck();
-        this.lock = false;
+        circleBroken = false;
+        cod = new CardDeck();
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        double increment = 6.92307692308;
-        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
-        for (int i = 0; i < 52; i++) {
-            ImageView iv = (ImageView) cl.getChildAt(i);
-            iv.setRotation((float) ((increment * i) + .5));
-            iv.setImageResource(R.drawable.cardback);
-        }
+        lock = true;
+        final double increment = 6.92307692308;
+        final CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 52; i++) {
+                    final int finalI = i;
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final ImageView iv = (ImageView) cl.getChildAt(finalI);
+                            try {
+                                Thread.sleep(150);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        iv.setRotation((float) ((increment * finalI) + .5));
+                                        iv.setImageResource(R.drawable.cardback);
+                                    }
+                                });
+                            } catch (Exception e) {
+                                //This shouldn't happen, like, ever
+                            }
+                        }
+                    });
+                    t.start();
+                    try {
+                        t.join();
+                    } catch (Exception x) {
+                        //Ha, doubt this'll happen
+                    }
+                }
+                lock = false;
+            }
+        }).start();
     }
 
     /**
@@ -100,7 +128,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
                     TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
                     textView.setText(R.string.cod_circlebrokenmessage);
                     ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-                    imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.brokencircle));
+                    imageView.setVisibility(View.GONE);
                     final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
                     instructionsView.setText(R.string.cod_circlebrokenmessage_2);
                     imageDialog.setView(layout);
