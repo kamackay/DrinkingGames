@@ -5,7 +5,6 @@
     android:background="@color/screen_background"
     tools:context="mobile.keithapps.drinkinggames.circleofdeath.CircleOfDeathMain">
 
-
     <mobile.keithapps.customviews.CircleLayout
         android:id="@+id/circleofdeath_circlelayout"
         android:layout_width="fill_parent"

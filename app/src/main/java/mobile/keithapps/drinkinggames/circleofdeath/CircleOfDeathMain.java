@@ -79,29 +79,18 @@ public class CircleOfDeathMain extends AppCompatActivity {
             public void run() {
                 for (int i = 0; i < 52; i++) {
                     final int finalI = i;
-                    Thread t = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            final ImageView iv = (ImageView) cl.getChildAt(finalI);
-                            try {
-                                Thread.sleep(150);
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        iv.setRotation((float) ((increment * finalI) + .5));
-                                        iv.setImageResource(R.drawable.cardback);
-                                    }
-                                });
-                            } catch (Exception e) {
-                                //This shouldn't happen, like, ever
-                            }
-                        }
-                    });
-                    t.start();
                     try {
-                        t.join();
-                    } catch (Exception x) {
-                        //Ha, doubt this'll happen
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ImageView iv = (ImageView) cl.getChildAt(finalI);
+                                iv.setImageResource(R.drawable.cardback);
+                                iv.setRotation((float) ((increment * finalI) + .5));
+                                iv.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } catch (Exception e) {
+                        //This shouldn't happen, like, ever
                     }
                 }
                 lock = false;
