@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import mobile.keithapps.CardsAndDecks.Card;
 import mobile.keithapps.CardsAndDecks.CardDeck;
 import mobile.keithapps.customviews.CardView;
@@ -33,10 +35,6 @@ import mobile.keithapps.drinkinggames.R;
  * Controller for the Circle of Death Screen
  */
 public class CircleOfDeathMain extends AppCompatActivity {
-    /**
-     * Whether or not the circle has been broken yet
-     */
-    private boolean circleBroken;
     /**
      * Use this as a bastardized semaphore to resolve the ability to
      * open multiple cards at the same time
@@ -56,21 +54,20 @@ public class CircleOfDeathMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_circleofdeathmain);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
-
         if (Build.VERSION.SDK_INT >= 21)
             this.setTheme(R.style.Theme_FullscreenTheme_MaterialDark);
-
-        circleBroken = false;
         cod = new CardDeck();
+        cod.setDeck(getApplicationContext());
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        final SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.text_package), MODE_PRIVATE);
         lock = true;
         final double increment = 6.92307692308;
         final CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
@@ -79,14 +76,16 @@ public class CircleOfDeathMain extends AppCompatActivity {
             public void run() {
                 for (int i = 0; i < 52; i++) {
                     final int finalI = i;
+                    final ImageView iv = (ImageView) cl.getChildAt(finalI);
                     try {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                ImageView iv = (ImageView) cl.getChildAt(finalI);
                                 iv.setImageResource(R.drawable.cardback);
                                 iv.setRotation((float) ((increment * finalI) + .5));
-                                iv.setVisibility(View.VISIBLE);
+                                if (prefs.getBoolean(String.format(Locale.getDefault(),
+                                        "card.%d", finalI), true)) iv.setVisibility(View.VISIBLE);
+                                else iv.setVisibility(View.GONE);
                             }
                         });
                     } catch (Exception e) {
@@ -102,44 +101,54 @@ public class CircleOfDeathMain extends AppCompatActivity {
      * Check for a break in the cards
      */
     private void checkForBreak() {
-        if (circleBroken) return;
-        CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
-        int counter = 0;
-        for (int i = 0; i < 52; i++) {
-            if (cl.getChildAt(i).getVisibility() == View.GONE) {
-                counter++;
-                if (counter >= 7) {
-                    this.circleBroken = true;
-                    AlertDialog.Builder imageDialog = new AlertDialog.Builder(this);
-                    final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
-                            (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
-                    TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
-                    textView.setText(R.string.cod_circlebrokenmessage);
-                    ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
-                    imageView.setVisibility(View.GONE);
-                    final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
-                    instructionsView.setText(R.string.cod_circlebrokenmessage_2);
-                    imageDialog.setView(layout);
-                    imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+        if (isBroken()) return;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
+                int counter = 0;
+                for (int i = 0; i < 52; i++) {
+                    if (cl.getChildAt(i).getVisibility() == View.GONE) {
+                        counter++;
+                        if (counter >= 7) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    broken(true);
+                                    AlertDialog.Builder imageDialog = new AlertDialog.Builder(CircleOfDeathMain.this);
+                                    final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                                    View layout = inflater.inflate(R.layout.popup_circleofdeath_imageandtext,
+                                            (ViewGroup) findViewById(R.id.popup_ridethebus_carddrawn_root));
+                                    TextView textView = (TextView) layout.findViewById(R.id.text_on_popup);
+                                    textView.setText(R.string.cod_circlebrokenmessage);
+                                    ImageView imageView = (ImageView) layout.findViewById(R.id.image_on_popup);
+                                    imageView.setVisibility(View.GONE);
+                                    final TextView instructionsView = (TextView) layout.findViewById(R.id.directions_on_popup);
+                                    instructionsView.setText(R.string.cod_circlebrokenmessage_2);
+                                    imageDialog.setView(layout);
+                                    imageDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    final AlertDialog dialog = imageDialog.create();
+                                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                                        @Override
+                                        public void onShow(DialogInterface arg0) {
+                                            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                                                    .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
+                                        }
+                                    });
+                                    dialog.show();
+                                }
+                            });
+                            return;
                         }
-                    });
-                    final AlertDialog dialog = imageDialog.create();
-                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public void onShow(DialogInterface arg0) {
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                                    .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.darkRed));
-                        }
-                    });
-                    dialog.show();
-                    return;
+                    } else counter = 0;
                 }
-            } else counter = 0;
-        }
+            }
+        }).start();
     }
 
     /**
@@ -155,6 +164,8 @@ public class CircleOfDeathMain extends AppCompatActivity {
         return true;
     }
 
+    public static final String circleBroken = "circleBroken";
+
     /**
      * Make all of the cards visible
      */
@@ -162,10 +173,10 @@ public class CircleOfDeathMain extends AppCompatActivity {
         CircleLayout cl = (CircleLayout) findViewById(R.id.circleofdeath_circlelayout);
         for (int i = 0; i < 52; i++)
             cl.getChildAt(i).setVisibility(View.VISIBLE);
-        this.circleBroken = false; //Circle no longer broken
-        this.cod.reset(); //Restore all cards to the deck
-
-        //Inform the user. Toast for builds that do not support Snackbar
+        broken(false);
+        cod.setDeck(); //Restore all cards to the deck
+        setAllShown();
+        putAllBackInDeck();
         Toast.makeText(getApplicationContext(), "Reset All Cards", Toast.LENGTH_SHORT).show();
     }
 
@@ -209,11 +220,17 @@ public class CircleOfDeathMain extends AppCompatActivity {
         view.setVisibility(View.GONE);
 
         //Show drawn card
-        Card drawn = this.cod.drawRandom();
+        Card drawn = cod.drawRandom();
         showDrawn(drawn);
 
         //Check for a break in the circle
-        this.checkForBreak();
+        checkForBreak();
+        try {
+            setHidden(((ViewGroup) view.getParent()).indexOfChild(view));
+        } catch (Exception e) {
+            //It's OK
+        }
+
         //this.lock = false;
         //Put this on the off chance that the popup is cancelled with the back button,
         //because that would not trigger either of the button presses
@@ -302,10 +319,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
             }
         });
         dialog.show();
-    }
-
-    public void show(View v) {
-        v.setVisibility(View.VISIBLE);
+        removeFromDeck(card);
     }
 
     /**
@@ -415,5 +429,50 @@ public class CircleOfDeathMain extends AppCompatActivity {
             }
         }
         super.onDestroy();
+    }
+
+    void setHidden(int i) {
+        SharedPreferences.Editor edit = getSharedPreferences(getString(R.string.text_package),
+                MODE_PRIVATE).edit();
+        edit.putBoolean(String.format(Locale.getDefault(), "card.%d", i), false);
+        edit.apply();
+    }
+
+    void setAllShown() {
+        SharedPreferences.Editor edit = getSharedPreferences(getString(R.string.text_package),
+                MODE_PRIVATE).edit();
+        for (int i = 0; i < 52; i++)
+            edit.putBoolean(String.format(Locale.getDefault(), "card.%d", i), true);
+        edit.apply();
+    }
+
+    void putAllBackInDeck(){
+        SharedPreferences.Editor edit = getSharedPreferences(
+                getString(R.string.text_package), Context.MODE_PRIVATE).edit();
+        for (Card.FaceValue face : Card.FaceValue.values())
+            for (Card.Suit suit : Card.Suit.values())
+                edit.putBoolean(String.format(Locale.getDefault(), "deck.%s_%s",
+                        face.toString(), suit.toString()), true);
+        edit.apply();
+    }
+
+    void removeFromDeck(final Card card) {
+        SharedPreferences.Editor edit = getSharedPreferences(getString(R.string.text_package),
+                MODE_PRIVATE).edit();
+        edit.putBoolean(String.format(Locale.getDefault(), "deck.%s_%s",
+                card.getFaceValue().toString(), card.getSuit().toString()), false);
+        edit.apply();
+    }
+
+    void broken(boolean broken) {
+        SharedPreferences.Editor edit = getSharedPreferences(getString(R.string.text_package),
+                MODE_PRIVATE)                .edit();
+        edit.putBoolean(circleBroken, broken);
+        edit.apply();
+    }
+
+    boolean isBroken(){
+        return getSharedPreferences(getString(R.string.text_package), MODE_PRIVATE)
+                .getBoolean(circleBroken, false);
     }
 }

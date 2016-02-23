@@ -1,21 +1,26 @@
 package mobile.keithapps.CardsAndDecks;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Random;
 
 import mobile.keithapps.CardsAndDecks.Card.FaceValue;
 import mobile.keithapps.CardsAndDecks.Card.Suit;
+import mobile.keithapps.drinkinggames.R;
 
 /**
  * Created by Keith on 2/15/2015.
+ * Card Deck
  */
 public class CardDeck extends ArrayList {
     private ArrayList<Card> deck;
 
     public CardDeck() {
         this.deck = new ArrayList<>();
-        this.setDeck();
     }
 
     /**
@@ -43,7 +48,7 @@ public class CardDeck extends ArrayList {
             int index = rand.nextInt(this.deck.size());
             return this.deck.remove(index);
         } else {
-            this.reset();
+            this.setDeck();
             Random rand = new Random();
             int index = rand.nextInt(this.deck.size());
             return this.deck.remove(index);
@@ -59,6 +64,7 @@ public class CardDeck extends ArrayList {
      * Puts all 52 of the cards in the deck
      */
     public void setDeck() {
+        this.deck.clear();
         this.deck.add(new Card(FaceValue.Ace, Suit.Clubs));
         this.deck.add(new Card(FaceValue.Ace, Suit.Spades));
         this.deck.add(new Card(FaceValue.Ace, Suit.Diamonds));
@@ -114,8 +120,15 @@ public class CardDeck extends ArrayList {
         this.shuffle();
     }
 
-    public void reset() {
-        this.deck = new ArrayList<>();
-        this.setDeck();
+    public void setDeck(Context c) {
+        deck.clear();
+        SharedPreferences prefs = c.getSharedPreferences(
+                c.getString(R.string.text_package), Context.MODE_PRIVATE);
+        for (FaceValue face : FaceValue.values())
+            for (Suit suit : Suit.values())
+                if (prefs.getBoolean(String.format(Locale.getDefault(),"deck.%s_%s",
+                        face.toString(), suit.toString()), true))
+                    deck.add(new Card(face, suit));
+        shuffle();
     }
 }

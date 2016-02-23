@@ -845,7 +845,7 @@ public class RideTheBusMain extends AppCompatActivity {
      * @param view Irrelevant
      */
     public void restart(View view) {
-        this.deck.reset();
+        deck.setDeck();
         this.setState(State.Color);
         Toast.makeText(getApplicationContext(), getString(R.string.text_resetallcards), Toast.LENGTH_LONG).show();
     }
