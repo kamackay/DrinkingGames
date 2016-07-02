@@ -30,7 +30,7 @@ public class CardView extends ImageView {
 
     public CardView(Context context, AttributeSet attrs, int defaultStyle) {
         super(context, attrs, defaultStyle);
-        draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback);
+        draw = ContextCompat.getDrawable(getContext(), R.drawable.cardback_nologo);
         setClickable(true);
     }
 

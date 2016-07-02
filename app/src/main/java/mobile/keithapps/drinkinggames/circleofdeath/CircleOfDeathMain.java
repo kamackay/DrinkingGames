@@ -81,7 +81,7 @@ public class CircleOfDeathMain extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                iv.setImageResource(R.drawable.cardback);
+                                iv.setImageResource(R.drawable.cardback_nologo);
                                 iv.setRotation((float) ((increment * finalI) + .5));
                                 if (prefs.getBoolean(String.format(Locale.getDefault(),
                                         "card.%d", finalI), true)) iv.setVisibility(View.VISIBLE);

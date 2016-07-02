@@ -19,7 +19,7 @@
             android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
-            android:src="@drawable/cardback" />
+            android:src="@drawable/cardback_nologo" />
 
         <TextView
             android:layout_width="2dp"
@@ -31,7 +31,7 @@
             android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
-            android:src="@drawable/cardback" />
+            android:src="@drawable/cardback_nologo" />
 
         <TextView
             android:layout_width="2sp"
@@ -43,7 +43,7 @@
             android:layout_height="@dimen/rtb_topcards_height"
             android:layout_weight="@integer/one"
             android:scaleType="fitXY"
-            android:src="@drawable/cardback" />
+            android:src="@drawable/cardback_nologo" />
 
         <TextView
             android:layout_width="2sp"
@@ -51,10 +51,11 @@
 
         <ImageView
             android:id="@+id/ridethebus_uppercardsview_card4"
-            android:layout_width="@dimen/rtb_uppercardsview_cardwidth"
+            android:layout_width="@dimen/zero"
             android:layout_height="@dimen/rtb_topcards_height"
+            android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/cardback" />
+            android:src="@drawable/cardback_nologo" />
     </LinearLayout>
 
     <TextView
@@ -105,7 +106,7 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="@integer/one"
-            android:background="@drawable/buttonbackground_justborders"
+            android:background="@android:drawable/btn_default"
             android:onClick="guessRed"
             android:visibility="gone">
 
@@ -154,7 +155,7 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="@integer/one"
-            android:background="@drawable/buttonbackground_justborders"
+            android:background="@android:drawable/btn_default"
             android:onClick="guessBlack"
             android:visibility="gone">
 
@@ -204,7 +205,6 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
             android:onClick="guessHigher"
             android:text="@string/text_higher"
             android:textAllCaps="false"
@@ -217,7 +217,6 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
             android:onClick="guessLower"
             android:text="@string/text_lower"
             android:textAllCaps="false"
@@ -230,7 +229,6 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
             android:onClick="guessInside"
             android:text="@string/text_inside"
             android:textAllCaps="false"
@@ -243,7 +241,6 @@
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonbackground_justborders"
             android:onClick="guessOutside"
             android:text="@string/text_outside"
             android:textAllCaps="false"
@@ -261,7 +258,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/buttonbackground_justborders"
+                android:background="@android:drawable/btn_default"
                 android:onClick="guessSpade"
                 android:orientation="vertical">
 
@@ -277,7 +274,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/buttonbackground_justborders"
+                android:background="@android:drawable/btn_default"
                 android:onClick="guessHeart"
                 android:orientation="vertical">
 
@@ -293,7 +290,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/buttonbackground_justborders"
+                android:background="@android:drawable/btn_default"
                 android:onClick="guessDiamond"
                 android:orientation="vertical">
 
@@ -309,7 +306,7 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/buttonbackground_justborders"
+                android:background="@android:drawable/btn_default"
                 android:onClick="guessClub"
                 android:orientation="vertical">
 
@@ -326,7 +323,6 @@
             android:id="@+id/ridethebus_restartbutton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/buttonbackground_justborders"
             android:onClick="restart"
             android:text="@string/text_restart"
             android:textColor="@color/white"
